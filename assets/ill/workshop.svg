@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none" stroke="#B08D57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+<rect width="800" height="600" fill="#1B1815" stroke="none"/>
+<!-- workbench top -->
+<path d="M40 470 L760 470 M40 486 L760 486" stroke="#5E5244"/>
+<path d="M60 486 L60 600 M740 486 L740 600" stroke="#5E5244"/>
+<!-- wood grain on bench -->
+<path d="M90 478 C200 474 300 482 420 477 S640 474 730 479" stroke="#3E362E" stroke-width="1"/>
+<!-- hand plane -->
+<g transform="translate(110 360)">
+  <path d="M0 108 L250 108 L262 96 L238 70 L40 70 L10 92 Z"/>
+  <path d="M40 70 C60 40 90 30 120 34 C140 37 150 50 152 70"/>
+  <path d="M190 70 C196 40 214 26 236 30 C250 33 256 48 252 70"/>
+  <circle cx="221" cy="47" r="5"/>
+  <path d="M118 70 L150 18 L166 22 L140 70"/>
+  <path d="M150 18 L158 8 L172 12 L166 22"/>
+  <path d="M10 108 L250 108" stroke-width="2.4"/>
+</g>
+<!-- shavings -->
+<g stroke="#C9A86F" stroke-width="1.2">
+  <path d="M400 468 C380 440 420 420 440 440 C460 460 430 478 412 462 C400 452 418 440 428 450"/>
+  <path d="M455 469 C450 448 478 438 490 452 C500 466 480 474 472 464"/>
+  <path d="M372 469 C366 456 384 450 390 460"/>
+</g>
+<!-- try square -->
+<g transform="translate(520 300)">
+  <path d="M0 0 L22 0 L22 150 L190 150 L190 168 L0 168 Z"/>
+  <path d="M30 150 L30 144 M50 150 L50 146 M70 150 L70 144 M90 150 L90 146 M110 150 L110 144 M130 150 L130 146 M150 150 L150 144 M170 150 L170 146" stroke-width="1"/>
+  <circle cx="11" cy="14" r="3"/>
+</g>
+<!-- pencil -->
+<g transform="translate(520 448) rotate(-8)"><path d="M0 0 L200 0 L214 7 L200 14 L0 14 Z"/><path d="M200 0 L200 14 M207 4 L214 7 L207 10"/></g>
+<!-- dowels -->
+<g stroke="#C9A86F"><rect x="300" y="430" width="70" height="12" rx="6"/><rect x="306" y="446" width="70" height="12" rx="6"/><path d="M312 430 L312 442 M322 430 L322 442 M332 430 L332 442" stroke-width="0.8"/></g>
+<!-- chisel -->
+<g transform="translate(560 220) rotate(18)"><path d="M0 0 L90 0 L96 6 L90 12 L0 12 Z"/><path d="M96 4 L160 4 L170 6 L160 8 L96 8"/><path d="M20 0 L20 12 M70 0 L70 12" stroke-width="1"/></g>
+<!-- panel leaning with hairline and ceiling line motif -->
+<path d="M120 120 L680 120" stroke="#B08D57" stroke-width="1"/><path d="M120 112 L120 128 M680 112 L680 128"/>
+<text x="400" y="100" fill="#857B70" stroke="none" font-family="Georgia,serif" font-size="14" letter-spacing="6" text-anchor="middle">MŰHELY · BUDAPEST</text>
+</svg>

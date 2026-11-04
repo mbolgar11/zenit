@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="#B08D57" stroke-linecap="round">
+<rect width="400" height="400" fill="#1B1815" stroke="none"/>
+<circle cx="200" cy="200" r="150" stroke-width="1.4"/><circle cx="200" cy="200" r="136" stroke-width="0.8" stroke="#5E5244"/>
+<path id="arc" d="M80 200 A120 120 0 0 1 320 200" stroke="none"/>
+<text fill="#B08D57" stroke="none" font-family="Georgia,serif" font-size="15" letter-spacing="7"><textPath href="#arc" startOffset="50%" text-anchor="middle">KÉZZEL ÖSSZEÁLLÍTVA</textPath></text>
+<path id="arc2" d="M86 210 A114 114 0 0 0 314 210" stroke="none"/>
+<text fill="#857B70" stroke="none" font-family="Georgia,serif" font-size="13" letter-spacing="6"><textPath href="#arc2" startOffset="50%" text-anchor="middle">MAGYARORSZÁG · 2026</textPath></text>
+<path d="M150 172 L250 172" stroke-width="1.4"/><path d="M150 166 L150 178 M250 166 L250 178" stroke-width="1.4"/>
+<text x="200" y="215" fill="#EDE6DA" stroke="none" font-family="Georgia,serif" font-size="30" letter-spacing="10" text-anchor="middle">ZENIT</text>
+<text x="200" y="248" fill="#B08D57" stroke="none" font-family="Georgia,serif" font-style="italic" font-size="20" text-anchor="middle">No. 0001</text>
+<path d="M150 268 C170 258 180 278 200 266 S232 260 250 270" stroke="#857B70" stroke-width="1"/>
+</svg>

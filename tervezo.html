@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tervező – ZENIT</title><meta name="description" content="Tervezd meg a saját ZENIT felső szekrényed élő 3D-ben.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23141210'/%3E%3Crect x='8' y='8' width='48' height='2' fill='%23B08D57'/%3E%3Crect x='8' y='5' width='2' height='8' fill='%23B08D57'/%3E%3Crect x='54' y='5' width='2' height='8' fill='%23B08D57'/%3E%3Ctext x='32' y='52' font-family='Georgia,serif' font-size='38' fill='%23EDE6DA' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<style>@font-face{font-family:"Cormorant";font-weight:300;font-style:normal;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-ext-300-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Cormorant";font-weight:300;font-style:normal;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-300-normal.woff2) format("woff2")}@font-face{font-family:"Cormorant";font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Cormorant";font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Cormorant";font-weight:300;font-style:italic;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-ext-300-italic.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Cormorant";font-weight:300;font-style:italic;font-display:swap;src:url(assets/fonts/cormorant-garamond-latin-300-italic.woff2) format("woff2")}@font-face{font-family:"Inter";font-weight:300;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-ext-300-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Inter";font-weight:300;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-300-normal.woff2) format("woff2")}@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url(assets/fonts/inter-latin-500-normal.woff2) format("woff2")}</style>
+<link rel="stylesheet" href="assets/css/zenit.css">
+</head>
+<body data-solid="1">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-nyugalom" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 20 H56"/><path d="M8 16 V24 M56 16 V24"/><path d="M14 44 C24 38 40 50 50 44"/><path d="M18 52 C28 47 38 56 46 52"/></g></symbol>
+<symbol id="i-tagassag" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M32 8 V56"/><path d="M26 14 L32 8 L38 14 M26 50 L32 56 L38 50"/><path d="M10 8 H54 M10 56 H54"/></g></symbol>
+<symbol id="i-rend" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="10" y="14" width="44" height="36"/><path d="M24.6 14 V50 M39.3 14 V50"/><path d="M14 40 H21 M28 40 H36 M43 40 H50" stroke-linecap="round"/></g></symbol>
+<symbol id="i-buszkeseg" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="32" cy="30" r="18"/><path d="M24 30 H40 M24 26 V34 M40 26 V34"/><path d="M24 46 L20 58 L32 53 L44 58 L40 46"/></g></symbol>
+<symbol id="i-szabadsag" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M10 50 L32 14 L54 50 Z"/><path d="M22 50 V40 H42 V50"/><path d="M32 4 V10"/></g></symbol>
+</svg>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="logo" aria-label="ZENIT – kezdőlap"><span class="rule"></span><span class="word">ZENIT</span></a>
+    <ul class="main">
+      <li class=""><a href="zenit.html">Kollekció</a><div class="drop"><a class="feat" href="zenit.html"><b>A ZENIT</b><span>Ahol a szekrényed véget ér</span></a><a href="zenit.html"><b>A ZENIT</b><span>A hiányzó fél méter, megoldva</span></a><a href="anyagok.html"><b>Anyagok és színek</b><span>Paletta, textúrák, ZENIT Natúr</span></a><a href="manufaktura.html"><b>Manufaktúra</b><span>Magyar kézművesség, egyedi darabok</span></a><a href="inspiracio.html"><b>Inspiráció</b><span>Egy forma, ezer otthon</span></a><a href="keszites.html"><b>Hogyan készül</b><span>Tervtől a plafonig</span></a><a href="garancia.html"><b>Örökgarancia</b><span>Egy életre tervezve</span></a></div></li>
+      <li class="cur"><a href="concierge.html">Concierge</a><div class="drop"><a class="feat" href="tervezo.html" style="background-image:url(assets/img/r/open_led.jpg)"><b>Tervező</b><span>Élő 3D, a te méreteidre</span></a><a href="tervezo.html"><b>Tervező</b><span>Állítsd össze a sajátod</span></a><a href="terv.html"><b>Az Ön terve</b><span>Mentett tervek, ajánlat, rendelés</span></a><a href="concierge.html"><b>Személyes konzultáció</b><span>Tervezőnk visszahív</span></a><a href="projekt.html"><b>A projektről</b><span>AI kihívás: videó, 3D, napló</span></a></div></li>
+    </ul>
+    <div class="right">
+      <span class="lang"><b>HU</b> / EN</span>
+      <a href="terv.html" class="plan" title="Az Ön terve"><svg viewBox="0 0 16 16" fill="none" stroke="#EDE6DA" stroke-width="1"><path d="M2 3.5h12M2.5 3.5v9h11v-9M8 3.5v9"/><path d="M1 1.5h3M12 1.5h3" stroke="#B08D57"/></svg><i style="display:none">0</i></a>
+      <a href="tervezo.html" class="btn">Tervezd meg</a>
+      <button class="burger" data-menu aria-label="Menü"></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav"><button class="x" data-menu aria-label="Bezárás">×</button>
+  <div><h6>Kollekció</h6><a href="zenit.html">A ZENIT</a><a href="anyagok.html">Anyagok és színek</a><a href="manufaktura.html">Manufaktúra</a><a href="inspiracio.html">Inspiráció</a><a href="keszites.html">Hogyan készül</a><a href="garancia.html">Örökgarancia</a></div>
+  <div><h6>Concierge</h6><a href="tervezo.html">Tervező</a><a href="terv.html">Az Ön terve</a><a href="concierge.html">Személyes konzultáció</a><a href="projekt.html">A projektről</a></div>
+</nav>
+<main>
+<section class="cfg" style="padding-top:78px"><div class="wrap" style="padding-top:34px;padding-bottom:26px"><div class="crumb"><a href="index.html">ZENIT</a><i>/</i>Concierge<i>/</i>Tervező</div><div class="sec-head" style="margin-bottom:0"><div><h1 class="h2">Tervezd meg <em>a sajátod.</em></h1></div><p class="lead">Minden változtatás azonnal megjelenik. Ha elkészültél, kérj ajánlatot, beszélj egy tervezővel – vagy rendeld meg.</p></div></div><div class="cfg-shell">
+    <div class="viewer">
+      <div class="toolbar"><div class="seg" id="envSeg"><button class="on" data-env="room">Szobában</button><button data-env="studio">Stúdió</button></div></div>
+      <div class="tools">
+        <button class="icon-btn" id="btnOpen" title="Ajtók nyitása / zárása">◫</button>
+        <button class="icon-btn" id="btnReset" title="Nézet alaphelyzetbe">⟲</button>
+        <button class="icon-btn" id="btnAR" title="Nézd meg a szobádban (AR) – hamarosan">AR</button>
+        <button class="icon-btn" id="btnFull" title="Teljes képernyő">⤢</button>
+      </div>
+      <canvas id="cfg3d" aria-label="A ZENIT élő 3D modellje"></canvas>
+      <div class="dims"><b id="dimW">250</b>cm × <b id="dimH">53</b>cm × <b id="dimD">60</b>cm</div>
+      <div class="hint">Forgasd · nagyíts · kattints az ajtóra</div>
+    </div>
+
+    <aside class="panel">
+      <div class="scroll">
+        <div class="step">
+          <h4>Méret <small>1 / 6</small></h4>
+          <div class="val">Saját szekrényed – <a href="#" id="baseCol" style="border-bottom:1px solid var(--line)">alatta lévő szekrény színe: kasmír</a></div>
+          <div class="row"><label>Szélesség <b><span id="wVal">250</span> cm</b></label><input type="range" id="w" min="60" max="280" value="250"></div>
+          <div class="row"><label>Belmagasság <b><span id="ceilVal">259</span> cm</b></label><input type="range" id="ceil" min="220" max="320" value="259"></div>
+          <div class="row"><label>Meglévő szekrény magassága <b><span id="baseVal">205</span> cm</b></label><input type="range" id="baseH" min="150" max="260" value="205"></div>
+          <div class="row"><label>Mélység</label><div class="opts" id="depthOpts"><button class="opt" data-d="35">35 cm</button><button class="opt" data-d="45">45 cm</button><button class="opt on" data-d="60">60 cm</button></div></div>
+        </div>
+        <div class="step">
+          <h4>Ajtók <small>2 / 6</small></h4>
+          <div class="val">Javasolt: <span id="doorRec">5</span> ajtó (max. 60 cm / ajtó)</div>
+          <div class="opts" id="doorOpts"></div>
+          <div class="opts" id="splitOpts"><button class="opt on" data-s="eq">Egyenlő osztás</button><button class="opt" data-s="sym">Szimmetrikus, középen szélesebb</button></div>
+        </div>
+        <div class="step">
+          <h4>Szín és textúra <small>3 / 6</small></h4>
+          <div class="tabs" id="partTabs"><button class="on" data-part="ajto">Ajtók</button><button data-part="korpusz">Korpusz</button><button data-part="belso">Belső</button></div>
+          <div class="sw-group">Uni színek</div>
+          <div class="sw" id="swUni"></div>
+          <div class="sw-group">Fa · ZENIT Natúr</div>
+          <div class="sw" id="swWood"></div>
+          <div class="sw-group">Kő és len</div>
+          <div class="sw" id="swStone"></div>
+          <div class="hex"><i id="hexPrev" style="background:#CDBFAE"></i><input id="hexIn" value="#CDBFAE" maxlength="7" aria-label="Egyedi HEX színkód"></div>
+          <div class="opts" id="finOpts"><button class="opt on" data-f="matt">Matt</button><button class="opt" data-f="satin">Selyemfény</button><button class="opt" data-f="gloss">Magasfény</button></div>
+        </div>
+        <div class="step">
+          <h4>Fogantyú <small>4 / 6</small></h4>
+          <div class="cards" id="handles">
+            <button class="card on" data-h="edge"><div class="pic"><svg width="70" height="20"><path d="M2 4h66v6a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6z" fill="none" stroke="#EDE6DA"/></svg></div><b>Élfogantyú</b><span>lekerekített, 192 / 320 mm</span></button>
+            <button class="card" data-h="bar"><div class="pic"><svg width="70" height="20"><path d="M6 10h58" stroke="#EDE6DA" stroke-width="3" stroke-linecap="round"/></svg></div><b>Rúd</b><span>vékony, 320 mm</span></button>
+            <button class="card" data-h="knob"><div class="pic"><svg width="70" height="20"><circle cx="35" cy="10" r="7" fill="none" stroke="#EDE6DA"/></svg></div><b>Gomb / bőrfül</b><span>diszkrét részlet</span></button>
+            <button class="card" data-h="push"><div class="pic"><svg width="70" height="20"><path d="M10 10h50" stroke="#857B70" stroke-dasharray="3 3"/></svg></div><b>Nyomásra nyíló</b><span>fogantyú nélkül</span></button>
+          </div>
+          <div class="opts" id="hcol"><button class="opt on" data-c="#C9C6C0">Alu elox</button><button class="opt" data-c="#222">Matt fekete</button><button class="opt" data-c="#B08D57">Bronz</button><button class="opt" data-c="#7A4E2D">Bőr</button></div>
+        </div>
+        <div class="step">
+          <h4>Belső <small>5 / 6</small></h4>
+          <div class="val">Polc rekeszenként</div>
+          <div class="opts" id="shelfOpts"></div>
+        </div>
+        <div class="step">
+          <h4>Extrák <small>6 / 6</small></h4>
+          <div class="toggle"><span>Belső LED-világítás<small>ajtónyitásra, melegfehér</small></span><button class="sw-t on" id="xLed"></button></div>
+          <div class="toggle"><span>Plafonzáró takaróléc<small>beépített hatás</small></span><button class="sw-t" id="xTrim"></button></div>
+          <div class="toggle"><span>Tárolódobozok<small>lenvászon, rekeszre méretezve</small></span><button class="sw-t" id="xBox"></button></div>
+          <div class="toggle"><span>Fékes Häfele pántok<small>alapfelszereltség</small></span><button class="sw-t on" disabled></button></div>
+        </div>
+      </div>
+      <div class="summary" id="terv">
+        <div class="price"><b id="price">229 900 Ft</b><span>Becsült ár</span></div>
+        <div class="meta">Gyártás 3–4 hét · szállítás és szerelés országosan · ZENIT Örökgarancia</div>
+        <div class="acts">
+          <a class="btn fill full" href="terv.html" data-save>Ajánlatot kérek <span class="arrow"></span></a>
+          <a class="btn" href="concierge.html" data-save>Tervező hív vissza</a>
+          <a class="btn" href="terv.html#rendeles" data-save>Megrendelem <span class="demo" style="margin-left:4px">Demó</span></a>
+        </div>
+        <div class="links"><a href="#">Link másolása</a><a href="#">PDF</a><a href="terv.html" data-save>Terv mentése</a></div>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a class="logo" href="index.html"><span class="rule"></span><span class="word">ZENIT</span></a><p style="margin-top:20px;max-width:32ch">Ahol a szekrényed véget ér, ott kezdődünk.</p></div>
+      <div><h5>Kollekció</h5><ul><li><a href="zenit.html">A ZENIT</a></li><li><a href="anyagok.html">Anyagok és színek</a></li><li><a href="manufaktura.html">Manufaktúra</a></li><li><a href="inspiracio.html">Inspiráció</a></li><li><a href="keszites.html">Hogyan készül</a></li><li><a href="garancia.html">Örökgarancia</a></li></ul></div>
+      <div><h5>Concierge</h5><ul><li><a href="tervezo.html">Tervező</a></li><li><a href="terv.html">Az Ön terve</a></li><li><a href="concierge.html">Személyes konzultáció</a></li><li><a href="projekt.html">A projektről</a></li></ul></div>
+      <div><h5>Kapcsolat</h5><ul><li>hello@zenit.example</li><li>Budapest</li><li><a href="projekt.html">A projektről</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 ZENIT · Koncepció – AI kihívás projekt, nem valós webáruház.</span><span>Minden kép látványterv.</span></div>
+  </div>
+</footer>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/vendor/three.min.js"></script><script src="assets/js/vendor/OrbitControls.js"></script><script src="assets/js/configurator.js"></script>
+</body>
+</html>
