@@ -4,8 +4,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 P = json.load(open(os.path.join(ROOT, "src", "parts.json")))
 
 FONTS = "".join(
-    f'@font-face{{font-family:"{fam}";font-weight:{w};font-style:{st};font-display:swap;src:url(assets/fonts/{f}-latin-ext-{w}-{st}.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}}'
-    f'@font-face{{font-family:"{fam}";font-weight:{w};font-style:{st};font-display:swap;src:url(assets/fonts/{f}-latin-{w}-{st}.woff2) format("woff2")}}'
+    f'@font-face{{font-family:"{fam}";font-weight:{w};font-style:{st};font-display:swap;src:url(../fonts/{f}-latin-ext-{w}-{st}.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}}'
+    f'@font-face{{font-family:"{fam}";font-weight:{w};font-style:{st};font-display:swap;src:url(../fonts/{f}-latin-{w}-{st}.woff2) format("woff2")}}'
     for fam, f, w, st in [("Cormorant", "cormorant-garamond", 300, "normal"), ("Cormorant", "cormorant-garamond", 400, "normal"),
                           ("Cormorant", "cormorant-garamond", 300, "italic"), ("Inter", "inter", 300, "normal"),
                           ("Inter", "inter", 400, "normal"), ("Inter", "inter", 500, "normal")])
