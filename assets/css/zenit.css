@@ -419,3 +419,29 @@ footer{border-top:1px solid var(--line);padding:70px 0 40px;color:var(--muted);f
 #hexPrev.img-oak,#hexPrev.img-smoked,#hexPrev.img-walnut,#hexPrev.img-concrete,#hexPrev.img-linen{background-size:cover}
 .viewer .toolbar,.viewer .tools,.viewer .dims,.viewer .hint{z-index:3}
 .viewer .dims{background:rgba(20,18,16,.55);padding:6px 10px;backdrop-filter:blur(6px)}
+/* projekt: videó + 3D nézegető */
+.video.has-video{display:block;background:#000}
+.video.has-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.vid-note{font-size:13px;color:var(--ink2);margin-top:12px}
+.vid-note a{color:var(--bronze)}
+.m3d{position:relative;aspect-ratio:16/8;border:1px solid var(--line);background:#1b1815;overflow:hidden}
+.m3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.m3d-load{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);pointer-events:none;transition:.4s}
+.m3d.ready .m3d-load{opacity:0}
+.m3d-bar{position:absolute;left:16px;top:16px;display:flex;flex-wrap:wrap;gap:6px;z-index:2;max-width:calc(100% - 32px)}
+.m3d-bar .opt{background:rgba(20,18,16,.72);backdrop-filter:blur(6px)}
+.m3d-hint{position:absolute;right:16px;bottom:12px;font-size:11px;letter-spacing:.12em;color:var(--ink2);pointer-events:none}
+@media (max-width:760px){.m3d{aspect-ratio:4/5}.m3d-hint{display:none}}
+.dl-group{margin-bottom:44px}
+.dl{display:flex;justify-content:space-between;gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);transition:.25s}
+.dl:hover{border-color:var(--bronze)}
+.dl b{font:300 24px var(--serif);font-variant-numeric:lining-nums}
+.dl span{font-size:13px;color:var(--ink2);text-align:right}
+@media (max-width:760px){.dl{flex-direction:column;gap:4px}.dl span{text-align:left}}
+.naplo{max-width:860px;font-size:16px;line-height:1.75;color:var(--ink2)}
+.naplo h2{font:300 44px/1.1 var(--serif);font-variant-numeric:lining-nums;color:var(--ink);margin:70px 0 10px}
+.naplo h3{font:300 28px/1.2 var(--serif);font-variant-numeric:lining-nums;color:var(--ink);margin:46px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+.naplo strong{color:var(--ink);font-weight:500}
+.naplo ul{padding-left:20px}.naplo li{margin:6px 0}.naplo li::marker{color:var(--bronze)}
+.naplo code{font-size:.9em;background:rgba(237,230,218,.06);padding:1px 6px}
+.naplo blockquote{border-left:2px solid var(--bronze);margin:16px 0;padding:4px 20px;color:var(--ink)}

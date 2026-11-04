@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projektnapló – ZENIT AI kihívás</title><meta name="description" content="Eszközök, promptok, elakadások és megoldások – a ZENIT AI kihívás naplója.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23141210'/%3E%3Crect x='8' y='8' width='48' height='2' fill='%23B08D57'/%3E%3Crect x='8' y='5' width='2' height='8' fill='%23B08D57'/%3E%3Crect x='54' y='5' width='2' height='8' fill='%23B08D57'/%3E%3Ctext x='32' y='52' font-family='Georgia,serif' font-size='38' fill='%23EDE6DA' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<style>@font-face{font-family:"Cormorant";font-weight:300;font-style:normal;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-300-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Cormorant";font-weight:300;font-style:normal;font-display:swap;src:url(../fonts/cormorant-garamond-latin-300-normal.woff2) format("woff2")}@font-face{font-family:"Cormorant";font-weight:400;font-style:normal;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Cormorant";font-weight:400;font-style:normal;font-display:swap;src:url(../fonts/cormorant-garamond-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Cormorant";font-weight:300;font-style:italic;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-300-italic.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Cormorant";font-weight:300;font-style:italic;font-display:swap;src:url(../fonts/cormorant-garamond-latin-300-italic.woff2) format("woff2")}@font-face{font-family:"Inter";font-weight:300;font-style:normal;font-display:swap;src:url(../fonts/inter-latin-ext-300-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Inter";font-weight:300;font-style:normal;font-display:swap;src:url(../fonts/inter-latin-300-normal.woff2) format("woff2")}@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url(../fonts/inter-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url(../fonts/inter-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url(../fonts/inter-latin-ext-500-normal.woff2) format("woff2");unicode-range:U+0100-024F,U+2010-2027}@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url(../fonts/inter-latin-500-normal.woff2) format("woff2")}</style>
+<link rel="stylesheet" href="assets/css/zenit.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-nyugalom" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 20 H56"/><path d="M8 16 V24 M56 16 V24"/><path d="M14 44 C24 38 40 50 50 44"/><path d="M18 52 C28 47 38 56 46 52"/></g></symbol>
+<symbol id="i-tagassag" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M32 8 V56"/><path d="M26 14 L32 8 L38 14 M26 50 L32 56 L38 50"/><path d="M10 8 H54 M10 56 H54"/></g></symbol>
+<symbol id="i-rend" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4"><rect x="10" y="14" width="44" height="36"/><path d="M24.6 14 V50 M39.3 14 V50"/><path d="M14 40 H21 M28 40 H36 M43 40 H50" stroke-linecap="round"/></g></symbol>
+<symbol id="i-buszkeseg" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="32" cy="30" r="18"/><path d="M24 30 H40 M24 26 V34 M40 26 V34"/><path d="M24 46 L20 58 L32 53 L44 58 L40 46"/></g></symbol>
+<symbol id="i-szabadsag" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M10 50 L32 14 L54 50 Z"/><path d="M22 50 V40 H42 V50"/><path d="M32 4 V10"/></g></symbol>
+</svg>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="index.html" class="logo" aria-label="ZENIT – kezdőlap"><span class="rule"></span><span class="word">ZENIT</span></a>
+    <ul class="main">
+      <li class=""><a href="zenit.html">Kollekció</a><div class="drop"><a class="feat" href="zenit.html"><b>A ZENIT</b><span>Ahol a szekrényed véget ér</span></a><a href="zenit.html"><b>A ZENIT</b><span>A hiányzó fél méter, megoldva</span></a><a href="anyagok.html"><b>Anyagok és színek</b><span>Paletta, textúrák, ZENIT Natúr</span></a><a href="manufaktura.html"><b>Manufaktúra</b><span>Magyar kézművesség, egyedi darabok</span></a><a href="inspiracio.html"><b>Inspiráció</b><span>Egy forma, ezer otthon</span></a><a href="keszites.html"><b>Hogyan készül</b><span>Tervtől a plafonig</span></a><a href="garancia.html"><b>Örökgarancia</b><span>Egy életre tervezve</span></a></div></li>
+      <li class=""><a href="concierge.html">Concierge</a><div class="drop"><a class="feat" href="tervezo.html" style="background-image:url(assets/img/r/open_led.jpg)"><b>Tervező</b><span>Élő 3D, a te méreteidre</span></a><a href="tervezo.html"><b>Tervező</b><span>Állítsd össze a sajátod</span></a><a href="terv.html"><b>Az Ön terve</b><span>Mentett tervek, ajánlat, rendelés</span></a><a href="concierge.html"><b>Személyes konzultáció</b><span>Tervezőnk visszahív</span></a><a href="projekt.html"><b>A projektről</b><span>AI kihívás: videó, 3D, napló</span></a></div></li>
+    </ul>
+    <div class="right">
+      <span class="lang"><b>HU</b> / EN</span>
+      <a href="terv.html" class="plan" title="Az Ön terve"><svg viewBox="0 0 16 16" fill="none" stroke="#EDE6DA" stroke-width="1"><path d="M2 3.5h12M2.5 3.5v9h11v-9M8 3.5v9"/><path d="M1 1.5h3M12 1.5h3" stroke="#B08D57"/></svg><i style="display:none">0</i></a>
+      <a href="tervezo.html" class="btn">Tervezd meg</a>
+      <button class="burger" data-menu aria-label="Menü"></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav"><button class="x" data-menu aria-label="Bezárás">×</button>
+  <div><h6>Kollekció</h6><a href="zenit.html">A ZENIT</a><a href="anyagok.html">Anyagok és színek</a><a href="manufaktura.html">Manufaktúra</a><a href="inspiracio.html">Inspiráció</a><a href="keszites.html">Hogyan készül</a><a href="garancia.html">Örökgarancia</a></div>
+  <div><h6>Concierge</h6><a href="tervezo.html">Tervező</a><a href="terv.html">Az Ön terve</a><a href="concierge.html">Személyes konzultáció</a><a href="projekt.html">A projektről</a></div>
+</nav>
+<main>
+<section class="page-hero plain"><div class="wrap">
+  <div class="crumb"><a href="index.html">ZENIT</a><i>/</i><a href="projekt.html">A projektről</a><i>/</i>Napló</div><div class="kicker">Projektnapló</div><h1 class="h1">Hogyan készült – <em>lépésről lépésre.</em></h1><p class="lead">Eszközök, példapromptok, elakadások és megoldások, ahogy a munka közben történt.</p></div></section><section class="sec " style="padding-top:40px"><div class="wrap"><article class="naplo"><h2>1. nap – kedd, nov. 3.</h2>
+<h3>Indítás</h3>
+<ul>
+<li>Eszköz: Claude (Cowork, desktop app) – a gépemhez kötve, a „Szekrény” mappán dolgozik.</li>
+<li>Első prompt (lényeg): „Egy rátétszekrényt fogok csinálni egy meglévő szekrény tetejére… megtervezzük közösen koncepció/layout szinten, te lemodellezed 3D-ben Fusion 360-ban, csinálsz gyártási dokumentációt, hogy lapszabászaton vagy az OBI-ban meg tudjam rendelni… YouTube videó, promo videó, landing page… azt akarom, hogy mindent te csinálj.”</li>
+</ul>
+<h3>GitHub</h3>
+<ul>
+<li>Nem volt fiókom → „csinálj egyet” → Claude megnyitotta a regisztrációs oldalt a beépített böngészőben; a jelszót/ellenőrzést én csináltam (fiók: mbolgar11).</li>
+<li><strong>Elakadás:</strong> Claude felhős munkaterületéről a GitHub nem volt elérhető (a proxy csak előre beállított repókat enged).</li>
+<li><strong>Megoldás:</strong> GitHub „device flow” belépés az én gépemen keresztül: kaptam egy kódot, beírtam a github.com/login/device oldalon, és onnantól Claude a gépemről tud pusholni.</li>
+</ul>
+<h3>YouTube</h3>
+<ul>
+<li>Kérdés: kell-e API hozzáférés? <strong>Tanulság:</strong> a nem auditált YouTube API-alkalmazással feltöltött videók automatikusan privátok lesznek → nem ágyazhatók be. Megoldás: feltöltés a böngészőből, Claude kitölti a mezőket, publikálás előtt rákérdez.</li>
+</ul>
+<h3>Méretek és koncepció</h3>
+<ul>
+<li>Prompt: elküldtem a szekrényem termékoldalát (Bútorline ELIA D 250, kasmír). Claude kiolvasta: 250×205×60 cm, 16 mm lap, 3 tolóajtó (középső tükrös), és megnézte a méretrajzot.</li>
+<li>Belmagasság 260, de van ahol 259 → szabad hely 54 cm.</li>
+<li>Claude rajzolt egy elölnézeti vázlatot a chatbe; döntések kérdés-gombokkal:</li>
+<li>„90-80-80-as osztás, szimmetrikusan, a középső a legszélesebb” → 80+90+80 cm</li>
+<li>nyíló ajtó, nyomásra nyíló (TIP-ON), mind a 3 sima kasmír</li>
+<li>középen polc, a széleken nincs (bőrönd)</li>
+<li>„nem kell felső takaróléc és fent sem kell kirögzíteni, elég csak a szekrényhez”</li>
+<li>Claude felhívta a figyelmet: a dobozt fel kell emelni és hátratolni → 2 cm játék kell → 52 cm magas modul.</li>
+</ul>
+<h3>3D modell (v1)</h3>
+<ul>
+<li>Claude tiszta Python geometriát írt (egy igazságforrás), ebből: CadQuery → STEP / GLB / STL, Blender (bpy) → renderek, Fusion 360 Python script, szabásjegyzék.</li>
+<li><strong>Elakadások a renderelésnél:</strong></li>
+<li>az első render teljesen kiégett (túl erős fények) → fényerő ~1/6-ára</li>
+<li>a nyitott ajtók befelé, a szekrénybe fordultak → forgatási előjel javítva</li>
+<li>a kasmír fehérnek látszott → sötétebb, melegebb szín + zsályazöld hátfal a kontrasztért</li>
+<li>Prompt: „úgy tervezd meg, hogy legyen benne illesztő fa tipli, járatos csavarok, kekszek ha kell, könnyített szerelés, olcsó de jó” → 8×35 bükk tipli + konfirmát 7×50, keksz nem kell, 1:1 nyomtatható fúrósablon.</li>
+</ul>
+<h3>Fusion 360 bekötése – a nap legnagyobb kalandja</h3>
+<ul>
+<li>Prompt: „nem kell ehhez valami MCP vagy hasonló, hogy hatékonyan dolgozz a Fusionnel?” → Claude megtalálta a hivatalos <strong>Autodesk Fusion MCP</strong> connectort.</li>
+<li>Bekapcsoltam a Fusionben (Preferences → General → API → Fusion MCP Server), majd a connectort a Claude appban.</li>
+<li><strong>Elakadás 1:</strong> Claude elérte a Fusion portját a beépített böngészőből, de a szerver biztonsági okból elutasította („Invalid Origin”) – helyesen.</li>
+<li><strong>Elakadás 2:</strong> a connector eleinte nem jelent meg a felhős munkamenetben. Claude közben megkereste a külsős Fusion MCP-ket (faust-machines, prim-design, Misterbra), és írt egy <strong>saját fájl alapú hidat</strong> (ClaudeBridge add-in, a megosztott mappán keresztül).</li>
+<li>Aztán a hivatalos connector mégis megjelent → Claude <strong>élőben építette a modellt a Fusionömben</strong>.</li>
+<li><strong>Elakadások az élő modellezésnél (mind megoldva):</strong></li>
+<li>az ékezetes „Szekrény” mappanév elromlott az átvitelben („SzekrÃ©ny”) → <code>chr(233)</code>-mal rakta össze</li>
+<li>a Fusion nem enged „H” és „t” nevű paramétert, mert ezek mértékegységek (henry, tonna) → <code>Korpusz_magassag</code>, <code>Lapvastagsag</code></li>
+<li>az új Fusion „Part” dokumentuma csak egy komponenst enged → hibrid (összeállítás) módra váltás</li>
+<li>a gépemre küldött fájl kétszer a régi változatot írta ki (gyorsítótár) → új fájlnévvel küldve, md5-tel ellenőrizve</li>
+</ul>
+<h3>Teljes gyártási modell (v2)</h3>
+<ul>
+<li>Prompt: „csináld meg, hogy benne legyenek a furatok is a modellben rendesen, az összes fúrási feature és tipli és csavar is, valamint a zsanérok és a nyitók, kilökők … ABS élzárással”</li>
+<li>Eredmény Fusionben: 19 lap (lapmag + <strong>25 ABS élzáró csík</strong> külön testként), <strong>75 Hole feature / 258 furat</strong> (konfirmát süllyesztéssel, tipli, Ø35 pántcsésze lapos fenékkel, pánttalp, TIP-ON, összekötő, rögzítő- és hátfalcsavar), <strong>165 db vasalat</strong> (42 konfirmát, 28 tipli, 6 pánt, 3 TIP-ON, 8 összekötő, 12 rögzítőcsavar, 66 hátfalcsavar).</li>
+<li>Claude programmal ellenőrizte: nincs egymásba futó vagy lapból kilógó furat; a Fusion, a STEP és az Excel furatszáma egyezik (258).</li>
+<li>Export a Fusionből: F3D + STEP.</li>
+</ul>
+<h3>Gyártási dokumentáció</h3>
+<ul>
+<li>Szabásjegyzék Excelben (képletekkel), 19 alkatrész, ABS élzárás élenként (H1/H2/R1/R2), „Furatok” lap: minden furat koordinátával.</li>
+<li>Táblaoptimalizálás (rectpack): 2 tábla 2800×2070 kasmír kell.</li>
+<li>v2 PDF (26 oldal): nézetrajz, szabásjegyzék, Fusion képek, <strong>15 automatikusan generált alkatrészrajz furattáblával (A01–A15)</strong>, szabásterv, vasalat (a modellből számolva), szerelés, 1:1 fúrósablon.</li>
+<li><strong>Elakadás:</strong> a PDF lábléce kék lett szürke helyett – a ReportLab a 3-jegyű „#888” színkódot rosszul értelmezi → 6-jegyű kód.</li>
+<li><strong>Elakadás:</strong> a polc fúrósablonjánál Claude saját maga vette észre, hogy a referenciaél nem a 260-as vonal, hanem a polc alja (251 mm) – javítva.</li>
+<li><strong>Elakadás:</strong> a PDF nyitva volt nálam, nem lehetett felülírni → _v2 néven mentette.</li>
+</ul>
+<h3>Rendrakás</h3>
+<ul>
+<li>Prompt: „mentsd le ezeket verziózva, beszédes nevekkel a szekrény mappába, strukturáltan, követhetően”</li>
+<li>Új szerkezet: <code>00_Projekt</code>, <code>01_Koncepcio_es_latvany</code>, <code>02_3D_modell</code>, <code>03_Fusion360</code>, <code>04_Gyartasi_dokumentacio</code>, <code>05_Forraskod</code>; verziómappák (<code>v1_…</code>, <code>v2_…</code>), fájlnevek <code>Ratet_v&lt;n&gt;_&lt;tartalom&gt;</code> formában, README a gyökérben.</li>
+</ul>
+<h3>Költségcsökkentett változat (v3)</h3>
+<ul>
+<li>Prompt: „csinálj egy olyan verziót is, költségcsökkentés miatt, hogy … négy függőleges tartó van … az alsó és felső lap egy-egy nagy elem … egy nagy téglatest váz lesz két osztással és 3 ajtóval. Oldd meg, hogy a 3 ajtó szépen záródjon … 18 mm-en kell megoldanod két ajtó zárását.”</li>
+<li>Megoldás: a közfal közepe pont az ajtóosztás vonalán (800 és 1700 mm) → mindkét ajtó 7,5 mm-t takar a 18 mm-es közfalból, köztük 3 mm hézag; a közfalon ülő pánt <strong>félig ráütődő</strong> (9,5 mm hajlítású) CLIP top, az oldallapokon maradt a ráütődő.</li>
+<li>Menet közbeni kérés: „a középső két függőleges osztófal mindkét oldalán legyen zsanér felfogató előfurat, hogy forgatható legyen a középső nyíló ajtó” → tartalék pánttalp- és TIP-ON-előfuratok a másik közfalon is; az ajtót fejjel lefelé fordítva a csészék a másik élre kerülnek (100 mm alul-felül, szimmetrikus).</li>
+<li>Fusion: 11 lap + 19 ABS él, 53 Hole feature / 196 furat, 125 vasalat; mentve „Rátétszekrény v3 - egy korpusz, költségcsökkentett” néven.</li>
+<li>Claude őszinte összevetése: 19 → 11 alkatrész, −9% lap, −62 furat, nincs összekötő csavar, 1 hátfal; DE a táblaszám marad 2 (5,8 m² épp nem fér egy táblára), a 2464 mm-es lapokhoz szállítás kell, és az egész korpusz ~56 kg (3 ember). Plusz: a tetőlapon felülről kell csavarozni → csak a földön szerelhető össze.</li>
+<li><strong>Elakadás:</strong> a 2,5 m-es lapok rajzán összecsúsztak a feliratok → a rajzelemek mérete a lap hosszával skálázódik; a hátfal 54 soros furattáblája nem fért az oldalra → hosszú lapoknál a táblázat a rajz alá kerül.</li>
+</ul>
+<h3>Részletek finomítása (v4–v5)</h3>
+<ul>
+<li>Prompt (csak megbeszélés, még nincs modellezés): „az alsó nagy szekrényhez csak a két oldalán húzd le 2-2, szumma 4 forgácslapcsavarral … HDF ne menjen a polcba … polctartó furatok mindenhol … 2 konfirmát + 2 tipli … nyomásra nyitó helyett javasolj szép fogantyút”</li>
+<li>Claude javaslata: RIOS alu élfogantyú az ajtók alsó élének közepére; ehhez az ajtó 4,5 mm hézagot kap alul-felül (511 mm magas ajtó).</li>
+<li>„elég egy csillapított per ajtó, a másik legyen sima” → fent fékes, lent rugós pánt.</li>
+<li>Tanulság: „elég ha módosítod… előbb csak modell és árkalkuláció, a doksi a végén” – a dokumentációt csak a végleges változatra generáltattam, így nem ment el idő köztes PDF-ekre.</li>
+<li>v5: „nem kell a teljes furatsor, csak a pántok furatai és a polcnak pont középen, mind a 3 fakkban” → 48 Hole feature / 152 furat; a középső polc levehető, csapokon ül.</li>
+</ul>
+<h3>Ár és anyag (v6)</h3>
+<ul>
+<li>Prompt: „csekkold, hogy az OBI-ban valóban ingyenesen vágják-e … számold fehér lapból … 0,4-es ABS éllel”</li>
+<li>Claude utánanézett: az OBI szabási díja nem nyilvános (és nem ingyenes), élzárás csak 0,4 és 2 mm ABS; a kalkuláció ezért min–max sávval számol (szabás 0–300 Ft/vágás).</li>
+<li>Színvariációk renderelve az OBI 18 mm-es kínálatából (fehér 4 699 Ft/m², antracit 6 299, szürke 10 490, trüffel/szil 12 490); kasmír lapot olcsón a Lapp-Fánál talált (~28 e Ft/tábla). Döntés: <strong>fehér</strong> (fehér fal, fehér függöny mellé).</li>
+</ul>
+<h3>Vasalat és végleges változat (v7)</h3>
+<ul>
+<li>Prompt: „milyen kivetőpántok vannak? … GTV vagy Häfele a jobb?” → Claude összehasonlította (ráütődő / félig ráütődő, rugós / fékes / push); döntés: <strong>Häfele Metalla 300SM</strong> kombi, ajtónként 1 fékes (fent) + 1 rugós (lent).</li>
+<li>„amennyire lehet, egységesítsd a csavarhosszokat” → 3 csavarfajta maradt: konfirmát 7×50, forgácslapcsavar 3,5×16 (pánt, pánttalp, fogantyú, hátfal) és 3,5×30 (rögzítés az ELIA-hoz).</li>
+<li>Utolsó módosítás: „az ajtónak legyen inkább 2 mm-es élzárása, a bútor többi részének meg 0,4” → modell, kalkuláció, szabásjegyzék és Fusion frissítve (12 db 2 mm-es ABS csík az ajtókon).</li>
+<li>Fusion: „Rátétszekrény v7 - VÉGLEGES (OBI fehér, Häfele)”, 48 Hole feature / 152 furat; F3D + STEP export.</li>
+<li>Végleges gyártási dokumentáció (25 oldal): nézetrajz, szabásjegyzék élzárással, Fusion képek, 10 alkatrészrajz furattáblával (A01–A10), végleges döntések táblázata, szabásterv (2 tábla), vasalatlista, szerelési útmutató, 1:1 fúrósablon.</li>
+<li>Kalkuláció: kb. 83–139 e Ft, várhatóan ~111 e Ft (lap, HDF, szabás, élzárás, pántfúrás, Häfele pántok, RIOS fogantyú, kötőelemek, szállítás).</li>
+<li><strong>Elakadások:</strong></li>
+<li>a Fusion MCP hívás 60 s után időtúllépést jelzett, de a modellépítés tovább futott → utána egy csak olvasó scripttel ellenőrizte az állapotot</li>
+<li>a CadQuery összeállításban két vasalatcsoport ugyanazt a nevet kapta („pánt_2db”) → egyedi nevek a teljes megnevezésből</li>
+<li>a rajzok még kasmír színnel készültek → a lapszín fehérre állítva, a polc mérete „880.0” helyett „880”</li>
+<li>a belső vasalatkép a Fusionből: Claude scripttel elrejtette az ajtókat és a hátfalat, képet vett, majd visszakapcsolta őket</li>
+</ul>
+<h3>Utolsó finomítások (v8 – végleges)</h3>
+<ul>
+<li>Prompt: „a polctartó legyen oldalanként 3 csap, ne csak kettő, valamint a hátfal nem csavaros, hanem beütős szeges, nem kell előfúrni/jelölni … és a doksit rövidre csináld, ha lehet, ne csússzon át tartalom több oldalra”</li>
+<li>Menet közben: „és legyen még 1 cm-rel magasabb a teljes magasság” → 520 → <strong>530 mm</strong>, ajtók 521 mm; a plafonig 10 mm marad, ezért a korpuszt vízszintesen kell feltolni, billenteni nem lehet.</li>
+<li>Polctartó: oldalanként 3 csap (37 / 289,5 / 542 mm elölről), mindhárom rekeszben; a hátfal 50 db 1,6×25-ös beütős hátfalszeggel kerül fel, így 48 hátfalfurat kiesett (108 furat / 47 feature).</li>
+<li>Fusion: „Rátétszekrény v8 - VÉGLEGES (530 mm, 3 polccsap, szegezett hátfal)”. A 28 kB-os scriptet nem a chatbe másolta Claude: a gépemre mentette, és egy rövid Fusion-script onnan futtatta (gyorsabb, olcsóbb).</li>
+<li>Dokumentáció 25 → <strong>12 oldal</strong>: minden fejezet egy oldal, egy blokkban (KeepTogether), az alkatrészrajzok csoportosítva (3 rajz/oldal), a furat nélküli lapoknak (polc, hátfal) nincs külön rajza. Minden szöveges méret a modellből számolódik, így a magasságváltozás mindenhol egyszerre frissült.</li>
+<li><strong>Elakadás:</strong> a fúrósablon „B” csíkja még a régi, konfirmátos polcot mutatta (v5 óta csapokon ül) → kicserélve 3 csapos polctartó-sablonra.</li>
+</ul>
+<h3>Fogantyúcsere és nagyobb rajzok (v9)</h3>
+<ul>
+<li>Prompt: „olyan kéne, ami ilyen kivitel, de le van kicsit kerekítve, nem ilyen sarkos, kb. ilyen alu elox szürke színben”</li>
+<li>Claude a beépített böngészőben végignézte a fogantyushop.hu élre szerelhető kínálatát (képek alapján): a GTV HEXA, Furnipart EDGE STRAIGHT, Viefe WAY és Rujz 658.35 szögletes; a Furnipart EDGE ROUND csak 40/200 mm-ben van. Választás: <strong>Viefe CURVE</strong>, lekerekített, íves profil, alu szálcsiszolt (L24), 128 mm furattáv / 200 mm hossz, 3 020 Ft/db, raktáron. Eloxált matt szürke változatot a boltban nem talált.</li>
+<li>Kalkuláció: ~90–145 e Ft, várhatóan ~118 e Ft (a drágább fogantyú miatt +7 e Ft).</li>
+<li>Prompt: „a PDF-nél, ahol 3 rajz van egy lapon, azt szedd szét külön, a többin meg a rajzokon annyit nagyíts, amíg csak lehet, hogy ne kelljen oldalszámot növelni”</li>
+<li>Megoldás: minden alkatrésznek külön oldal; egy kis „illesztő” függvény minden oldalon milliméterenként csökkenti a rajz méretét, amíg az egész oldal egy lapra fér, így minden rajz a lehető legnagyobb. 16 oldal.</li>
+<li><strong>Elakadás:</strong> az első próbánál 20 oldal lett, mert a ReportLab keret 6 pt-os belső margóját nem számolta bele → javítva, 16 oldal, semmi nem csúszik át.</li>
+</ul>
+<h3>Végleges fogantyú (v10)</h3>
+<ul>
+<li>Prompt: elküldtem egy linket (butorkellek.hu, „Fogantyú 1342, alu”): „ehhez hasonlókat nézz, olyat is, amit hátulról csavarozok, nem élben … előbb keress, és válasszuk ki, utána csináld csak meg a módosítást”</li>
+<li>Claude végignézte a butorkellek.hu élfogantyúit (képek és adatlapok). Kiderült, hogy a linkelt darab a <strong>GTV HEXA (UA-HEXA-…-05)</strong>, és hogy korábban tévesen soroltam a szögletesek közé – valójában lekerekített, ráhajló profil. Ez hátulról, az ajtó belső lapjába csavarozható.</li>
+<li>Kérdés: „jobb a hosszabb?” → Claude: igen, mert a szekrény fejmagasság felett van, vakon nyúlsz érte; a 192 mm-es furattávú (225 mm hosszú) arányos a 797/897 mm-es ajtókhoz.</li>
+<li>Döntés: <strong>GTV HEXA 192, alu</strong>, 805 Ft/db, raktáron (butorkellek.hu). A furatok átkerültek az ajtó élébe fúrtról az ajtó belső lapjára (Ø2,5×12, 10 mm-re az alsó éltől, 192 mm-re egymástól), 3,5×16 csavarral (nem fut át a 18 mm-es ajtón).</li>
+<li>Kalkuláció: ~84–138 e Ft, várhatóan ~111 e Ft.</li>
+<li>Fusion: „Rátétszekrény v10 - VÉGLEGES (GTV HEXA 192 fogantyú, 530 mm)”, 47 feature / 108 furat, mind ép.</li>
+</ul>
+<h2>2. nap – szerda, nov. 4.</h2>
+<h3>Márka, weboldal, látványtervek (ZENIT)</h3>
+<ul>
+<li>Ötletelés sok kérdéssel (AskUserQuestion-gombokkal):</li>
+<li>név: <strong>ZENIT</strong>;</li>
+<li>szlogen: „Ahol a szekrényed véget ér, ott kezdődünk.”, mellé „A hiányzó fél méter.”;</li>
+<li>méretvonalas logó, 6 változatból;</li>
+<li>a „ZENIT Örökgarancia” szövege négy javaslat összefésüléséből;</li>
+<li>sötét-meleg prémium arculat: Cormorant Garamond és Inter betűtípus, bronz kiemelőszín.</li>
+<li>Prompt: „ne egy landing oldalra, hanem aloldalakra, egy-két fő menüponttal … vezessük végig a vevőt”</li>
+<li>Eredmény: 11 oldal, fő menü: Kollekció + Concierge.</li>
+<li>Minden oldal alján „Következő fejezet” vezet tovább.</li>
+<li>A közös fejlécet és láblécet egy Python-generátor írja (src/build.py).</li>
+<li>Prompt: „legyen benne … hogy ez egy luxus, egyedi termék, magyar felhalmozott tudással és szakértelemmel … legyen sztori is, és érzés eladva”</li>
+<li>Manufaktúra oldal.</li>
+<li>Négy jelenetes történet: este a bőrönd → reggel plafonig → este csend.</li>
+<li>„Öt érzés” blokk.</li>
+<li>A márka kitalált, ezt a lábléc jelzi. Kitalált vásárlói vélemény nincs az oldalon.</li>
+<li><strong>Képek:</strong> stock fotót (Unsplash/Pexels) és AI-képgenerálást a munkamenet hálózati beállítása nem engedett. Helyettük <strong>saját Blender-jelenetgenerátor</strong> készült (zenit_scene.py):</li>
+<li>szoba ággyal, lámpával, növénnyel, függönnyel;</li>
+<li>este, reggel, éjszaka és stúdió hangulat;</li>
+<li>procedurális fa-, len- és betontextúrák;</li>
+<li>21 kép: előtte–utána pár, nyitott LED-es belső, 6 színvariáció, makrók, robbantott nézet;</li>
+<li>mellé saját vonalas SVG-illusztrációk.</li>
+<li>Kérés közben: „ne fehér legyen a rátétszekrény, hanem kasmír … csak amit bemutatok” → a bemutató képeken kasmír lett.</li>
+<li><strong>Elakadások:</strong></li>
+<li>Az első fa-shader márványszerű lett → sávos, függőleges erezetre cseréltük.</li>
+<li>A gépen csak 2 CPU van, egy kép ~3,5 perc → a renderek háttérben futó sorban készültek.</li>
+<li>file:// alatt nem jelentek meg a külső SVG-ikonok → az ikonkészletet beágyaztuk az oldalakba.</li>
+</ul>
+<h3>Élő 3D tervező</h3>
+<ul>
+<li>Prompt (a kérdésre, hogy jöhet-e a valódi 3D): „igen, mehet”</li>
+<li>three.js-alapú tervező a tervező oldalon, valós idejű látvánnyal:</li>
+<li>szélesség 60–280 cm;</li>
+<li>1–6 ajtó, javasolt és felülírható osztás;</li>
+<li>külön szín a korpusznak, az ajtóknak és a belsőnek: palettából, HEX-kóddal vagy textúrával (tölgy, füstölt tölgy, dió, beton, len);</li>
+<li>matt, selyemfényű vagy magasfényű felület;</li>
+<li>4 fogantyútípus és 4 szín;</li>
+<li>polcok rekeszenként;</li>
+<li>LED, takaróléc, tárolódobozok;</li>
+<li>szoba- vagy stúdiónézet.</li>
+<li>Kattintásra nyíló ajtók, élő becsült ár. A „Terv mentése” képpel együtt elmenti a tervet.</li>
+<li><strong>Elakadás:</strong> a böngésző file:// alatt nem enged képet tölteni a WebGL-be → a fa- és kőtextúrákat a kód rajzolja canvasra.</li>
+</ul>
+<h3>Publikálás – GitHub Pages</h3>
+<ul>
+<li>A repót (mbolgar11/zenit) Claude a gépemről hozta létre és pusholta, mert a felhős munkaterületről a GitHub nem érhető el. A Pages-t is ő kapcsolta be.</li>
+<li><strong>Elakadás:</strong> a GitHub API a gépemről időnként HTTP/2-hibát adott, és a github.io sem volt elérhető onnan → az élő oldalt Claude a beépített böngészőben ellenőrizte.</li>
+<li><strong>Elakadás:</strong> élesben a betűtípusok 404-et adtak. A CSS-ben a font útvonala az oldalhoz volt relatív (assets/fonts/…), nem a CSS-fájlhoz (../fonts/…) → javítva és újra pusholva.</li>
+<li>Projekt oldal:</li>
+<li><strong>interaktív 3D nézegető</strong> a GLB-modellből: robbantott nézet, az ELIA szekrény ki-be kapcsolása, ajtók, vasalatok;</li>
+<li>letöltések (F3D, STEP, GLB, PDF, Excel);</li>
+<li>ez a napló, a videók és a GitHub-link.</li>
+</ul>
+<h3>Videó narrációval + promóvideó</h3>
+<ul>
+<li><strong>Narráció:</strong></li>
+<li>A szokásos hangforrások (HuggingFace, online TTS) nem voltak elérhetők.</li>
+<li>Claude megtalálta ugyanazokat a magyar <strong>Piper</strong>-hangokat a sherpa-onnx GitHub-kiadásai között.</li>
+<li>A Piper TTS a gépemen fut, teljesen helyben. Három hangmintát kaptam (Anna, Berta, Imre); a videóhoz Anna hangja készült.</li>
+<li><strong>Elakadás:</strong> a sherpa-onnx 2.0 nem tudta a magyar szöveget hangokra bontani → a piper-tts csomag ugyanazzal a modellel működött.</li>
+<li><strong>3D felvételek:</strong></li>
+<li>Este a Fusion MCP nem válaszolt → a forgó és robbantott 3D felvételek a GLB-ből készültek, a weboldal nézegetőjével (ugyanaz a v10 geometria).</li>
+<li><strong>Trükk:</strong> a requestAnimationFrame-et és az időt kézzel léptettük, így a lassú szoftveres WebGL ellenére is egyenletes 30 fps lett.</li>
+<li>A teljes képernyőkép kockánként 4 s volt → helyette a WebGL-vásznat mentjük közvetlenül, és a felületet csak akkor fényképezzük, ha változik.</li>
+<li><strong>Feliratok:</strong></li>
+<li>A Pillow nem tudta összefűzni a betűtípus ékezetes (latin-ext) részhalmazait.</li>
+<li>Ezért a feliratok HTML-ben készülnek, a weboldal betűivel, és átlátszó PNG-ként kerülnek a képre.</li>
+<li><strong>Vágás:</strong></li>
+<li>Jelenetenként egy MP4 (1920×1080, 30 fps), Ken Burns-mozgás, áttűnések, felirat-animáció.</li>
+<li>A jeleneteket az ffmpeg veszteség nélkül fűzi össze.</li>
+<li>Alá egy numpy-val szintetizált lágy akkordpad, amely beszéd alatt automatikusan halkul.</li>
+<li><strong>Ellenőrzés a teljes render előtt:</strong> a legzsúfoltabb pillanatokról állóképek készültek.</li>
+<li>Az ár a fehér rajzon olvashatatlan volt → sötét dobozba került.</li>
+<li>A felirat rálógott a Fusion-képre → átrendeztük.</li>
+<li><strong>Eredmény:</strong></li>
+<li>projektvideó ~2:12, 9 fejezet: kiindulópont, 3D modell, részletek, gyártás, márka, weboldal és tervező, AI-munkamódszer;</li>
+<li>promóvideó ~0:31.</li>
+</ul></article></div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a class="logo" href="index.html"><span class="rule"></span><span class="word">ZENIT</span></a><p style="margin-top:20px;max-width:32ch">Ahol a szekrényed véget ér, ott kezdődünk.</p></div>
+      <div><h5>Kollekció</h5><ul><li><a href="zenit.html">A ZENIT</a></li><li><a href="anyagok.html">Anyagok és színek</a></li><li><a href="manufaktura.html">Manufaktúra</a></li><li><a href="inspiracio.html">Inspiráció</a></li><li><a href="keszites.html">Hogyan készül</a></li><li><a href="garancia.html">Örökgarancia</a></li></ul></div>
+      <div><h5>Concierge</h5><ul><li><a href="tervezo.html">Tervező</a></li><li><a href="terv.html">Az Ön terve</a></li><li><a href="concierge.html">Személyes konzultáció</a></li><li><a href="projekt.html">A projektről</a></li></ul></div>
+      <div><h5>Kapcsolat</h5><ul><li>hello@zenit.example</li><li>Budapest</li><li><a href="projekt.html">A projektről</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 ZENIT · Koncepció – AI kihívás projekt, nem valós webáruház.</span><span>Minden kép látványterv.</span></div>
+  </div>
+</footer>
+<script src="assets/js/common.js"></script>
+
+</body>
+</html>

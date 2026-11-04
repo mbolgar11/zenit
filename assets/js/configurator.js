@@ -97,10 +97,10 @@
     const wall = new T.MeshStandardMaterial({ color: '#E9E4DC', roughness: 0.95 });
     const floorT = tex('oak'); floorT.repeat.set(3, 3);
     const floor = new T.MeshStandardMaterial({ color: '#9b958d', map: floorT, roughness: 0.6 });
-    room.add(box(Math.max(6, W + 3), 0.02, 6, floor, W / 2, -0.01, -1.5, false));
+    room.add(box(Math.max(8, W + 5), 0.02, 16, floor, W / 2, -0.01, 8 - D, false));
     room.add(box(Math.max(6, W + 3), C, 0.1, wall, W / 2, C / 2, -D - 0.05, false));
-    room.add(box(0.1, C, 6, wall, -1.2, C / 2, -1.5 + 0.0, false));
-    const ceil = box(Math.max(6, W + 3), 0.03, 6, new T.MeshStandardMaterial({ color: '#F5F2EC', roughness: 1 }), W / 2, C + 0.015, -1.5, false);
+    room.add(box(0.1, C, 16, wall, -1.2, C / 2, 8 - D, false));
+    const ceil = box(Math.max(8, W + 5), 0.03, 16, new T.MeshStandardMaterial({ color: '#F5F2EC', roughness: 1, emissive: '#7d766c', emissiveIntensity: 0.55 }), W / 2, C + 0.015, 8 - D, false);
     ceil.castShadow = false; room.add(ceil);
     // meglévő szekrény (alatta)
     const bm = new T.MeshStandardMaterial({ color: st.baseCol, roughness: 0.55 });
@@ -186,10 +186,10 @@
 
   function frame() {
     const W = st.w / 100, C = st.ceil / 100, BH = st.baseH / 100;
-    const ty = (BH + C) / 2;
-    ctl.target.set(W / 2, ty - 0.15, -st.d / 200);
-    const dist = Math.max(4.2, W * 1.5 + 2.6);
-    cam.position.set(W / 2 + dist * 0.42, Math.min(C - 0.12, ty + 0.05), dist * 0.9); ctl.update();
+    const ty = st.env === 'studio' ? (BH + C) / 2 - 0.1 : C * 0.6;
+    ctl.target.set(W / 2, ty, -st.d / 200);
+    const dist = st.env === 'studio' ? Math.max(4.2, W * 1.5 + 2.6) : Math.max(5.2, W * 1.5 + 3.2);
+    cam.position.set(W / 2 + dist * 0.42, Math.min(C - 0.25, ty + 0.3), dist * 0.9); ctl.update();
   }
 
   function resize() {
@@ -292,4 +292,5 @@
   if (st.open) applyOpen(false);
   $('hexIn').value = st.ajto; $('hexPrev').style.background = st.ajto;
   doorsUI(); rebuild(); resize(); frame();
+  window.zenitCfg = { st, cam, ctl, frame };
 })();

@@ -1,0 +1,19 @@
+{
+  "projekt": [
+    ["s1", "Ahol a szekrényed véget ér, ott kezdődünk. Ez a ZENIT: egy AI-kihívás projektje, négy nap alatt, mesterséges intelligenciával."],
+    ["s2", "A kiindulópont egy valódi szekrény: kétszázötven centi széles, kétszázöt centi magas. A plafonig ötvennégy centi marad, egy kihasználatlan, poros sáv. A cél: egy rátétszekrény, amely pontosan kitölti ezt a fél métert."],
+    ["s3", "A modell paraméteres. Egyetlen Python-fájl írja le a lapokat, a furatokat és a vasalatokat. Ebből készült az Autodesk Fusion-modell, a STEP- és a GLB-fájl is. Ötszázharminc milliméter magas, tizennyolc milliméteres bútorlapból, három ajtóval."],
+    ["s4", "A részletek gyárthatók. Häfele pántok, fékes csukódással. Oldalanként három polctartó csap, beütős, szeges hátfal, és egy lekerekített, eloxált alumínium élfogantyú, amelyet hátulról csavarozunk."],
+    ["s5", "Ugyanebből a geometriából készült a gyártási dokumentáció is: szabásjegyzék, furattábla, alkatrészrajzok, fúrósablon és anyagkalkuláció. Az anyagköltség nagyjából száztízezer forint."],
+    ["s6", "Aztán jött a kérdés: hogyan adnánk el? Így született a ZENIT, egy kitalált prémium márka. Saját logó, szlogen, és Blenderben, Python-szkripttel renderelt látványtervek."],
+    ["s7", "A weboldal fejezetekben vezet végig a történeten, a végén pedig egy valós idejű 3D tervező vár. A vásárló itt beállítja a szélességet, az ajtók számát, a színeket és a textúrákat, a fogantyút és a polcokat, és a látványterv azonnal frissül."],
+    ["s8", "Mindvégig Claude volt a munkatársam. A Fusiont közvetlenül vezérelte, Python-kódot írt a dokumentációhoz, a renderekhez és a weboldalhoz, és ez a narráció is helyben generált gépi beszéd. A naplóban minden prompt és elakadás megtalálható."],
+    ["s9", "ZENIT. A hiányzó fél méter."]
+  ],
+  "promo": [
+    ["p1", "Van egy fél méter az otthonodban, amit eddig senki sem vett észre."],
+    ["p2", "A ZENIT pontosan odáig ér, ameddig a plafon engedi."],
+    ["p3", "Természetes anyagok, magyar műhely, a te színeid."],
+    ["p4", "ZENIT. Ahol a szekrényed véget ér, ott kezdődünk."]
+  ]
+}

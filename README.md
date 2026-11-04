@@ -22,3 +22,9 @@ Claude (Anthropic) segítségével – 3D gyártási modell, gyártási dokument
 
 ## Megjegyzés
 A ZENIT márka, a garancia és a fizetés kitalált / demó – nem valós webáruház. Minden kép látványterv (saját Blender-render vagy illusztráció).
+
+## Projekt-anyagok (v5)
+- **Videók:** `assets/video/zenit_projekt.mp4` (2:12, magyar narrációval), `assets/video/zenit_promo.mp4` (0:31) – forráskód: `forras/video/`
+- **3D nézegető:** a `projekt.html` oldalon (three.js + GLB: `assets/model/zenit_v10.glb`)
+- **Letöltések:** `letoltes/` – Fusion F3D, STEP, GLB, gyártási PDF, szabásjegyzék és kalkuláció (Excel)
+- **Napló:** `naplo.html` (forrás: `src/naplo.md`)

@@ -328,14 +328,49 @@ page("projekt.html", "A projektről – ZENIT AI kihívás", "A ZENIT AI kihív�
      page_hero("A projektről", "Négy nap, egy ötlet, <em>egy mesterséges intelligencia.</em>",
                "A ZENIT egy AI kihívásra készült: a 3D modellt, a gyártási dokumentációt, a látványterveket, a videót és ezt az oldalt Claude-dal együtt terveztük – mindent dokumentálva.",
                None, "plain", cr=[("index.html", "ZENIT"), ("", "A projektről")]) +
-     SEC('<div class="video reveal"><div class="play">▶</div><span class="render-tag">Projektvideó – hamarosan (YouTube)</span></div>', style="padding-top:60px") +
+     SEC('<div class="video reveal has-video"><video controls preload="metadata" playsinline poster="assets/video/zenit_projekt_poster.jpg" src="assets/video/zenit_projekt.mp4"></video></div>'
+         '<p class="vid-note">Projektvideó · 2 perc 12 mp · magyar narráció (gépi felolvasás, Piper TTS). <a href="assets/video/zenit_promo.mp4">Rövid promóvideó (30 mp) ›</a></p>', style="padding-top:60px") +
      SEC(HEAD("3D modell", "Forgasd meg <em>a gyártási modellt.</em>", "Autodesk Fusion-ben épült, 47 furat-feature, 108 furat, 101 vasalatelem – minden a helyén.") +
-         '<div class="video reveal" style="aspect-ratio:16/8"><span class="kicker">Interaktív 3D nézegető – hamarosan</span></div>', style="padding-top:0") +
+         '''<div class="m3d reveal"><canvas id="model3d" data-src="assets/model/zenit_v10.glb" aria-label="A ZENIT rátétszekrény gyártási 3D modellje"></canvas>
+  <div class="m3d-load">3D modell betöltése…</div>
+  <div class="m3d-bar"><button class="opt" id="mExplode">Robbantott nézet</button><button class="opt on" id="mBase">Alatta a meglévő szekrény</button><button class="opt on" id="mDoors">Ajtók</button><button class="opt" id="mHw">Vasalatok</button><button class="opt" id="mReset">⟲</button></div>
+  <div class="m3d-hint">Forgasd egérrel / ujjal · görgess a nagyításhoz</div></div>
+<p class="vid-note">A nézegető ugyanabból a paraméteres geometriából készült GLB-modellt mutatja, mint a Fusion-modell és a gyártási dokumentáció (CadQuery export, v10).</p>''', style="padding-top:0") +
      SEC(HEAD("Letöltések és napló", "Minden, <em>ami mögötte van.</em>") + '''<div class="proj-grid reveal">
-  <a href="#"><div class="kicker">Napló</div><b>Projektnapló</b><span>Eszközök, promptok, elakadások és megoldások.</span></a>
-  <a href="#"><div class="kicker">GitHub</div><b>Forráskód</b><span>Weboldal, paraméteres geometria, generátorok.</span></a>
-  <a href="#"><div class="kicker">3D</div><b>Fusion F3D / STEP</b><span>A teljes gyártási modell.</span></a>
-  <a href="#"><div class="kicker">PDF</div><b>Gyártási dokumentáció</b><span>16 oldal: szabásjegyzék, rajzok, fúrósablon.</span></a>
-  <a href="#"><div class="kicker">Excel</div><b>Szabásjegyzék és kalkuláció</b><span>Rendeléshez és árazáshoz.</span></a>
-  <a href="#"><div class="kicker">Videó</div><b>YouTube</b><span>A projekt 2–3 percben.</span></a>
-</div>''', style="padding-top:0"))
+  <a href="naplo.html"><div class="kicker">Napló</div><b>Projektnapló</b><span>Eszközök, promptok, elakadások és megoldások.</span></a>
+  <a href="https://github.com/mbolgar11/zenit"><div class="kicker">GitHub</div><b>Forráskód</b><span>Weboldal, paraméteres geometria, generátorok.</span></a>
+  <a href="letoltes.html"><div class="kicker">3D</div><b>Fusion F3D · STEP · GLB</b><span>A teljes gyártási modell, három formátumban.</span></a>
+  <a href="letoltes/Ratet_v10_gyartasi_dokumentacio.pdf"><div class="kicker">PDF</div><b>Gyártási dokumentáció</b><span>16 oldal: szabásjegyzék, rajzok, fúrósablon.</span></a>
+  <a href="letoltes/Ratet_v10_szabasjegyzek_furattabla.xlsx"><div class="kicker">Excel</div><b>Szabásjegyzék és kalkuláció</b><span>Furattábla, anyaglista – a kalkuláció a letöltések között.</span></a>
+  <a href="assets/video/zenit_projekt.mp4"><div class="kicker">Videó</div><b>Projektvideó</b><span>A projekt 2 perc 12 mp-ben, narrációval.</span></a>
+</div>''', style="padding-top:0"), scripts=["vendor/three.min.js", "vendor/OrbitControls.js", "vendor/GLTFLoader.js", "vendor/RoomEnvironment.js", "model3d.js"])
+
+# ---------------------------------------------------------------- LETÖLTÉSEK
+DL = [("3D modell", [("Ratet_v10_Fusion.f3d", "Autodesk Fusion archívum (F3D) – a teljes, furatolt gyártási modell"),
+                     ("Ratet_v10_Fusion_export.step", "STEP – a Fusion-modell exportja"),
+                     ("Ratet_v10_CadQuery_teljes.step", "STEP – a paraméteres geometriából (CadQuery), vasalatokkal és az ELIA szekrénnyel"),
+                     ("Ratet_v10_CadQuery_teljes.glb", "GLB – webes 3D (ezt mutatja a nézegető)")]),
+      ("Gyártás", [("Ratet_v10_gyartasi_dokumentacio.pdf", "Gyártási dokumentáció, 16 oldal"),
+                   ("Ratet_v10_szabasjegyzek_furattabla.xlsx", "Szabásjegyzék és furattábla (Excel)"),
+                   ("Ratet_v10_kalkulacio.xlsx", "Anyag- és árkalkuláció (Excel)")]),
+      ("Videó", [("../assets/video/zenit_projekt.mp4", "Projektvideó, narrációval (MP4)"),
+                 ("../assets/video/zenit_promo.mp4", "Promóvideó, 30 mp (MP4)")])]
+rows = ''.join(f'<div class="dl-group reveal"><div class="kicker">{g}</div>' + ''.join(
+    f'<a class="dl" href="letoltes/{f}" download><b>{f.split("/")[-1]}</b><span>{d}</span></a>' for f, d in items) + '</div>' for g, items in DL)
+page("letoltes.html", "Letöltések – ZENIT AI kihívás", "A ZENIT rátétszekrény 3D modelljei, gyártási dokumentációja és videói.",
+     page_hero("Letöltések", "Minden fájl, <em>ami mögötte van.</em>",
+               "A projekt teljes anyaga: Fusion- és STEP-modell, gyártási PDF, szabásjegyzék, kalkuláció és a videók. A forráskód a GitHubon.",
+               None, "plain", cr=[("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Letöltések")]) +
+     SEC(rows + '<p class="vid-note" style="margin-top:30px"><a href="naplo.html">Projektnapló ›</a> &nbsp; <a href="https://github.com/mbolgar11/zenit">GitHub-repó ›</a></p>', style="padding-top:40px"))
+
+# ---------------------------------------------------------------- NAPLÓ (src/naplo.md → naplo.html)
+import markdown as _md, pathlib as _pl
+_np = _pl.Path(__file__).with_name('naplo.md')
+if _np.exists():
+    _src = _np.read_text(encoding='utf8').split('\n', 1)[1]  # az első (# cím) sor nélkül
+    _html = _md.markdown(_src, extensions=['extra', 'sane_lists'])
+    page("naplo.html", "Projektnapló – ZENIT AI kihívás", "Eszközök, promptok, elakadások és megoldások – a ZENIT AI kihívás naplója.",
+         page_hero("Projektnapló", "Hogyan készült – <em>lépésről lépésre.</em>",
+                   "Eszközök, példapromptok, elakadások és megoldások, ahogy a munka közben történt.",
+                   None, "plain", cr=[("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Napló")]) +
+         SEC(f'<article class="naplo">{_html}</article>', style="padding-top:40px"))
