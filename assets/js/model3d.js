@@ -97,7 +97,8 @@
   function frame(az) {
     const H = topper ? new THREE.Box3().setFromObject(topper).max.y : 2.6;
     ctl.target.set(0, st.base ? H * 0.5 : center.y, 0);
-    const r = st.base ? 6.4 : 5.4, a = az == null ? 0.62 : az;
+    const asp = wrap.clientWidth / Math.max(1, wrap.clientHeight);
+    const r = (st.base ? 6.4 : 5.4) * Math.max(1, 1.7 / asp), a = az == null ? 0.62 : az;
     cam.position.set(Math.sin(a) * r, ctl.target.y + (st.base ? 0.6 : 1.1), Math.cos(a) * r);
     ctl.update();
   }
@@ -128,7 +129,10 @@
   // vezérlők
   const tg = (id, k, cb) => { const b = document.getElementById(id); if (!b) return; b.addEventListener('click', () => { st[k] = !st[k]; b.classList.toggle('on', st[k]); cb && cb(); }); };
   const ex = document.getElementById('mExplode');
-  if (ex) ex.addEventListener('click', () => { st.target = st.target ? 0 : 1; ex.classList.toggle('on', !!st.target); });
+  if (ex) ex.addEventListener('click', () => {
+    st.target = st.target ? 0 : 1; ex.classList.toggle('on', !!st.target);
+    if (st.target && st.base) { st.base = false; const b = document.getElementById('mBase'); if (b) b.classList.remove('on'); frame(); }
+  });
   tg('mBase', 'base', () => frame());
   tg('mDoors', 'doors');
   tg('mHw', 'hw');
