@@ -294,3 +294,12 @@
   - Szerelés: háttérvideós fejléc, sötét szerszámszakasz, elmosott műhelyképsáv.
   - Garancia: esti render a fejlécben, elmosott képsáv, sötét „Amit vállalunk” blokk.
   - A ZENIT oldalon „Nyisd ki” videóblokk.
+- **Minden aloldal fejléce képet vagy videót kapott (v7b):**
+  - Inspiráció: montázsvideó hat színről, lassú közelítéssel és áttűnéssel (saját script, Pillow + ffmpeg).
+  - A projektről: montázs a robbantott nézettől a szerelésen és az ajtónyitáson át a renderekig.
+  - Kézikönyv: a nyomtatott oldalakból összeállított kép, mobilra külön álló változattal.
+  - Az Ön terve, Letöltések, Napló: hangulatkép vagy -videó, sötétített változatban.
+  - Javítás: a mozgalmas fotókon nem látszott a szöveg → erősebb bal oldali sötétítés a fejléceken, keskenyebb bevezető szöveg.
+- **Hangulatsávok (v7c):**
+  - Minden oldalra került még egy teljes szélességű kép- vagy videósáv: műhely, gardrób, szerszámok, élzárás, fény.
+  - Ahol egy kép már szerepelt, ott elmosott, szűrt változatban jelenik meg.
