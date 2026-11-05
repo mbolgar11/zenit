@@ -234,9 +234,9 @@ gal = "".join(
     + f'<figcaption><b>{t}</b><span>{("Megnyitom a tervezőben →" if p else c)}</span></figcaption></figure>' for k, s, t, c, p, ar in G)
 page("inspiracio.html", "Inspiráció – ZENIT", "ZENIT különböző otthonokban, színekben és fényekben – hangulatok és anyagok.",
      page_hero("Kollekció · 04", "Egy forma, <em>ezer otthon.</em>", "Válassz egy hangulatot, és nyisd meg a tervezőben – a színek és arányok már be lesznek állítva.",
-               [("index.html", "ZENIT"), ("", "Kollekció"), ("", "Inspiráció")]) +
+               [("index.html", "ZENIT"), ("", "Kollekció"), ("", "Inspiráció")], V + "inspiracio_loop.mp4", tag="Látványtervek · hat szín, két berendezés") +
      S('<div class="chips reveal"><button class="chip on" data-f="*">Mind</button><button class="chip" data-f="zenit">ZENIT látványtervek</button><button class="chip" data-f="hangulat">Hangulatok</button><button class="chip" data-f="anyag">Anyagok</button></div>'
-       f'<div class="masonry">{gal}</div>', style="padding-top:20px") +
+       f'<div class="masonry">{gal}</div>') +
      S('<div class="quote reveal"><blockquote>„Nem egy újabb doboz kerül a szekrényedre. A szekrényed kap befejezést.”</blockquote><cite>Tervezői jegyzet</cite></div>', "stone") +
      nxt("05", "keszites.html", "Így készül", "Tervtől a plafonig: a gyártás, a minőség és a részletek – és minden kérdésre válasz."))
 
@@ -385,7 +385,7 @@ page("tervezo.html", "Tervező – ZENIT", "Tervezd meg a saját ZENIT felső sz
 
 # ======================================================================== AZ ÖN TERVE
 page("terv.html", "Az Ön terve – ZENIT", "A mentett ZENIT terv összesítője, kézikönyv, szerelési animáció, ajánlatkérés és rendelés.",
-     page_hero("Concierge", "Az Ön <em>terve.</em>", "Nézze át, mentse el, töltse le a kézikönyvét – kérjen ajánlatot, vagy rendelje meg.", [("index.html", "ZENIT"), ("", "Concierge"), ("", "Az Ön terve")]) +
+     page_hero("Concierge", "Az Ön <em>terve.</em>", "Nézze át, mentse el, töltse le a kézikönyvét – kérjen ajánlatot, vagy rendelje meg.", [("index.html", "ZENIT"), ("", "Concierge"), ("", "Az Ön terve")], F + "foto_109_hero.jpg", tag="Hangulat") +
      S(f'''<div class="plan-sum">
   <div class="reveal"><div class="frame ar-1610" style="aspect-ratio:16/10"><img id="planImg" src="{R}after_day.jpg" alt="A terv látványa"><span class="tag">Látványterv</span></div>
     <table id="planTable" style="margin-top:26px"><tbody><tr><td>Még nincs mentett terv</td><td><a class="more" href="tervezo.html">Tervezőbe <span class="arrow"></span></a></td></tr></tbody></table>
@@ -397,16 +397,16 @@ page("terv.html", "Az Ön terve – ZENIT", "A mentett ZENIT terv összesítője
       <div class="full"><label>Település</label><input></div><div class="full"><a class="btn fill" href="#">Ajánlatot kérek <span class="arrow"></span></a></div></form></div>
     <div><div class="label">Concierge</div><b>Egy tervező hív vissza</b><p>Belsőépítészünk átbeszéli a tervet, segít a színekben, arányokban.</p><a class="btn" href="concierge.html">Időpontot választok</a></div>
     <div><div class="label">Rendelés <span class="demo">Demó</span></div><b>Megrendelem most</b><p>Biztonságos online fizetés. A projektben bemutató lépés – valódi fizetés nem történik.</p><a class="btn" href="#">Tovább a fizetéshez</a></div>
-  </div></div>''', "paper", style="padding-top:40px"), scripts=["zplan.js", "plan.js"])
+  </div></div>''', "paper"), scripts=["zplan.js", "plan.js"])
 
 # ======================================================================== KÉZIKÖNYV (személyre szabott, nyomtatható)
 steps_js = json.dumps([dict(no=s["no"], title=s["title"], text=s["text"], svg=s["svg"], need=s["need"], minutes=s["minutes"], people=s["people"], warn=s.get("warn")) for s in STEPS["steps"]], ensure_ascii=False)
 page("kezikonyv.html", "Kézikönyv – ZENIT", "Személyre szabott, nyomtatható ZENIT használati és szerelési kézikönyv a mentett tervhez.",
-     f'''<section class="page-hero noprint" style="padding-bottom:30px"><div class="wrap">{crumb(("index.html", "ZENIT"), ("", "Concierge"), ("", "Kézikönyv"))}
-  <div class="label">Az Ön kézikönyve</div><h1 class="h1 lines"><span class="ln"><span>Az Ön ZENIT-je, <em>papíron is.</em></span></span></h1>
+     f'''<section class="page-hero img noprint"><div class="media"><picture><source media="(max-width:760px)" srcset="{R}kezikonyv_hero_m.jpg"><img src="{R}kezikonyv_hero.jpg" alt="A ZENIT kézikönyv nyomtatott oldalai"></picture></div><div class="wrap">{crumb(("index.html", "ZENIT"), ("", "Concierge"), ("", "Kézikönyv"))}
+  <div class="label" style="color:var(--bronze2)">Az Ön kézikönyve</div><h1 class="h1 lines"><span class="ln"><span>Az Ön ZENIT-je, <em>papíron is.</em></span></span></h1>
   <p class="lead">A mentett tervéből készül: méretek, ajtók és nyitásirányok, tükör, fény, alkatrészek, szerelés és ápolás. Nyomtassa ki, vagy mentse PDF-be.</p>
-  <div class="acts"><button class="btn fill" onclick="print()">Nyomtatás / PDF <span class="arrow"></span></button><a class="btn" href="tervezo.html">Terv módosítása</a><a class="btn" href="letoltes/ZENIT_kezikonyv_referencia.pdf">Referencia PDF</a></div></div></section>
-<section class="sec" data-theme="stone" style="padding-top:40px"><div class="wrap" id="manual"></div></section>
+  <div class="acts"><button class="btn fill" onclick="print()">Nyomtatás / PDF <span class="arrow"></span></button><a class="btn light" href="tervezo.html">Terv módosítása</a><a class="btn light" href="letoltes/ZENIT_kezikonyv_referencia.pdf">Referencia PDF</a></div></div><span class="tag" style="left:auto;right:var(--pad);bottom:24px">Brandelt kézikönyv · A4</span></section>
+<section class="sec" data-theme="stone"><div class="wrap" id="manual"></div></section>
 <script>window.ZSTEPS={steps_js};</script>''', scripts=["zplan.js", "manual.js"])
 
 # ======================================================================== CONCIERGE
@@ -437,7 +437,7 @@ PNUMS = [("4", "nap", "a kihívás hossza – keddtől péntekig"), ("10", "", "
 page("projekt.html", "A projektről – ZENIT AI-kihívás", "A ZENIT AI-kihívás projekt: videók, 3D modell, számok, napló, forrásfájlok.",
      page_hero("A projektről", "Négy nap, egy ötlet, <em>egy mesterséges intelligencia.</em>",
                "A ZENIT egy AI-kihívásra készült: a 3D modellt, a gyártási dokumentációt, a látványterveket, a videókat és ezt az oldalt Claude-dal együtt terveztük – mindent dokumentálva.",
-               [("index.html", "ZENIT"), ("", "A projektről")]) +
+               [("index.html", "ZENIT"), ("", "A projektről")], V + "projekt_loop.mp4", tag="Modell · render · élő 3D") +
      S('<div class="video reveal"><video controls preload="metadata" playsinline poster="assets/video/zenit_projekt_poster.jpg" src="assets/video/zenit_projekt.mp4"></video></div>'
        '<p class="vid-note">Projektvideó · magyar narráció (helyben generált gépi beszéd, Piper TTS). <a href="assets/video/zenit_promo.mp4">Promóvideó ›</a> &nbsp; <a href="assets/video/zenit_szereles.mp4">Szerelési videó ›</a></p>', "paper", style="padding-top:40px") +
      S(head("A projekt számokban", "Négy nap, <em>tizedmilliméterre.</em>") + nums(PNUMS), "dark") +
@@ -471,8 +471,8 @@ rows = ''.join(f'<div class="dl-group reveal"><div class="label">{g}</div>' + ''
     f'<a class="dl" href="letoltes/{f}" download><b>{f.split("/")[-1]}</b><span>{d}</span></a>' for f, d in items) + '</div>' for g, items in DL)
 page("letoltes.html", "Letöltések – ZENIT AI-kihívás", "A ZENIT 3D modelljei, gyártási dokumentációja, kézikönyve és videói.",
      page_hero("Letöltések", "Minden fájl, <em>ami mögötte van.</em>", "Fusion- és STEP-modell, gyártási PDF, kézikönyv, szabásjegyzék, kalkuláció és a videók. A forráskód a GitHubon.",
-               [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Letöltések")]) +
-     S(rows + '<p class="vid-note" style="margin-top:30px"><a href="naplo.html">Projektnapló ›</a> &nbsp; <a href="https://github.com/mbolgar11/zenit">GitHub-repó ›</a></p>', "paper", style="padding-top:40px"))
+               [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Letöltések")], V + "furas.mp4", tag="Hangulat") +
+     S(rows + '<p class="vid-note" style="margin-top:30px"><a href="naplo.html">Projektnapló ›</a> &nbsp; <a href="https://github.com/mbolgar11/zenit">GitHub-repó ›</a></p>', "paper"))
 
 # ======================================================================== NAPLÓ
 import markdown as _md, pathlib as _pl
@@ -482,5 +482,5 @@ if _np.exists():
     _html = _md.markdown(_src, extensions=['extra', 'sane_lists'])
     page("naplo.html", "Projektnapló – ZENIT AI-kihívás", "Eszközök, promptok, elakadások és megoldások – a ZENIT AI-kihívás naplója.",
          page_hero("Projektnapló", "Hogyan készült – <em>lépésről lépésre.</em>", "Eszközök, példapromptok, elakadások és megoldások, ahogy a munka közben történt.",
-                   [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Napló")]) +
-         S(f'<article class="naplo">{_html}</article>', "paper", style="padding-top:40px"))
+                   [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Napló")], F + "foto_117_hero.jpg", tag="Hangulat") +
+         S(f'<article class="naplo">{_html}</article>', "paper"))
