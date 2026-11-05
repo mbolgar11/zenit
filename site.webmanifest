@@ -1,0 +1,21 @@
+{
+ "name": "ZENIT – felső szekrény a plafonig",
+ "short_name": "ZENIT",
+ "start_url": "./",
+ "display": "browser",
+ "lang": "hu",
+ "background_color": "#14110E",
+ "theme_color": "#14110E",
+ "icons": [
+  {
+   "src": "assets/img/apple-touch-icon.png",
+   "sizes": "180x180",
+   "type": "image/png"
+  },
+  {
+   "src": "assets/img/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}

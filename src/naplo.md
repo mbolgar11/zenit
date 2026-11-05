@@ -370,3 +370,8 @@
 - **Mindhárom narrált videó** új zenei alapot kapott, eltérő tempóval és variációval (projekt 72, szerelés 68, promó 76 BPM). A zene beszéd alatt automatikusan halkul (ducking), a végén -16 LUFS hangosság-normalizálás.
 - **A promóvideó** is a férfi narrációt (Imre) kapta, beágyazott, kikapcsolható magyar felirattal.
 - Példa prompt: *„tegyél zenét ami oda illik a témában a videók alá még”* → Claude javaslata: a hálózatról nem érhető el zenei modell, ezért saját szintetizátor; nyugodt, prémium, „műhely-esti fény” hangulat, a narrációt nem nyomhatja el.
+
+### Megosztási előnézet, SEO, közösségi ikonok (v9c)
+- **Előnézeti kártyák:** minden oldal saját 1200 × 630-as Open Graph képet kapott (háttérkép, sötét átmenet, ZENIT logó, oldalcím), Chromiumban renderelve (`src/og_kartyak.py`). Abszolút URL-lel, így Messengerben, Teamsben, LinkedInen és X-en is megjelenik.
+- **Meta és SEO:** kanonikus URL, Open Graph és Twitter-kártya, theme-color, PNG és SVG ikon, apple-touch-icon, webmanifest, `sitemap.xml` (18 oldal), strukturált adat (WebSite a kezdőlapon, VideoObject a projektvideóhoz), egyedi 404-es oldal.
+- **Közösségi ikonok:** Instagram, Facebook, X, YouTube a láblécben és a mobilmenüben. Mivel a márka kitalált, nem visznek idegen profilra; kattintásra egy rövid jelzés mondja meg, hogy ez a bemutató része.

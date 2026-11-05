@@ -44,6 +44,14 @@ TOOLS = {"csavarozo": ("Akkus csavarozó", "PZ2 bittel"), "imbusz": ("Konfirmát
          "gumikalapacs": ("Gumikalapács", "tiplikhez"), "kalapacs": ("Kis kalapács", "hátfalszegekhez"), "meroszalag": ("Mérőszalag", "átlókhoz"),
          "letra": ("2 létra", "vagy stabil fellépő"), "furo25": ("Ø2,5 fúrószár", "a rögzítés előfuratához"), "pz2": ("PZ2 csavarhúzó", "pántállításhoz"),
          "ket_fo": ("Két ember", "az emeléshez"), "vizmertek": ("Vízmérték", "ellenőrzéshez")}
+SOCIAL = [("instagram", "Instagram", '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>'),
+          ("facebook", "Facebook", '<path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21"/>'),
+          ("x", "X", '<path d="M4.5 4h4.2l10.8 16h-4.2z"/><path d="M19 4l-6 6.8M5 20l6-6.8"/>'),
+          ("youtube", "YouTube", '<rect x="2.8" y="5.5" width="18.4" height="13" rx="3.6"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/>')]
+def social(cls="social"):
+    return (f'<div class="{cls}"><span>Kövess minket</span><div>' + "".join(
+        f'<a href="#" data-social="{n}" aria-label="ZENIT a(z) {t} oldalon" title="@zenit.atelier · {t}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">{g}</svg></a>'
+        for n, t, g in SOCIAL) + '</div></div>')
 icon = lambda i, cls="ico": f'<svg class="{cls}"><use href="#i-{i}"/></svg>'
 
 # ---------------------------------------------------------------- navigáció
@@ -75,14 +83,14 @@ def header(cur):
 <nav class="mnav" id="mnav"><button class="x" data-menu aria-label="Bezárás">×</button>
   <div><h6>Kollekció</h6>{"".join(f'<a href="{h}">{t}</a>' for h, t, _ in KOLL)}</div>
   <div><h6>Concierge</h6>{"".join(f'<a href="{h}">{t}</a>' for h, t, _ in CONC)}</div>
-  <div><h6>A projekt</h6><a href="projekt.html">A projektről</a><a href="naplo.html">Napló</a></div></nav>'''
+  <div><h6>A projekt</h6><a href="projekt.html">A projektről</a><a href="naplo.html">Napló</a></div>{social("social m")}</nav>'''
 
 
 FOOTER = f'''<footer><div class="wrap">
   <div class="top">
     <div><a class="logo" href="index.html"><span class="rule"><i></i></span><span class="word">ZENIT</span></a>
       <p class="claim">Ahol a szekrényed véget ér, ott kezdődünk.</p>
-      <form class="news" onsubmit="return false"><input placeholder="Hírlevél – e-mail címed" aria-label="E-mail"><button class="more" style="border:0">Feliratkozom</button></form></div>
+      <form class="news" onsubmit="return false"><input placeholder="Hírlevél – e-mail címed" aria-label="E-mail"><button class="more" style="border:0">Feliratkozom</button></form>{social()}</div>
     <div><h5>Kollekció</h5><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h, t, _ in KOLL)}</ul></div>
     <div><h5>Concierge</h5><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h, t, _ in CONC)}</ul></div>
     <div><h5>Atelier</h5><ul><li>ZENIT Atelier · Budapest</li><li>hello@zenit.example</li><li>H–P 10–18 · bejelentkezéssel</li><li><a href="projekt.html">A projektről</a></li><li><a href="uzleti-terv.html">Üzleti terv</a></li><li><a href="naplo.html">Projektnapló</a></li></ul></div>
@@ -96,14 +104,39 @@ def crumb(*items):
     return '<div class="crumb">' + '<i>/</i>'.join(f'<a href="{h}">{t}</a>' if h else f"<span>{t}</span>" for h, t in items) + '</div>'
 
 
-def page(fname, title, desc, body, scripts=(), body_cls=""):
+SITE = "https://mbolgar11.github.io/zenit/"
+PAGES = []          # a sitemap.xml-hez
+JSONLD = {
+    "index.html": {"@context": "https://schema.org", "@type": "WebSite", "name": "ZENIT", "url": SITE, "inLanguage": "hu",
+                   "description": "Méretre épített felső szekrény a meglévő gardrób tetejére, a plafonig – AI-kihívás projekt."},
+    "projekt.html": {"@context": "https://schema.org", "@type": "VideoObject", "name": "ZENIT – projektvideó",
+                     "description": "A ZENIT rátétszekrény története: ötlet, 3D modell, látványterv, weboldal és szerelés, magyar narrációval.",
+                     "thumbnailUrl": SITE + "assets/video/zenit_projekt_poster.jpg", "contentUrl": SITE + "assets/video/zenit_projekt.mp4",
+                     "uploadDate": "2026-11-05", "duration": "PT1M31S", "inLanguage": "hu"},
+}
+
+
+def page(fname, title, desc, body, scripts=(), body_cls="", index=True):
+    stem = fname[:-5]; og = f"assets/img/og/{stem}.jpg"
+    if not os.path.exists(os.path.join(ROOT, og)): og = "assets/img/og/index.jpg"
+    url = SITE if fname == "index.html" else SITE + fname
+    if index: PAGES.append(fname)
+    t, d = H.escape(title), H.escape(desc)
+    ld = f'<script type="application/ld+json">{json.dumps(JSONLD[fname], ensure_ascii=False)}</script>\n' if fname in JSONLD else ""
     html = f'''<!doctype html>
 <html lang="hu">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title><meta name="description" content="{desc}">
-<meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta property="og:image" content="{R}hero_evening.jpg">
-<link rel="icon" href="{FAV}">
+<title>{t}</title><meta name="description" content="{d}">
+{'<link rel="canonical" href="' + url + '">' if index else '<meta name="robots" content="noindex"><base href="/zenit/">'}
+<meta name="theme-color" content="#14110E"><meta name="author" content="Zenthe Milán">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ZENIT"><meta property="og:locale" content="hu_HU">
+<meta property="og:url" content="{url}"><meta property="og:title" content="{t}"><meta property="og:description" content="{d}">
+<meta property="og:image" content="{SITE}{og}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="{t}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{t}"><meta name="twitter:description" content="{d}"><meta name="twitter:image" content="{SITE}{og}">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"><link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+{ld}
 <style>{FONTS}</style>
 <link rel="stylesheet" href="assets/css/zenit.css">
 </head>
@@ -220,3 +253,23 @@ MARQUEE = '<div class="marquee" aria-hidden="true"><div class="track">' + "".joi
 
 # folytatás: oldalak
 exec(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "pages.py"), encoding="utf8").read())
+
+# ---------------------------------------------------------------- 404, sitemap, manifest
+page("404.html", "Az oldal nem található – ZENIT", "Ez az oldal nem létezik – de a plafonig még van hely.",
+     '<section class="page-hero img" style="min-height:78vh"><div class="media"><img src="assets/img/r2/hero_evening.jpg" alt=""></div><div class="wrap">'
+     '<div class="label">404</div><h1 class="h1">Itt még <em>üres a hely.</em></h1><p class="lead">Ez az oldal nem létezik – vagy még nem építettük meg. '
+     'A szekrényed fölötti fél méterrel viszont szívesen foglalkozunk.</p><p style="margin-top:34px"><a class="btn" href="index.html">Vissza a kezdőlapra</a> '
+     '&nbsp; <a class="more" href="tervezo.html">Tervező ›</a></p></div></section>', index=False)
+import datetime
+today = datetime.date.today().isoformat()
+order = ["index.html", "zenit.html", "tervezo.html", "projekt.html"]
+urls = sorted(set(PAGES), key=lambda f: (order.index(f) if f in order else 9, f))
+open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf8").write(
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+        f'  <url><loc>{SITE if f == "index.html" else SITE + f}</loc><lastmod>{today}</lastmod><priority>{"1.0" if f == "index.html" else "0.8" if f in order else "0.5"}</priority></url>\n'
+        for f in urls) + '</urlset>\n')
+open(os.path.join(ROOT, "site.webmanifest"), "w", encoding="utf8").write(json.dumps({
+    "name": "ZENIT – felső szekrény a plafonig", "short_name": "ZENIT", "start_url": "./", "display": "browser", "lang": "hu",
+    "background_color": "#14110E", "theme_color": "#14110E",
+    "icons": [{"src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}, {"src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}]}, ensure_ascii=False, indent=1))
+print("ok sitemap.xml (", len(urls), "oldal ), site.webmanifest, 404.html")

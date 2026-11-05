@@ -146,3 +146,15 @@
   document.addEventListener('click', e => { if (e.target.closest('[data-cookie-settings]')) { e.preventDefault(); show(true); } });
   if (!read() && !/[?&]nocookie/.test(location.search)) setTimeout(() => show(false), 1400);
 })();
+
+/* közösségi ikonok: a ZENIT kitalált márka, a fiókok látványelemek – kattintásra rövid jelzés, nem visz idegen profilra */
+(function () {
+  var names = { instagram: "Instagram", facebook: "Facebook", x: "X", youtube: "YouTube" }, box, tm;
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-social]"); if (!a) return;
+    e.preventDefault();
+    if (!box) { box = document.createElement("div"); box.className = "stoast"; box.setAttribute("role", "status"); document.body.appendChild(box); }
+    box.innerHTML = "<b>@zenit.atelier · " + names[a.getAttribute("data-social")] + "</b><br>A ZENIT kitalált márka, ez a fiók csak a bemutató része. A projektvideó a weboldal „A projektről” oldalán nézhető meg.";
+    box.classList.add("on"); clearTimeout(tm); tm = setTimeout(function () { box.classList.remove("on"); }, 4200);
+  });
+})();
