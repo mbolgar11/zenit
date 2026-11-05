@@ -50,7 +50,7 @@ SOCIAL = [("instagram", "Instagram", '<rect x="3.5" y="3.5" width="17" height="1
           ("youtube", "YouTube", '<rect x="2.8" y="5.5" width="18.4" height="13" rx="3.6"/><path d="M10.2 9.3v5.4l4.6-2.7z" fill="currentColor"/>')]
 def social(cls="social"):
     return (f'<div class="{cls}"><span>Kövess minket</span><div>' + "".join(
-        f'<a href="#" data-social="{n}" aria-label="ZENIT a(z) {t} oldalon" title="@zenit.atelier · {t}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">{g}</svg></a>'
+        f'<a href="#" data-social="{n}" aria-label="ZENIT a(z) {t} oldalon" title="@zenit.atelier · {t}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">{g}</svg></a>'
         for n, t, g in SOCIAL) + '</div></div>')
 icon = lambda i, cls="ico": f'<svg class="{cls}"><use href="#i-{i}"/></svg>'
 
@@ -116,6 +116,11 @@ JSONLD = {
 }
 
 
+import hashlib
+def ver(path):
+    return hashlib.md5(open(os.path.join(ROOT, path), "rb").read()).hexdigest()[:8]
+
+
 def page(fname, title, desc, body, scripts=(), body_cls="", index=True):
     stem = fname[:-5]; og = f"assets/img/og/{stem}.jpg"
     if not os.path.exists(os.path.join(ROOT, og)): og = "assets/img/og/index.jpg"
@@ -138,7 +143,7 @@ def page(fname, title, desc, body, scripts=(), body_cls="", index=True):
 <link rel="manifest" href="site.webmanifest">
 {ld}
 <style>{FONTS}</style>
-<link rel="stylesheet" href="assets/css/zenit.css">
+<link rel="stylesheet" href="assets/css/zenit.css?v={ver("assets/css/zenit.css")}">
 </head>
 <body class="{body_cls}">
 {ICONS}
@@ -147,8 +152,8 @@ def page(fname, title, desc, body, scripts=(), body_cls="", index=True):
 {body}
 </main>
 {FOOTER}
-<script src="assets/js/common.js"></script>
-{"".join(f'<script src="assets/js/{s}"></script>' for s in scripts)}
+<script src="assets/js/common.js?v={ver("assets/js/common.js")}"></script>
+{"".join(f'<script src="assets/js/{s}?v={ver("assets/js/" + s)}"></script>' for s in scripts)}
 </body>
 </html>
 '''
