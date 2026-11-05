@@ -355,3 +355,12 @@
   - Negyedéves, csatornánként bontott Python-modell, három forgatókönyvvel (óvatos, alap, optimista).
   - A grafikonok SVG-ben generálódnak.
   - A PDF ugyanabból az oldalból, nyomtatási stílussal készül.
+- **Az üzleti terv oldal mozgást és képeket kapott:**
+  - számlálók;
+  - kirajzolódó oszlop-, vonal- és idővonal-diagramok;
+  - Európa-térkép, ahol Budapestről ívek és lüktető városjelek rajzolódnak ki;
+  - telefonos tartalom-makettek (előtte–utána áttűnés, videós story);
+  - képes üzletimodell-kártyák;
+  - négy hangulatsáv.
+  
+  A PDF a mozgás nélküli, végállapotú változatot kapja.

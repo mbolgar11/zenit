@@ -14,11 +14,11 @@ def svg_years():
         gx = pad + 30 + yi * 220
         for ci, (n, c) in enumerate(cols):
             v = O[n]["years"][y]["rev"]; bh = (h - 80) * v / mx; x = gx + ci * 52
-            out.append(f'<rect x="{x}" y="{h - 40 - bh:.1f}" width="40" height="{bh:.1f}" fill="{c}"/>')
+            out.append(f'<rect class="bar bv" style="transition-delay:{(yi * 3 + ci) * 0.08:.2f}s" x="{x}" y="{h - 40 - bh:.1f}" width="40" height="{bh:.1f}" fill="{c}"/>')
             out.append(f'<text x="{x + 20}" y="{h - 46 - bh:.1f}" text-anchor="middle" class="v">{M(v)}</text>')
         out.append(f'<text x="{gx + 72}" y="{h - 14}" text-anchor="middle" class="y">{y}</text>')
     lg = "".join(f'<rect x="{pad + 30 + i * 150}" y="8" width="12" height="12" fill="{c}"/><text x="{pad + 48 + i * 150}" y="19" class="l">{n}</text>' for i, (n, c) in enumerate(cols))
-    return (f'<svg class="bp-chart" viewBox="0 0 {w} {h}" role="img" aria-label="Árbevétel évente, három forgatókönyv (M Ft)">{lg}'
+    return (f'<svg class="bp-chart reveal" viewBox="0 0 {w} {h}" role="img" aria-label="Árbevétel évente, három forgatókönyv (M Ft)">{lg}'
             f'<line x1="{pad}" y1="{h - 40}" x2="{w - 10}" y2="{h - 40}" stroke="currentColor" stroke-opacity=".25"/>{"".join(out)}</svg>')
 
 def svg_cash():
@@ -33,11 +33,11 @@ def svg_cash():
         if i % 4 == 0: g.append(f'<text x="{X(i):.1f}" y="{h - 12}" class="l">{q[:4]}</text>')
     for n, c, wd in (("Óvatos", "#C9B9A2", 2), ("Optimista", ESP, 2), ("Alap", BRZ, 3.5)):
         pts = " ".join(f"{X(i):.1f},{Y(x['cash']):.1f}" for i, x in enumerate(O[n]["rows"]))
-        g.append(f'<polyline points="{pts}" fill="none" stroke="{c}" stroke-width="{wd}" stroke-linejoin="round"/>')
+        g.append(f'<polyline class="ln" pathLength="1" points="{pts}" fill="none" stroke="{c}" stroke-width="{wd}" stroke-linejoin="round"/>')
         lx = O[n]["rows"][-1]["cash"]; g.append(f'<text x="{w - r - 4}" y="{Y(lx) - 8:.1f}" text-anchor="end" class="l" fill="{c}">{n}</text>')
     mi = BASE["rows"].index(min(BASE["rows"], key=lambda x: x["cash"]))
     g.append(f'<circle cx="{X(mi):.1f}" cy="{Y(BASE["min_cash"]):.1f}" r="6" fill="{BRZ}"/><text x="{X(mi):.1f}" y="{Y(BASE["min_cash"]) + 24:.1f}" text-anchor="middle" class="v">legnagyobb tőkeigény: {M(-BASE["min_cash"])} M Ft</text>')
-    return f'<svg class="bp-chart" viewBox="0 0 {w} {h}" role="img" aria-label="Halmozott pénzforgalom negyedévente (M Ft)">{"".join(g)}</svg>'
+    return f'<svg class="bp-chart reveal" viewBox="0 0 {w} {h}" role="img" aria-label="Halmozott pénzforgalom negyedévente (M Ft)">{"".join(g)}</svg>'
 
 def svg_mix():
     w, h = 720, 250; chans = list(BM["UNITS"]); cols = [BRZ, "#C9A877", STN, ESP]; out = []
@@ -47,15 +47,15 @@ def svg_mix():
         out.append(f'<text x="0" y="{yy + 24}" class="y">{y}</text>')
         for ci, c in enumerate(chans):
             n = sum(r["u"][c] for r in rows); ww = 500 * n / mx
-            if n: out.append(f'<rect x="{x0:.1f}" y="{yy}" width="{ww:.1f}" height="34" fill="{cols[ci]}"/>' + (f'<text x="{x0 + ww / 2:.1f}" y="{yy + 22}" text-anchor="middle" class="in">{n}</text>' if ww > 34 else ""))
+            if n: out.append(f'<rect class="bar bh" style="transition-delay:{(yi * 4 + ci) * 0.07:.2f}s" x="{x0:.1f}" y="{yy}" width="{ww:.1f}" height="34" fill="{cols[ci]}"/>' + (f'<text x="{x0 + ww / 2:.1f}" y="{yy + 22}" text-anchor="middle" class="in">{n}</text>' if ww > 34 else ""))
             x0 += ww
         out.append(f'<text x="{x0 + 10:.1f}" y="{yy + 23}" class="v">{BASE["years"][y]["units"]} db</text>')
     leg = '<div class="bp-leg">' + "".join(f'<span><i style="background:{cols[i]}"></i>{c}</span>' for i, c in enumerate(chans)) + '</div>'
-    return f'<svg class="bp-chart" viewBox="0 0 {w} 230" role="img" aria-label="Eladott darabszám csatornánként (alap forgatókönyv)">{"".join(out)}</svg>' + leg
+    return f'<svg class="bp-chart reveal" viewBox="0 0 {w} 230" role="img" aria-label="Eladott darabszám csatornánként (alap forgatókönyv)">{"".join(out)}</svg>' + leg
 
 def bars(items, unit="M Ft", color=BRZ):
     mx = max(v for _, v in items)
-    return '<div class="bp-bars">' + "".join(f'<div class="r"><span>{n}</span><b><i style="width:{100 * v / mx:.1f}%;background:{color}"></i></b><em>{M(v)} {unit}</em></div>' for n, v in items) + '</div>'
+    return '<div class="bp-bars reveal">' + "".join(f'<div class="r"><span>{n}</span><b><i style="width:{100 * v / mx:.1f}%;background:{color}"></i></b><em>{M(v)} {unit}</em></div>' for n, v in items) + '</div>'
 
 # ---------------------------------------------------------------- táblázatok
 def pl_table(name):
@@ -75,12 +75,13 @@ TL = [("Alapítás", "Kft., védjegy, gyártópartner, ÁSZF, webshop", 0, 2), (
       ("Bécs · Pozsony · Prága", "lokalizált web, helyi szerelőpartnerek, pop-up", 5, 9), ("Fuorisalone · Milánó", "2028 április: pop-up a design héten", 5, 6),
       ("DACH és Észak-Olaszország", "bemutatótermi partnerek, nagykereskedelmi ár", 7, 12), ("Salone del Mobile", "2029 április: kiállítás vagy SaloneSatellite", 9, 10),
       ("Licenc és white label", "gyártói partnerség – a tervező szoftverrel együtt", 10, 12)]
-tl_html = ('<div class="bp-tl"><div class="hd"><span></span>' + "".join(f'<b>{y}</b>' for y in ("2027", "2028", "2029")) + '</div>' +
-           "".join(f'<div class="row"><span><b>{t}</b><small>{d}</small></span><div class="tr"><i style="left:{a / 12 * 100:.2f}%;width:{max(1, b - a) / 12 * 100:.2f}%"></i></div></div>' for t, d, a, b in TL) + '</div>')
+tl_html = ('<div class="bp-tl reveal"><div class="hd"><span></span>' + "".join(f'<b>{y}</b>' for y in ("2027", "2028", "2029")) + '</div>' +
+           "".join(f'<div class="row"><span><b>{t}</b><small>{d}</small></span><div class="tr"><i style="left:{a / 12 * 100:.2f}%;width:{max(1, b - a) / 12 * 100:.2f}%;transition-delay:{0.15 + a * 0.06:.2f}s"></i></div></div>' for t, d, a, b in TL) + '</div>')
 
 # ---------------------------------------------------------------- szöveges blokkok
-def cards(items, cls="bp-cards"):
-    return f'<div class="{cls}">' + "".join(f'<div class="c reveal"><div class="k">{k}</div><h4>{t}</h4><p>{d}</p></div>' for k, t, d in items) + '</div>'
+def cards(items, cls="bp-cards", imgs=None):
+    im = lambda i: (f'<div class="ci"><img src="{imgs[i]}" alt="" loading="lazy"></div>' if imgs else "")
+    return f'<div class="{cls}">' + "".join(f'<div class="c reveal d{i % 3}">{im(i)}<div class="k">{k}</div><h4>{t}</h4><p>{d}</p></div>' for i, (k, t, d) in enumerate(items)) + '</div>'
 
 KEY = [("Indulás", "2027. március", "pilot Budapesten, 20 alapító ügyféllel"), ("Tőkeigény (alap)", f"{M(-BASE['min_cash'] * 1.08)} M Ft", "a legmélyebb pont + 8% tartalék, 2029 Q2"),
        ("Pozitív EBITDA", "2028 Q4", "a 22. hónaptól; óvatosan 2029 Q3"), ("Eladás 3 év alatt", f"{fmt(sum(BASE['years'][y]['units'] for y in ('2027', '2028', '2029')))} db", "alap forgatókönyv, 4 csatorna"),
@@ -152,6 +153,42 @@ SOURCES = [("Salone del Mobile 2027 időpont", "https://www.salonemilano.it/en/a
            ("Kft. alapítás költségei", "https://financera.hu/befektetes/cegalapitas-menete/"),
            ("Facebook hirdetési benchmarkok 2026", "https://influee.co/hu/blog/facebook-ads-benchmarks")]
 
+
+# ---------------------------------------------------------------- mozgó elemek: számláló, Európa-térkép, telefonos tartalom-makettek
+import re as _re
+def numwrap(v):
+    if not _re.search(r"(M Ft|db|Mrd|\$|\+|%)", v): return v
+    m = _re.search(r"(\d+(?:[  ]\d{3})*(?:,\d+)?)", v)
+    if not m: return v
+    raw = m.group(1).replace(" ", "").replace(" ", ""); num = raw.replace(",", ".")
+    return v[:m.start()] + f'<span data-count="{num}">{m.group(1)}</span>' + v[m.end():]
+
+CITIES = [("Budapest", 19.04, 47.50, 0), ("Győr", 17.64, 47.69, 0), ("Debrecen", 21.63, 47.53, 0), ("Bécs", 16.37, 48.21, 1), ("Pozsony", 17.11, 48.15, 1),
+          ("Prága", 14.42, 50.08, 1), ("München", 11.58, 48.14, 2), ("Zürich", 8.54, 47.37, 2), ("Milánó", 9.19, 45.46, 2), ("Varsó", 21.01, 52.23, 3), ("Amszterdam", 4.90, 52.37, 3)]
+PH = [("2027 · Magyarország", BRZ), ("2028 · szomszédok", "#C9A877"), ("2029 · DACH és Észak-Olaszország", ESP), ("Licencpartnerek", "#8C7B66")]
+LBL = {"Bécs": (-10, -10), "Pozsony": (6, -14), "Győr": (-8, 20), "Budapest": (12, 18), "Debrecen": (10, -10), "München": (-10, -10), "Zürich": (-10, -10), "Milánó": (10, 18)}
+def svg_map():
+    W_, H_ = 760, 440; X = lambda lo: 30 + (lo - 4.0) * 36.5; Y = lambda la: 30 + (53.2 - la) * 48
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="1.6"/>' for x in range(12, W_, 22) for y in range(12, H_, 22))
+    bx, by = X(19.04), Y(47.50); arcs, pins = [], []
+    for i, (n, lo, la, ph) in enumerate(CITIES):
+        x, y = X(lo), Y(la); c = PH[ph][1]
+        if n != "Budapest":
+            mx_, my_ = (bx + x) / 2, min(by, y) - 40 - abs(bx - x) * 0.12
+            arcs.append(f'<path class="arc" pathLength="1" style="transition-delay:{0.3 + ph * 0.5 + i * 0.05:.2f}s" d="M{bx:.0f},{by:.0f} Q{mx_:.0f},{my_:.0f} {x:.0f},{y:.0f}" stroke="{c}"/>')
+        pins.append(f'<g class="pin" style="transition-delay:{0.2 + ph * 0.5 + i * 0.05:.2f}s"><circle class="pulse" cx="{x:.0f}" cy="{y:.0f}" r="9" fill="{c}" style="animation-delay:{i * 0.37:.2f}s"/>'
+                    f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{7 if n == "Budapest" else 5}" fill="{c}"/><text x="{x + LBL.get(n, (10, -9))[0]:.0f}" y="{y + LBL.get(n, (10, -9))[1]:.0f}" text-anchor="{"end" if LBL.get(n, (10, 0))[0] < 0 else "start"}">{n}</text></g>')
+    leg = "".join(f'<span><i style="background:{c}"></i>{t}</span>' for t, c in PH)
+    return (f'<div class="bp-map reveal"><svg viewBox="0 0 {W_} {H_}" role="img" aria-label="Terjeszkedési térkép: Budapesttől Európáig"><g class="grid">{dots}</g>{"".join(arcs)}{"".join(pins)}</svg>'
+            f'<div class="bp-leg">{leg}</div></div>')
+
+def phones():
+    ph = lambda inner, cap, d: f'<figure class="phone reveal d{d}"><div class="scr">{inner}<span class="ui"><b>zenit.atelier</b><i>♥ 2,4 E · ↻ 318</i></span></div><figcaption>{cap}</figcaption></figure>'
+    ba = f'<div class="ba-fade"><img src="assets/img/own/before_real.jpg" alt=""><img class="b" src="assets/img/own/after_real.jpg" alt=""></div><span class="lbl">előtte · utána</span>'
+    v = lambda n: f'<video data-bg muted loop playsinline preload="none" poster="{V}{n}.jpg" data-src="{V}{n}.mp4"></video>'
+    return ('<div class="bp-phones">' + ph(ba, "Reels · előtte–utána – a tartalom motorja", 0) + ph(v("nyitas"), "Story · „kinyitod, és fény gyúl”", 1) +
+            ph(v("el_erintes"), "Pinterest / TikTok · anyag és érintés", 2) + '</div>')
+
 BP_HERO = page_hero("Üzleti terv · 2027–2029", "A műhelytől <em>Európáig.</em>",
                     "Hogyan lesz a ZENIT-ből márka: cégalapítás, értékesítés, marketing, kiállítások, terjeszkedés és egy három évre szóló, három forgatókönyves pénzügyi terv.",
                     [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Üzleti terv")], R + "v_grafit_dio.jpg", tag="Látványterv · grafit és dió")
@@ -161,27 +198,30 @@ BP = (BP_HERO +
     '<a class="btn fill" href="letoltes/ZENIT_uzleti_terv.pdf" style="margin-left:auto">PDF letöltése <span class="arrow"></span></a></div>' +
     head("Összefoglaló", "Egy új kategória, <em>prémium áron, nyugodt tempóban.</em>",
          "A ZENIT a meglévő gardrób fölötti fél métert alakítja egyetlen, méretre gyártott felső szekrénnyé. Budapesten indulunk, 2028-ban Bécs, Pozsony és Prága, 2029-ben a német nyelvterület és Észak-Olaszország következik. Az alap forgatókönyvben a működés 2028 végére nyereséges, a legmagasabb finanszírozási igény kb. 60 M Ft.") +
-    '<div class="bp-key">' + "".join(f'<div class="reveal"><span>{k}</span><b>{v}</b><small>{d}</small></div>' for k, v, d in KEY) + '</div>', "paper") +
+    '<div class="bp-key">' + "".join(f'<div class="reveal"><span>{k}</span><b>{numwrap(v)}</b><small>{d}</small></div>' for k, v, d in KEY) + '</div>', "paper") +
+  band(V + "inspiracio_loop.mp4", "A kiindulópont", "A termék kész. <em>Most jön a márka.</em>", "Működő 3D tervező, méretpontos gyártási modell, kézikönyv, videók – a ZENIT nem ötlettel, hanem kész termékkel indul.", center=True) +
   S(head("01 · Piac és realitás", "Van piaca? <em>Igen – ha megmutatjuk.</em>",
          "A szekrény fölötti üres sáv szinte minden otthonban ott van, de ritkán keresnek rá: ez rejtett igény. A feladat ezért nem a kereslet kiszolgálása, hanem a probléma láthatóvá tétele.") +
-    '<div class="bp-market">' + "".join(f'<div class="reveal"><b>{v}</b><span>{d}</span></div>' for v, d in MARKET) + '</div>' +
+    '<div class="bp-market">' + "".join(f'<div class="reveal"><b>{numwrap(v)}</b><span>{d}</span></div>' for v, d in MARKET) + '</div>' +
     '<div class="bp-two"><div><h4>Kinek szól?</h4><ul><li>30–55 éves, jól kereső városi párok és családok</li><li>új lakásba költözők és felújítók</li><li>meglévő gardróbbal: IKEA PAX, Bútorline, XXXLutz, asztalosmunka</li><li>belsőépítészek, akiknek „befejezett” megoldás kell</li></ul></div>'
     '<div><h4>Becslés a piac méretére</h4><ul><li>Magyarországon kb. 4,5 millió lakás; nagyjából minden harmadikban van beépített vagy álló gardrób</li><li>prémium szegmens (vásárlóerő + igény): kb. 3–4%, azaz 45–60 ezer háztartás</li><li>a 3 éves terv ebből kb. 0,8 ezer magyar vevővel számol – a prémium szegmens 1,5–2%-a</li><li>Európában a beépített gardróbpiac kb. 3,2 Mrd $, évi 5% körüli növekedéssel</li></ul></div></div>'
     '<p class="bp-verdict"><b>Ítélet:</b> a piac létezik, de kicsi és rejtett – ezért a ZENIT prémium rés-márkaként működik: magas árrés, kevés, de büszke vevő, erős tartalom. A tanulság a német deinSchrank.de-től (2010, kb. 80 fő, 2023-ban fizetésképtelenség, majd felvásárlás): a méretre gyártás online is eladható, de a túl korai saját gyár és a tőkeigényes növekedés veszélyes. Ezért gyártunk partnerrel, és csak 2029-ben lépünk saját CNC-cella felé.</p>', "stone") +
   S(head("02 · Márka", "A szekrény, amit <em>befejeztek.</em>", "A ZENIT nem újabb szekrény, hanem egy hiányzó gesztus: a meglévő bútor befejezése a plafonig. Erről kell, hogy beszéljenek.") +
     cards([(f"0{i + 1}", t, d) for i, (t, d) in enumerate(BRAND)], "bp-cards c2"), "paper") +
-  S(head("03 · Üzleti modellek", "Hat út <em>ugyanahhoz a vevőhöz.</em>", "Az első év a közvetlen eladásé és a belsőépítészeké, a második a partnereké, a harmadik a licencé és a visszatérő bevételé.") + cards(MODELS), "ivory") +
+  soft(R + "b_kasmir_evening.jpg", "Márkaígéret", "Ahol a szekrényed véget ér, <em>ott kezdődünk.</em>") +
+  S(head("03 · Üzleti modellek", "Hat út <em>ugyanahhoz a vevőhöz.</em>", "Az első év a közvetlen eladásé és a belsőépítészeké, a második a partnereké, a harmadik a licencé és a visszatérő bevételé.") + cards(MODELS, imgs=[R + "b_open_led.jpg", F + "foto_109.jpg", R + "hero_day.jpg", F + "foto_002.jpg", R + "exploded_light.jpg", R + "hinge_in_detail.jpg"]), "ivory") +
   S(head("04 · Ütemterv", "Harminchat hónap, <em>kilenc mérföldkő.</em>", "Negyedéves tervezés, havonta mérve. A kiállítási időpontok a szervezők közzétett dátumai.") + tl_html, "paper") +
   S(head("05 · Értékesítés", "Az első tíz, száz <em>és ezer vevő.</em>", "Más módszer kell mindhárom lépcsőhöz – és a tervező mindháromban a belépő.") +
     cards([(k, t, d) for k, t, d in SALES]) +
     '<div class="bp-funnel"><h4>Egy átlagos negyedév tölcsére (alap forgatókönyv, 2028)</h4>' +
     "".join(f'<div style="width:{100 - i * 14}%"><span>{t}</span><b>{v}</b></div>' for i, (t, v) in enumerate(FUNNEL)) + '</div>', "stone") +
   S(head("06 · Marketing és PR", "Online és fizikai térben – <em>ugyanazzal a csenddel.</em>", "A tartalom motorja az előtte–utána: minden beépítésből fotó, rövid videó és vélemény lesz.") +
-    '<div class="bp-two"><div><h4>Online</h4>' + "".join(f'<p><b>{t}.</b> {d}</p>' for t, d in ONLINE) + '</div><div><h4>Fizikai jelenlét</h4>' + "".join(f'<p><b>{t}.</b> {d}</p>' for t, d in OFFLINE) + '</div></div>', "paper") +
-  S(head("07 · Terjeszkedés", "Három kör <em>Európában.</em>") +
+    phones() + '<div class="bp-two"><div><h4>Online</h4>' + "".join(f'<p><b>{t}.</b> {d}</p>' for t, d in ONLINE) + '</div><div><h4>Fizikai jelenlét</h4>' + "".join(f'<p><b>{t}.</b> {d}</p>' for t, d in OFFLINE) + '</div></div>', "paper") +
+  S(head("07 · Terjeszkedés", "Három kör <em>Európában.</em>", "Budapestről indulva, partnerekkel – a térképen a belépés sorrendje.") + svg_map() +
     cards([("2027", "Magyarország", "Budapest és agglomeráció, majd Győr, Debrecen, Szeged, Pécs – szerelőpartnerekkel."),
            ("2028", "Szomszédok", "Ausztria, Szlovákia, Csehország: lokalizált web és tervező, helyi szerelők, pop-up a design heteken."),
            ("2029", "DACH és Észak-Olaszország", "Bemutatótermi partnerek Münchenben, Zürichben és Milánóban; licencpartner keresése Lengyelországban és a Benelux-államokban.")]), "ivory") +
+  band(V + "szereles_loop.mp4", "Skálázható folyamat", "Egy modell. <em>Bármelyik szekrényre.</em>", "A paraméteres 3D modell minden méretre legenerálja a szabásjegyzéket, a furattáblát és a szerelési animációt – ettől skálázható a gyártás partnerekkel is.") +
   S(head("08 · Működés és csapat", "Kicsi csapat, <em>erős partnerek.</em>") + cards([(f"0{i + 1}", t, d) for i, (t, d) in enumerate(OPS)]) +
     '<div class="bp-two" style="margin-top:40px"><div><h4>Csapat évente</h4>' + "".join(f'<p><b>{y}.</b> {d}</p>' for y, d in TEAM) + '</div>'
     '<div><h4>Az első 90 nap</h4><ol class="bp-ol"><li>Névkutatás és védjegybejelentés</li><li>Kft. alapítása, bankszámla, könyvelő</li><li>Két gyártópartner ajánlata, próbagyártás</li><li>ÁSZF, jótállási jegy, biztosítás</li><li>Webshop és fizetés élesítése</li><li>20 alapító ügyfél kiválasztása</li><li>Construma-stand foglalása (korai ár)</li></ol></div></div>', "paper") +
@@ -199,6 +239,7 @@ BP = (BP_HERO +
     '<div><h4>Finanszírozás (alap)</h4><ul><li>8 M Ft alapítói saját forrás</li><li>20–25 M Ft kedvezményes vállalkozói hitel (pl. Széchenyi Kártya Program)</li><li>30 M Ft angyalbefektető, két mérföldkőhöz kötve (100. és 400. eladás)</li><li>2028-tól exportpiaci és innovációs pályázatok figyelése</li></ul></div></div>', "stone") +
   S(head("10 · Kockázatok", "Ami elsőre <em>nem fog menni.</em>") +
     '<table class="bp-t risks"><thead><tr><td>Kockázat</td><td>Mi történhet?</td><td>Válasz</td></tr></thead><tbody>' + "".join(f'<tr><td><b>{a}</b></td><td>{b}</td><td>{c}</td></tr>' for a, b, c in RISKS) + '</tbody></table>', "paper") +
+  band(R + "hero_evening.jpg", "2029 és tovább", "Egy szekrény, <em>ami befejezi a többit.</em>", "A cél nem a legtöbb eladott darab, hanem az, hogy a „ZENIT-elni” ige legyen.", center=True) +
   S(head("Források", "Amire <em>a számok épülnek.</em>") + '<ol class="bp-src">' + "".join(f'<li><a href="{u}">{t}</a></li>' for t, u in SOURCES) + '</ol>' +
     '<p class="bp-small">Minden más szám – darabszám, ár, költség, konverzió – tervezői becslés. A ZENIT márka, a díjak és az események a látványprojekt részeként kitaláltak.</p>', "ivory") +
   nxt("", "projekt.html", "A projektről", "Négy nap, egy ötlet, egy mesterséges intelligencia – a teljes folyamat.", alt=False))
