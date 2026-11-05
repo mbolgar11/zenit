@@ -1,7 +1,8 @@
 """Renderek → web JPG (enyhe színkorrekció). python3 src/convert_renders.py"""
 import os
 from PIL import Image, ImageEnhance
-SRC = "/home/claude/zenit_renders"; DST = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets/img/r")
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SRC = os.environ.get("ZENIT_RENDERS", "renders_v1"); DST = os.path.join(ROOT, "assets/img/r")
 os.makedirs(DST, exist_ok=True)
 for f in sorted(os.listdir(SRC)):
     if not f.endswith(".png"): continue

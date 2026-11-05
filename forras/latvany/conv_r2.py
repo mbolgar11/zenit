@@ -14,7 +14,9 @@ def grade(im, n):
     im = Image.fromarray((np.clip(a, 0, 1) * 255).astype("uint8"))
     return ImageEnhance.Color(im).enhance(1.08) if n in DAY else im
 
-SRC2, OLD, DST = "/home/claude/zr2", "/home/claude/zenit-site/assets/img/r", "/home/claude/zenit2/assets/img/r2"
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SRC2 = os.environ.get("ZENIT_RENDERS_V2", "renders_v2")   # Blender PNG-k (render_v3.py kimenete)
+OLD, DST = os.path.join(ROOT, "assets/img/r"), os.path.join(ROOT, "assets/img/r2")
 NAMES = ["hero_evening", "hero_day", "led_detail", "open_led", "after_day", "before_day", "story_morning", "story_night", "mirror_day",
          "macro_handle", "macro_edge", "macro_hinge", "exploded_light", "exploded", "insp_kreta", "insp_zsalya", "insp_ejkek", "insp_tolgy", "insp_grafit_dio",
          "hinge_in", "b_kasmir_evening", "b_open_led", "b_zsalya_day", "v_tolgy_day", "b_ejkek_evening", "v_grafit_dio"]
