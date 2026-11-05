@@ -340,3 +340,18 @@
   - A narráció új kezdete: „Milán, a ZENIT ötletgazdája…”
   - Saját kézi felvételek (fa él, komód, toll) színkorrigálva, lassítva: az Anyagok oldal „Érintés” sávja, a Manufaktúra „Az él” kártyája, a Concierge oldal elmosott sávja és egy snitt a projektvideóban.
   - A projektvideó zárósnittje a legélethűbb esti render, lassú ráközelítéssel, a logó alatt is látható.
+
+### Jogi oldalak és üzleti terv (v8)
+- **ÁSZF és süti-tájékoztató:**
+  - Egyedi gyártásra szabott tartalom: elállási kivétel (45/2014. Korm. rendelet 29. §), kellék- és termékszavatosság, kötelező jótállás (151/2003.), békéltető testület, GDPR-jogok, NAIH.
+  - A cégadatok helyén kitöltendő mezők állnak.
+- **Süti-ablak:** „Süti, méretre szabva”, kapcsolókkal. Az oldal valójában nem használ sütit, csak a helyi tárolót (mentett tervek), és ezt nyíltan meg is mondja.
+- **Üzleti terv 2027–2029:**
+  - piac és realitás, forrásolt számokkal;
+  - márka, hat üzleti modell, 36 hónapos ütemterv;
+  - értékesítési lépcsők és tölcsér, online és fizikai marketing, kiállítások (Construma, Budapest Design Week, Fuorisalone, Salone del Mobile);
+  - működés és csapat, kockázatok.
+- **Pénzügyi modell:**
+  - Negyedéves, csatornánként bontott Python-modell, három forgatókönyvvel (óvatos, alap, optimista).
+  - A grafikonok SVG-ben generálódnak.
+  - A PDF ugyanabból az oldalból, nyomtatási stílussal készül.

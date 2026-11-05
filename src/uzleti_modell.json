@@ -1,0 +1,890 @@
+{
+ "Q": [
+  "2027 Q1",
+  "2027 Q2",
+  "2027 Q3",
+  "2027 Q4",
+  "2028 Q1",
+  "2028 Q2",
+  "2028 Q3",
+  "2028 Q4",
+  "2029 Q1",
+  "2029 Q2",
+  "2029 Q3",
+  "2029 Q4"
+ ],
+ "UNITS": {
+  "HU közvetlen (D2C)": [
+   10,
+   25,
+   38,
+   52,
+   60,
+   72,
+   80,
+   88,
+   95,
+   110,
+   120,
+   130
+  ],
+  "Belsőépítészek, fejlesztők": [
+   0,
+   2,
+   6,
+   10,
+   15,
+   20,
+   25,
+   30,
+   35,
+   40,
+   45,
+   50
+  ],
+  "CEE közvetlen (AT·SK·CZ)": [
+   0,
+   0,
+   0,
+   0,
+   8,
+   20,
+   32,
+   45,
+   60,
+   72,
+   82,
+   90
+  ],
+  "DACH·IT partnerek": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   8,
+   15,
+   40,
+   70,
+   100,
+   130
+  ]
+ },
+ "PRICE": {
+  "HU közvetlen (D2C)": 265,
+  "Belsőépítészek, fejlesztők": 225,
+  "CEE közvetlen (AT·SK·CZ)": 448,
+  "DACH·IT partnerek": 390
+ },
+ "COGS": {
+  "HU közvetlen (D2C)": 140,
+  "Belsőépítészek, fejlesztők": 130,
+  "CEE közvetlen (AT·SK·CZ)": 205,
+  "DACH·IT partnerek": 195
+ },
+ "OPEX": {
+  "Csapat (bér + járulék)": [
+   1500,
+   2600,
+   4200,
+   4200,
+   7800,
+   7800,
+   9800,
+   9800,
+   13500,
+   13500,
+   15500,
+   15500
+  ],
+  "Marketing és hirdetés": [
+   1500,
+   2500,
+   3000,
+   3000,
+   5000,
+   6000,
+   7000,
+   7000,
+   11000,
+   12000,
+   13000,
+   14000
+  ],
+  "Kiállítás, design hét, pop-up": [
+   600,
+   4500,
+   500,
+   2200,
+   1500,
+   6500,
+   1000,
+   4500,
+   2500,
+   14000,
+   2000,
+   6000
+  ],
+  "Bemutatóterem, minták": [
+   2500,
+   1200,
+   1200,
+   1200,
+   1800,
+   1800,
+   2400,
+   2400,
+   3600,
+   3600,
+   3600,
+   3600
+  ],
+  "Szoftver, web, tervező": [
+   900,
+   600,
+   450,
+   450,
+   900,
+   900,
+   900,
+   900,
+   1500,
+   1500,
+   1500,
+   1500
+  ],
+  "Jog, könyvelés, védjegy, biztosítás": [
+   1600,
+   500,
+   450,
+   450,
+   900,
+   600,
+   600,
+   600,
+   1200,
+   900,
+   900,
+   900
+  ],
+  "Egyéb, utazás, tartalék": [
+   500,
+   500,
+   600,
+   600,
+   900,
+   900,
+   1100,
+   1100,
+   1600,
+   1600,
+   1600,
+   1600
+  ]
+ },
+ "CAPEX": [
+  3000,
+  1000,
+  0,
+  0,
+  2500,
+  0,
+  2000,
+  0,
+  6000,
+  2000,
+  0,
+  0
+ ],
+ "EUR": 390,
+ "out": {
+  "Óvatos": {
+   "rows": [
+    {
+     "q": "2027 Q1",
+     "units": 6,
+     "u": {
+      "HU közvetlen (D2C)": 6,
+      "Belsőépítészek, fejlesztők": 0,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 1590,
+     "cogs": 840,
+     "gm": 750,
+     "opex": 7460,
+     "ebitda": -6710,
+     "cash": -9710
+    },
+    {
+     "q": "2027 Q2",
+     "units": 16,
+     "u": {
+      "HU közvetlen (D2C)": 15,
+      "Belsőépítészek, fejlesztők": 1,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 4200,
+     "cogs": 2230,
+     "gm": 1970,
+     "opex": 8657,
+     "ebitda": -6687,
+     "cash": -17397
+    },
+    {
+     "q": "2027 Q3",
+     "units": 27,
+     "u": {
+      "HU közvetlen (D2C)": 23,
+      "Belsőépítészek, fejlesztők": 4,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 6995,
+     "cogs": 3740,
+     "gm": 3255,
+     "opex": 7859,
+     "ebitda": -4604,
+     "cash": -22001
+    },
+    {
+     "q": "2027 Q4",
+     "units": 37,
+     "u": {
+      "HU közvetlen (D2C)": 31,
+      "Belsőépítészek, fejlesztők": 6,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 9565,
+     "cogs": 5120,
+     "gm": 4445,
+     "opex": 8794,
+     "ebitda": -4349,
+     "cash": -26350
+    },
+    {
+     "q": "2028 Q1",
+     "units": 50,
+     "u": {
+      "HU közvetlen (D2C)": 36,
+      "Belsőépítészek, fejlesztők": 9,
+      "CEE közvetlen (AT·SK·CZ)": 5,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 13805,
+     "cogs": 7235,
+     "gm": 6570,
+     "opex": 14081,
+     "ebitda": -7511,
+     "cash": -36361
+    },
+    {
+     "q": "2028 Q2",
+     "units": 67,
+     "u": {
+      "HU közvetlen (D2C)": 43,
+      "Belsőépítészek, fejlesztők": 12,
+      "CEE közvetlen (AT·SK·CZ)": 12,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 19471,
+     "cogs": 10040,
+     "gm": 9431,
+     "opex": 17231,
+     "ebitda": -7800,
+     "cash": -44161
+    },
+    {
+     "q": "2028 Q3",
+     "units": 87,
+     "u": {
+      "HU közvetlen (D2C)": 48,
+      "Belsőépítészek, fejlesztők": 15,
+      "CEE közvetlen (AT·SK·CZ)": 19,
+      "DACH·IT partnerek": 5
+     },
+     "rev": 26557,
+     "cogs": 13540,
+     "gm": 13017,
+     "opex": 17026,
+     "ebitda": -4009,
+     "cash": -50170
+    },
+    {
+     "q": "2028 Q4",
+     "units": 107,
+     "u": {
+      "HU közvetlen (D2C)": 53,
+      "Belsőépítészek, fejlesztők": 18,
+      "CEE közvetlen (AT·SK·CZ)": 27,
+      "DACH·IT partnerek": 9
+     },
+     "rev": 33701,
+     "cogs": 17050,
+     "gm": 16651,
+     "opex": 18951,
+     "ebitda": -2300,
+     "cash": -52470
+    },
+    {
+     "q": "2029 Q1",
+     "units": 138,
+     "u": {
+      "HU közvetlen (D2C)": 57,
+      "Belsőépítészek, fejlesztők": 21,
+      "CEE közvetlen (AT·SK·CZ)": 36,
+      "DACH·IT partnerek": 24
+     },
+     "rev": 45318,
+     "cogs": 22770,
+     "gm": 22548,
+     "opex": 25975,
+     "ebitda": -3427,
+     "cash": -61897
+    },
+    {
+     "q": "2029 Q2",
+     "units": 175,
+     "u": {
+      "HU közvetlen (D2C)": 66,
+      "Belsőépítészek, fejlesztők": 24,
+      "CEE közvetlen (AT·SK·CZ)": 43,
+      "DACH·IT partnerek": 42
+     },
+     "rev": 58534,
+     "cogs": 29365,
+     "gm": 29169,
+     "opex": 32700,
+     "ebitda": -3531,
+     "cash": -67428
+    },
+    {
+     "q": "2029 Q3",
+     "units": 208,
+     "u": {
+      "HU közvetlen (D2C)": 72,
+      "Belsőépítészek, fejlesztők": 27,
+      "CEE közvetlen (AT·SK·CZ)": 49,
+      "DACH·IT partnerek": 60
+     },
+     "rev": 70507,
+     "cogs": 35335,
+     "gm": 35172,
+     "opex": 28240,
+     "ebitda": 6932,
+     "cash": -60496
+    },
+    {
+     "q": "2029 Q4",
+     "units": 240,
+     "u": {
+      "HU közvetlen (D2C)": 78,
+      "Belsőépítészek, fejlesztők": 30,
+      "CEE közvetlen (AT·SK·CZ)": 54,
+      "DACH·IT partnerek": 78
+     },
+     "rev": 82032,
+     "cogs": 41100,
+     "gm": 40932,
+     "opex": 31140,
+     "ebitda": 9792,
+     "cash": -50704
+    }
+   ],
+   "years": {
+    "2027": {
+     "units": 86,
+     "rev": 22350,
+     "cogs": 11930,
+     "gm": 10420,
+     "opex": 32770,
+     "ebitda": -22350,
+     "cash_end": -26350
+    },
+    "2028": {
+     "units": 311,
+     "rev": 93534,
+     "cogs": 47865,
+     "gm": 45669,
+     "opex": 67289,
+     "ebitda": -21620,
+     "cash_end": -52470
+    },
+    "2029": {
+     "units": 761,
+     "rev": 256391,
+     "cogs": 128570,
+     "gm": 127821,
+     "opex": 118055,
+     "ebitda": 9766,
+     "cash_end": -50704
+    }
+   },
+   "first_profitable_q": "2029 Q3",
+   "min_cash": -67428,
+   "min_cash_q": "2029 Q2",
+   "payback_q": null
+  },
+  "Alap": {
+   "rows": [
+    {
+     "q": "2027 Q1",
+     "units": 10,
+     "u": {
+      "HU közvetlen (D2C)": 10,
+      "Belsőépítészek, fejlesztők": 0,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 2650,
+     "cogs": 1400,
+     "gm": 1250,
+     "opex": 9100,
+     "ebitda": -7850,
+     "cash": -10850
+    },
+    {
+     "q": "2027 Q2",
+     "units": 27,
+     "u": {
+      "HU közvetlen (D2C)": 25,
+      "Belsőépítészek, fejlesztők": 2,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 7075,
+     "cogs": 3760,
+     "gm": 3315,
+     "opex": 12400,
+     "ebitda": -9085,
+     "cash": -20935
+    },
+    {
+     "q": "2027 Q3",
+     "units": 44,
+     "u": {
+      "HU közvetlen (D2C)": 38,
+      "Belsőépítészek, fejlesztők": 6,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 11420,
+     "cogs": 6100,
+     "gm": 5320,
+     "opex": 10400,
+     "ebitda": -5080,
+     "cash": -26015
+    },
+    {
+     "q": "2027 Q4",
+     "units": 62,
+     "u": {
+      "HU közvetlen (D2C)": 52,
+      "Belsőépítészek, fejlesztők": 10,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 16030,
+     "cogs": 8580,
+     "gm": 7450,
+     "opex": 12100,
+     "ebitda": -4650,
+     "cash": -30665
+    },
+    {
+     "q": "2028 Q1",
+     "units": 83,
+     "u": {
+      "HU közvetlen (D2C)": 60,
+      "Belsőépítészek, fejlesztők": 15,
+      "CEE közvetlen (AT·SK·CZ)": 8,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 22859,
+     "cogs": 11990,
+     "gm": 10869,
+     "opex": 18800,
+     "ebitda": -7931,
+     "cash": -41096
+    },
+    {
+     "q": "2028 Q2",
+     "units": 112,
+     "u": {
+      "HU közvetlen (D2C)": 72,
+      "Belsőépítészek, fejlesztők": 20,
+      "CEE közvetlen (AT·SK·CZ)": 20,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 32540,
+     "cogs": 16780,
+     "gm": 15760,
+     "opex": 24500,
+     "ebitda": -8740,
+     "cash": -49836
+    },
+    {
+     "q": "2028 Q3",
+     "units": 145,
+     "u": {
+      "HU közvetlen (D2C)": 80,
+      "Belsőépítészek, fejlesztők": 25,
+      "CEE közvetlen (AT·SK·CZ)": 32,
+      "DACH·IT partnerek": 8
+     },
+     "rev": 44281,
+     "cogs": 22570,
+     "gm": 21711,
+     "opex": 22800,
+     "ebitda": -1089,
+     "cash": -52925
+    },
+    {
+     "q": "2028 Q4",
+     "units": 178,
+     "u": {
+      "HU közvetlen (D2C)": 88,
+      "Belsőépítészek, fejlesztők": 30,
+      "CEE közvetlen (AT·SK·CZ)": 45,
+      "DACH·IT partnerek": 15
+     },
+     "rev": 56080,
+     "cogs": 28370,
+     "gm": 27710,
+     "opex": 26300,
+     "ebitda": 1410,
+     "cash": -51515
+    },
+    {
+     "q": "2029 Q1",
+     "units": 230,
+     "u": {
+      "HU közvetlen (D2C)": 95,
+      "Belsőépítészek, fejlesztők": 35,
+      "CEE közvetlen (AT·SK·CZ)": 60,
+      "DACH·IT partnerek": 40
+     },
+     "rev": 75530,
+     "cogs": 37950,
+     "gm": 37580,
+     "opex": 34900,
+     "ebitda": 2680,
+     "cash": -54835
+    },
+    {
+     "q": "2029 Q2",
+     "units": 292,
+     "u": {
+      "HU közvetlen (D2C)": 110,
+      "Belsőépítészek, fejlesztők": 40,
+      "CEE közvetlen (AT·SK·CZ)": 72,
+      "DACH·IT partnerek": 70
+     },
+     "rev": 97706,
+     "cogs": 49010,
+     "gm": 48696,
+     "opex": 47100,
+     "ebitda": 1596,
+     "cash": -55239
+    },
+    {
+     "q": "2029 Q3",
+     "units": 347,
+     "u": {
+      "HU közvetlen (D2C)": 120,
+      "Belsőépítészek, fejlesztők": 45,
+      "CEE közvetlen (AT·SK·CZ)": 82,
+      "DACH·IT partnerek": 100
+     },
+     "rev": 117661,
+     "cogs": 58960,
+     "gm": 58701,
+     "opex": 38100,
+     "ebitda": 20601,
+     "cash": -34638
+    },
+    {
+     "q": "2029 Q4",
+     "units": 400,
+     "u": {
+      "HU közvetlen (D2C)": 130,
+      "Belsőépítészek, fejlesztők": 50,
+      "CEE közvetlen (AT·SK·CZ)": 90,
+      "DACH·IT partnerek": 130
+     },
+     "rev": 136720,
+     "cogs": 68500,
+     "gm": 68220,
+     "opex": 43100,
+     "ebitda": 25120,
+     "cash": -9518
+    }
+   ],
+   "years": {
+    "2027": {
+     "units": 143,
+     "rev": 37175,
+     "cogs": 19840,
+     "gm": 17335,
+     "opex": 44000,
+     "ebitda": -26665,
+     "cash_end": -30665
+    },
+    "2028": {
+     "units": 518,
+     "rev": 155760,
+     "cogs": 79710,
+     "gm": 76050,
+     "opex": 92400,
+     "ebitda": -16350,
+     "cash_end": -51515
+    },
+    "2029": {
+     "units": 1269,
+     "rev": 427617,
+     "cogs": 214420,
+     "gm": 213197,
+     "opex": 163200,
+     "ebitda": 49997,
+     "cash_end": -9518
+    }
+   },
+   "first_profitable_q": "2028 Q4",
+   "min_cash": -55239,
+   "min_cash_q": "2029 Q2",
+   "payback_q": null
+  },
+  "Optimista": {
+   "rows": [
+    {
+     "q": "2027 Q1",
+     "units": 14,
+     "u": {
+      "HU közvetlen (D2C)": 14,
+      "Belsőépítészek, fejlesztők": 0,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 3710,
+     "cogs": 1960,
+     "gm": 1750,
+     "opex": 9100,
+     "ebitda": -7350,
+     "cash": -10350
+    },
+    {
+     "q": "2027 Q2",
+     "units": 38,
+     "u": {
+      "HU közvetlen (D2C)": 35,
+      "Belsőépítészek, fejlesztők": 3,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 9950,
+     "cogs": 5290,
+     "gm": 4660,
+     "opex": 12400,
+     "ebitda": -7740,
+     "cash": -19090
+    },
+    {
+     "q": "2027 Q3",
+     "units": 61,
+     "u": {
+      "HU közvetlen (D2C)": 53,
+      "Belsőépítészek, fejlesztők": 8,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 15845,
+     "cogs": 8460,
+     "gm": 7385,
+     "opex": 10400,
+     "ebitda": -3015,
+     "cash": -22105
+    },
+    {
+     "q": "2027 Q4",
+     "units": 87,
+     "u": {
+      "HU közvetlen (D2C)": 73,
+      "Belsőépítészek, fejlesztők": 14,
+      "CEE közvetlen (AT·SK·CZ)": 0,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 22495,
+     "cogs": 12040,
+     "gm": 10455,
+     "opex": 12100,
+     "ebitda": -1645,
+     "cash": -23750
+    },
+    {
+     "q": "2028 Q1",
+     "units": 116,
+     "u": {
+      "HU közvetlen (D2C)": 84,
+      "Belsőépítészek, fejlesztők": 21,
+      "CEE közvetlen (AT·SK·CZ)": 11,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 31913,
+     "cogs": 16745,
+     "gm": 15168,
+     "opex": 18800,
+     "ebitda": -3632,
+     "cash": -29882
+    },
+    {
+     "q": "2028 Q2",
+     "units": 157,
+     "u": {
+      "HU közvetlen (D2C)": 101,
+      "Belsőépítészek, fejlesztők": 28,
+      "CEE közvetlen (AT·SK·CZ)": 28,
+      "DACH·IT partnerek": 0
+     },
+     "rev": 45609,
+     "cogs": 23520,
+     "gm": 22089,
+     "opex": 24500,
+     "ebitda": -2411,
+     "cash": -32293
+    },
+    {
+     "q": "2028 Q3",
+     "units": 203,
+     "u": {
+      "HU közvetlen (D2C)": 112,
+      "Belsőépítészek, fejlesztők": 35,
+      "CEE közvetlen (AT·SK·CZ)": 45,
+      "DACH·IT partnerek": 11
+     },
+     "rev": 62005,
+     "cogs": 31600,
+     "gm": 30405,
+     "opex": 22800,
+     "ebitda": 7605,
+     "cash": -26688
+    },
+    {
+     "q": "2028 Q4",
+     "units": 249,
+     "u": {
+      "HU közvetlen (D2C)": 123,
+      "Belsőépítészek, fejlesztők": 42,
+      "CEE közvetlen (AT·SK·CZ)": 63,
+      "DACH·IT partnerek": 21
+     },
+     "rev": 78459,
+     "cogs": 39690,
+     "gm": 38769,
+     "opex": 26300,
+     "ebitda": 12469,
+     "cash": -14219
+    },
+    {
+     "q": "2029 Q1",
+     "units": 322,
+     "u": {
+      "HU közvetlen (D2C)": 133,
+      "Belsőépítészek, fejlesztők": 49,
+      "CEE közvetlen (AT·SK·CZ)": 84,
+      "DACH·IT partnerek": 56
+     },
+     "rev": 105742,
+     "cogs": 53130,
+     "gm": 52612,
+     "opex": 34900,
+     "ebitda": 17712,
+     "cash": -2507
+    },
+    {
+     "q": "2029 Q2",
+     "units": 409,
+     "u": {
+      "HU közvetlen (D2C)": 154,
+      "Belsőépítészek, fejlesztők": 56,
+      "CEE közvetlen (AT·SK·CZ)": 101,
+      "DACH·IT partnerek": 98
+     },
+     "rev": 136878,
+     "cogs": 68655,
+     "gm": 68223,
+     "opex": 47100,
+     "ebitda": 21123,
+     "cash": 16616
+    },
+    {
+     "q": "2029 Q3",
+     "units": 486,
+     "u": {
+      "HU közvetlen (D2C)": 168,
+      "Belsőépítészek, fejlesztők": 63,
+      "CEE közvetlen (AT·SK·CZ)": 115,
+      "DACH·IT partnerek": 140
+     },
+     "rev": 164815,
+     "cogs": 82585,
+     "gm": 82230,
+     "opex": 38100,
+     "ebitda": 44130,
+     "cash": 60746
+    },
+    {
+     "q": "2029 Q4",
+     "units": 560,
+     "u": {
+      "HU közvetlen (D2C)": 182,
+      "Belsőépítészek, fejlesztők": 70,
+      "CEE közvetlen (AT·SK·CZ)": 126,
+      "DACH·IT partnerek": 182
+     },
+     "rev": 191408,
+     "cogs": 95900,
+     "gm": 95508,
+     "opex": 43100,
+     "ebitda": 52408,
+     "cash": 113154
+    }
+   ],
+   "years": {
+    "2027": {
+     "units": 200,
+     "rev": 52000,
+     "cogs": 27750,
+     "gm": 24250,
+     "opex": 44000,
+     "ebitda": -19750,
+     "cash_end": -23750
+    },
+    "2028": {
+     "units": 725,
+     "rev": 217986,
+     "cogs": 111555,
+     "gm": 106431,
+     "opex": 92400,
+     "ebitda": 14031,
+     "cash_end": -14219
+    },
+    "2029": {
+     "units": 1777,
+     "rev": 598843,
+     "cogs": 300270,
+     "gm": 298573,
+     "opex": 163200,
+     "ebitda": 135373,
+     "cash_end": 113154
+    }
+   },
+   "first_profitable_q": "2028 Q3",
+   "min_cash": -32293,
+   "min_cash_q": "2028 Q2",
+   "payback_q": "2029 Q2"
+  }
+ }
+}

@@ -85,7 +85,7 @@ FOOTER = f'''<footer><div class="wrap">
       <form class="news" onsubmit="return false"><input placeholder="Hírlevél – e-mail címed" aria-label="E-mail"><button class="more" style="border:0">Feliratkozom</button></form></div>
     <div><h5>Kollekció</h5><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h, t, _ in KOLL)}</ul></div>
     <div><h5>Concierge</h5><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h, t, _ in CONC)}</ul></div>
-    <div><h5>Atelier</h5><ul><li>ZENIT Atelier · Budapest</li><li>hello@zenit.example</li><li>H–P 10–18 · bejelentkezéssel</li><li><a href="projekt.html">A projektről</a></li><li><a href="naplo.html">Projektnapló</a></li></ul></div>
+    <div><h5>Atelier</h5><ul><li>ZENIT Atelier · Budapest</li><li>hello@zenit.example</li><li>H–P 10–18 · bejelentkezéssel</li><li><a href="projekt.html">A projektről</a></li><li><a href="uzleti-terv.html">Üzleti terv</a></li><li><a href="naplo.html">Projektnapló</a></li></ul></div>
   </div>
   <div class="legal-links"><a href="aszf.html">ÁSZF</a><a href="suti.html">Sütik és adatkezelés</a><button type="button" data-cookie-settings>Süti-beállítások</button></div>
   <div class="legal"><span>© 2026 ZENIT · Koncepció – AI-kihívás projekt, nem valós webáruház. A márka, a díjak és az események kitaláltak.</span><span>A termékképek saját látványtervek; a hangulatképek Unsplash/Pexels licenc alatt, szűrve.</span></div>

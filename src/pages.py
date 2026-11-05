@@ -488,6 +488,8 @@ page("projekt.html", "A projektről – ZENIT AI-kihívás", "A ZENIT AI-kihív�
   <a href="letoltes/Ratet_v10_gyartasi_dokumentacio.pdf"><div class="label plain">PDF</div><b>Gyártási dokumentáció</b><span>16 oldal: szabásjegyzék, rajzok, fúrósablon.</span></a>
   <a href="letoltes/ZENIT_kezikonyv_referencia.pdf"><div class="label plain">PDF</div><b>Használati és szerelési kézikönyv</b><span>Brandelt, ábrás – a referencia-darabhoz.</span></a>
   <a href="szereles.html"><div class="label plain">Szerelés</div><b>Útmutató és videó</b><span>12 ábrás lépés a gyártási modellből.</span></a>
+  <a href="uzleti-terv.html"><div class="label plain">Stratégia</div><b>Üzleti terv 2027–2029</b><span>Piac, márka, értékesítés, Európa, háromforgatókönyves pénzügyi terv.</span></a>
+  <a href="letoltes/ZENIT_uzleti_terv.pdf"><div class="label plain">PDF</div><b>Üzleti terv (PDF)</b><span>Nyomtatható változat, A4.</span></a>
 </div>''', "paper") + soft(V + "nyitas.mp4", "Ember és gép", "Négy nap, egy asztal, <em>két gondolkodó.</em>"),
      scripts=["vendor/three.min.js", "vendor/OrbitControls.js", "vendor/GLTFLoader.js", "vendor/RoomEnvironment.js", "model3d.js"])
 
@@ -498,6 +500,7 @@ DL = [("3D modell", [("Ratet_v10_Fusion.f3d", "Autodesk Fusion archívum (F3D) �
                      ("Ratet_v10_CadQuery_teljes.glb", "GLB – webes 3D (ezt mutatja a nézegető)")]),
       ("Gyártás és használat", [("Ratet_v10_gyartasi_dokumentacio.pdf", "Gyártási dokumentáció, 16 oldal"),
                    ("ZENIT_kezikonyv_referencia.pdf", "Használati és szerelési kézikönyv – brandelt, ábrás"),
+                   ("ZENIT_uzleti_terv.pdf", "Üzleti és operatív stratégia 2027–2029 (PDF)"),
                    ("Ratet_v10_szabasjegyzek_furattabla.xlsx", "Szabásjegyzék és furattábla (Excel)"),
                    ("Ratet_v10_kalkulacio.xlsx", "Anyag- és árkalkuláció (Excel)")]),
       ("Videó", [("../assets/video/zenit_projekt.mp4", "Projektvideó, narrációval (MP4)"), ("../assets/video/zenit_promo.mp4", "Promóvideó (MP4)"),
@@ -511,6 +514,7 @@ page("letoltes.html", "Letöltések – ZENIT AI-kihívás", "A ZENIT 3D modellj
      band(F + "foto_078.jpg", "Nyitott forrás", "Minden fájl nálad. <em>Építsd tovább.</em>", "A modell, a rajzok és a kód szabadon letölthető – a ZENIT a te kezedben folytatódik.", center=True))
 
 exec(open(os.path.join(ROOT, "src", "legal_pages.py"), encoding="utf8").read())
+exec(open(os.path.join(ROOT, "src", "uzleti_terv.py"), encoding="utf8").read())
 
 # ======================================================================== NAPLÓ
 import markdown as _md, pathlib as _pl
