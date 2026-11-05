@@ -164,10 +164,10 @@ def page_hero(label, title, lead, cr, media=None, theme="ivory", tag=""):
             f'<h1 class="h1 lines"><span class="ln"><span>{title}</span></span></h1><p class="lead reveal d2">{lead}</p></div></section>')
 
 
-def soft(media, label, quote):
+def soft(media, label, quote, cls=""):
     """elmosott, szűrt képsáv egy idézettel"""
     m = (f'<video data-bg muted loop playsinline preload="none" poster="{media[:-4]}.jpg" data-src="{media}"></video>' if media.endswith(".mp4") else f'<img src="{media}" alt="" loading="lazy">')
-    return (f'<section class="band center soft"><div class="media">{m}</div><div class="wrap"><div class="label reveal" style="color:var(--bronze2)">{label}</div>'
+    return (f'<section class="band center soft{" " + cls if cls else ""}"><div class="media">{m}</div><div class="wrap"><div class="label reveal" style="color:var(--bronze2)">{label}</div>'
             f'<p class="quote reveal d1">{quote}</p></div></section>')
 
 

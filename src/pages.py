@@ -81,6 +81,7 @@ page("index.html", "ZENIT – Ahol a szekrényed véget ér, ott kezdődünk.",
   <a class="card reveal d1" href="inspiracio.html">{img(F + "foto_131.jpg", "Meleg fényű, letisztult belső tér", "ar-45", "Hangulat")}<b>Esti fény</b><span>Len, függöny, lámpafény – és csend.</span></a>
   <a class="card reveal d2" href="inspiracio.html">{img(R + "b_ejkek_evening.jpg", "Éjkék ZENIT bronz fogantyúval, esti fényben, kárpitozott paddal", "ar-45", "Látványterv")}<b>Éjkék és bronz</b><span>Bátor, mély, elegáns.</span></a>
 </div><div class="acts reveal" style="justify-content:center"><a class="more" href="inspiracio.html">Minden inspiráció <span class="arrow"></span></a></div>''', "ivory") +
+     soft(V + "fenyarnyek_v.mp4", "Reggel", "A fény átsétál a szobán. <em>A ZENIT csendben marad.</em>") +
      S(head("Tervtől a plafonig", "Négy lépés. <em>Nulla kompromisszum.</em>", "Három-négy hét a rendeléstől a csendes első zárásig. Közben végig tudod, hol tart a darabod.") + PROCESS_HTML, "paper") +
      S('<div class="quote reveal"><blockquote>„Egy szekrényt nem akkor fejezünk be, amikor összeáll, hanem amikor az ajtó először csendben becsukódik.”</blockquote><cite>ZENIT műhely · Budapest</cite></div>', "stone") +
      band(R + "story_morning.jpg", "Concierge", "Kezdjük el <em>a te ZENIT-edet.</em>",
@@ -140,6 +141,8 @@ page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépít
   <div><dt>Fogantyú</dt><dd>GTV HEXA 192, lekerekített</dd></div><div><dt>Rögzítés</dt><dd>a szekrényhez, falfúrás nélkül</dd></div><div><dt>Elkészülés</dt><dd>3 – 4 hét</dd></div>
 </dl>''', "paper") +
      S(head("A referencia-darab számokban", "Bútorline ELIA 250 fölé, <em>kasmírban.</em>", "A bemutatott ZENIT egy valódi szekrényre készült: 250 × 205 × 60 cm, belmagasság a legalacsonyabb ponton 259 cm.") + nums(NUMS), "dark") +
+     band(F + "foto_003.jpg", "Gardrób a plafonig", "Minden a helyén. <em>A legfelső polc is.</em>",
+          "Ha a tárolás a plafonig ér, a szoba többi része felszabadul. Ez a ZENIT lényege.") +
      nxt("02", "anyagok.html", "Anyagok és színek", "Kasmír, natúr tölgy, éjkék – és a részlet, amit minden nap megérintesz."))
 
 # ======================================================================== ANYAGOK
@@ -167,6 +170,7 @@ page("anyagok.html", "Anyagok és színek – ZENIT", "A ZENIT színpalettája, 
      S(f'''<div class="split"><div class="reveal"><div class="label">Fény és tükör</div><h2 class="h2">Meleg fény. <em>Tágabb tér.</em></h2>
   <div class="prose"><p>A belső LED ajtónyitásra gyullad fel: 2700 K-es, melegfehér fény, ami a textileket és a fát is a valódi színükben mutatja. A tükör bármelyik ajtóra kérhető – 4 mm-es, biztonsági fóliával, keskeny kasmír kerettel.</p></div></div>
   <div class="reveal d1">{img(R + "open_led.jpg", "Nyitott ZENIT belső LED-fénnyel", "ar-43", "Látványterv · belső LED")}</div></div>''', "stone") +
+     soft("assets/img/r/tex_oak.jpg", "Valódi erezet", "Minden tölgylap más. <em>A tiéd is egyedi lesz.</em>") +
      nxt("03", "manufaktura.html", "Manufaktúra", "Kéz, gép, terv – és a díjak, amelyekre büszkék vagyunk."))
 
 # ======================================================================== MANUFAKTÚRA
@@ -203,6 +207,8 @@ page("manufaktura.html", "Manufaktúra – ZENIT", "Magyar kézművesség és di
   <div class="prose"><p>Minden ZENIT egyedi sorszámot és a készítő aláírását kapja a tetőlap belső oldalán. Nincs raktárkészlet, nincs két egyforma: a te méreteidből, a te színeidből születik, és csak a tiéd lesz.</p></div>
   <dl class="specs" style="grid-template-columns:1fr 1fr;margin-top:30px"><div><dt>Készítés</dt><dd>Megrendelésre</dd></div><div><dt>Ellenőrzés</dt><dd>Kézzel, darabonként</dd></div><div><dt>Kötés</dt><dd>Ragasztó nélkül</dd></div><div><dt>Származás</dt><dd>Magyarország</dd></div></dl></div></div>''', "paper") +
      S('<div class="quote reveal"><blockquote>„A legjobb bútor az, amelyik úgy néz ki, mintha mindig is ott lett volna.”</blockquote><cite>A ZENIT tervezőcsapata</cite></div>', "ivory") +
+     band(V + "vesok.mp4", "Szerszámok", "Ugyanaz a véső. <em>Száz év különbséggel.</em>",
+          "A szerszám ma is ugyanaz: türelem és figyelem. Csak a mérés lett tizedmilliméteres.") +
      nxt("04", "inspiracio.html", "Inspiráció", "Nézd meg, hogyan él a ZENIT különböző otthonokban – és nyisd meg bármelyiket a tervezőben."))
 
 # ======================================================================== INSPIRÁCIÓ
@@ -238,6 +244,7 @@ page("inspiracio.html", "Inspiráció – ZENIT", "ZENIT különböző otthonokb
      S('<div class="chips reveal"><button class="chip on" data-f="*">Mind</button><button class="chip" data-f="zenit">ZENIT látványtervek</button><button class="chip" data-f="hangulat">Hangulatok</button><button class="chip" data-f="anyag">Anyagok</button></div>'
        f'<div class="masonry">{gal}</div>') +
      S('<div class="quote reveal"><blockquote>„Nem egy újabb doboz kerül a szekrényedre. A szekrényed kap befejezést.”</blockquote><cite>Tervezői jegyzet</cite></div>', "stone") +
+     band(F + "foto_002.jpg", "Hangulat", "Rend, ami <em>nyugalmat ad.</em>", "Egy jól megtervezett gardróbban nem keresgélsz – csak választasz.", center=True) +
      nxt("05", "keszites.html", "Így készül", "Tervtől a plafonig: a gyártás, a minőség és a részletek – és minden kérdésre válasz."))
 
 # ======================================================================== ÍGY KÉSZÜL
@@ -259,6 +266,7 @@ page("keszites.html", "Így készül – ZENIT", "A ZENIT gyártása lépésről
   <div class="prose"><p>Minden furat helyét a 3D gyártási modell határozza meg: tipli és konfirmát kötés, pántcsésze, polctartó csap, fogantyú. A modellből automatikusan születik a szabásjegyzék, a furattábla, a rajzok – és a te szerelési útmutatód is.</p></div>
   <div class="acts"><a class="btn" href="szereles.html">Szerelési útmutató <span class="arrow"></span></a></div></div></div>''', "stone") +
      S(faq(FAQ), "ivory") +
+     band(F + "foto_056.jpg", "A műhelyben", "Por, fény <em>és türelem.</em>", "Minden ZENIT átmegy egy ember kezén, mielőtt elindul hozzád.") +
      nxt("06", "szereles.html", "Szerelés", "Három óra, két ember, egy csendes szekrény – lépésről lépésre, ábrákkal."))
 
 # ======================================================================== SZERELÉS
@@ -288,6 +296,7 @@ page("szereles.html", "Szerelési útmutató – ZENIT", "A ZENIT szerelése lé
      S(head("Alkatrészek", "Tizenegy elem, <em>betűvel jelölve.</em>", "Minden lap címkéjén ott a betű – az ábrákon is ezekkel hivatkozunk rájuk.") + PARTS +
        '<div style="margin-top:50px">' + HW + '</div>', "stone") +
      S(head("Lépésről lépésre", 'Tizenkét lépés, <em>nyugodt tempóban.</em>', "A lépések együtt kb. két és fél óra, kicsomagolással és takarítással együtt nagyjából három. Az ábrák a valódi gyártási modellből készültek – minden furat ott van, ahol a rajzon látod.") + ST, "paper") +
+     band(F + "foto_070.jpg", "Próbaszerelés", "Egyszer nálunk, <em>egyszer nálad.</em>", "Minden ZENIT-et a műhelyben egyszer már összeállítunk és beállítunk – így otthon csak a jól begyakorolt mozdulatok jönnek.") +
      nxt("", "garancia.html", "Örökgarancia", "Nem évekre adunk garanciát. Ígéretet adunk.", alt=False))
 
 # ======================================================================== GARANCIA
@@ -300,6 +309,7 @@ page("garancia.html", "ZENIT Örökgarancia", "Egy életre tervezve – a ZENIT 
   <p class="big center" style="margin-top:34px;font-size:clamp(26px,2.6vw,38px)">Amíg létezik, pótoljuk. <em>A ZENIT veled marad.</em></p></div>''', "paper") +
      soft(F + "foto_020.jpg", "Költözéskor is", "Ragasztó nélkül, csavarral épül. <em>Szétszeded, viszed, újra összerakod.</em>") +
      S(head("Amit vállalunk", "Négy ígéret, <em>aláírva.</em>", "Minden ZENIT sorszámot kap; a tanúsítványt a kézikönyv utolsó oldalán találod.") + '''<div class="trust reveal" style="margin-top:0"><div><b>Örökgarancia</b><span>Elemenként pótolható, amíg az anyag kapható.</span></div><div><b>Szétszedhető</b><span>Ragasztó nélküli kötések – költözéskor viszed.</span></div><div><b>Sorszámozva</b><span>Minden darab nyilvántartva, aláírva.</span></div><div><b>Szerviz</b><span>Pántbeállítás, csere, bővítés – kérésre helyszínen.</span></div></div>''', "dark") +
+     band(V + "el.mp4", "Évek múlva is", "Ugyanaz a csend. <em>Ugyanaz a vonal.</em>", center=True) +
      nxt("07", "tervezo.html", "Tervezd meg a sajátod", "Minden változtatás azonnal megjelenik – méret, ajtók, tükör, színek, fény, fogantyú.", alt=False))
 
 # ======================================================================== TERVEZŐ
@@ -381,7 +391,7 @@ CFG = f'''<section class="cfg-wrap">
   </aside>
 </div></section>'''
 page("tervezo.html", "Tervező – ZENIT", "Tervezd meg a saját ZENIT felső szekrényed élő 3D-ben: méret, illesztés, ajtók és nyitásirány, tükör, színek, fény, fogantyú.",
-     CFG, scripts=["vendor/three.min.js", "vendor/OrbitControls.js", "vendor/RoomEnvironment.js", "configurator.js"], body_cls="cfg-page")
+     CFG + soft(R + "b_open_led.jpg", "A tiéd", "Minden döntés a tiéd. <em>A pontosság a miénk.</em>"), scripts=["vendor/three.min.js", "vendor/OrbitControls.js", "vendor/RoomEnvironment.js", "configurator.js"], body_cls="cfg-page")
 
 # ======================================================================== AZ ÖN TERVE
 page("terv.html", "Az Ön terve – ZENIT", "A mentett ZENIT terv összesítője, kézikönyv, szerelési animáció, ajánlatkérés és rendelés.",
@@ -397,7 +407,7 @@ page("terv.html", "Az Ön terve – ZENIT", "A mentett ZENIT terv összesítője
       <div class="full"><label>Település</label><input></div><div class="full"><a class="btn fill" href="#">Ajánlatot kérek <span class="arrow"></span></a></div></form></div>
     <div><div class="label">Concierge</div><b>Egy tervező hív vissza</b><p>Belsőépítészünk átbeszéli a tervet, segít a színekben, arányokban.</p><a class="btn" href="concierge.html">Időpontot választok</a></div>
     <div><div class="label">Rendelés <span class="demo">Demó</span></div><b>Megrendelem most</b><p>Biztonságos online fizetés. A projektben bemutató lépés – valódi fizetés nem történik.</p><a class="btn" href="#">Tovább a fizetéshez</a></div>
-  </div></div>''', "paper"), scripts=["zplan.js", "plan.js"])
+  </div></div>''', "paper") + soft(F + "foto_044.jpg", "Ha kérdésed van", "Egy hívás, <em>és végigmegyünk rajta együtt.</em>"), scripts=["zplan.js", "plan.js"])
 
 # ======================================================================== KÉZIKÖNYV (személyre szabott, nyomtatható)
 steps_js = json.dumps([dict(no=s["no"], title=s["title"], text=s["text"], svg=s["svg"], need=s["need"], minutes=s["minutes"], people=s["people"], warn=s.get("warn")) for s in STEPS["steps"]], ensure_ascii=False)
@@ -406,7 +416,7 @@ page("kezikonyv.html", "Kézikönyv – ZENIT", "Személyre szabott, nyomtathat�
   <div class="label" style="color:var(--bronze2)">Az Ön kézikönyve</div><h1 class="h1 lines"><span class="ln"><span>Az Ön ZENIT-je, <em>papíron is.</em></span></span></h1>
   <p class="lead">A mentett tervéből készül: méretek, ajtók és nyitásirányok, tükör, fény, alkatrészek, szerelés és ápolás. Nyomtassa ki, vagy mentse PDF-be.</p>
   <div class="acts"><button class="btn fill" onclick="print()">Nyomtatás / PDF <span class="arrow"></span></button><a class="btn light" href="tervezo.html">Terv módosítása</a><a class="btn light" href="letoltes/ZENIT_kezikonyv_referencia.pdf">Referencia PDF</a></div></div><span class="tag" style="left:auto;right:var(--pad);bottom:24px">Brandelt kézikönyv · A4</span></section>
-<section class="sec" data-theme="stone"><div class="wrap" id="manual"></div></section>
+<section class="sec" data-theme="stone"><div class="wrap" id="manual"></div></section>{soft(F + "foto_049.jpg", "Kézzel jegyzetelve", "Papíron is a tiéd. <em>Évek múlva is előveszed.</em>", "noprint")}
 <script>window.ZSTEPS={steps_js};</script>''', scripts=["zplan.js", "manual.js"])
 
 # ======================================================================== CONCIERGE
@@ -428,6 +438,8 @@ page("concierge.html", "Concierge – személyes konzultáció – ZENIT", "Terv
     <div class="full"><label>Megjegyzés</label><textarea rows="3" placeholder="Pl. belmagasság, ferde plafon, stílus…"></textarea></div>
     <div class="full"><a class="btn fill" href="#">Kérem a visszahívást <span class="arrow"></span></a></div>
   </form></div>''', "paper") +
+     band(F + "foto_032.jpg", "Személyesen", "Nálad, a te fényeidben. <em>Úgy tervezünk.</em>",
+          "Belsőépítészünk megnézi a szobát, a fényt és a színeket – és ehhez igazítja a ZENIT-et.") +
      nxt("", "tervezo.html", "Vagy tervezd meg most", "Az élő 3D tervezőben pár perc alatt összeállíthatod a sajátodat.", alt=False))
 
 # ======================================================================== A PROJEKTRŐL
@@ -453,7 +465,7 @@ page("projekt.html", "A projektről – ZENIT AI-kihívás", "A ZENIT AI-kihív�
   <a href="letoltes/Ratet_v10_gyartasi_dokumentacio.pdf"><div class="label plain">PDF</div><b>Gyártási dokumentáció</b><span>16 oldal: szabásjegyzék, rajzok, fúrósablon.</span></a>
   <a href="letoltes/ZENIT_kezikonyv_referencia.pdf"><div class="label plain">PDF</div><b>Használati és szerelési kézikönyv</b><span>Brandelt, ábrás – a referencia-darabhoz.</span></a>
   <a href="szereles.html"><div class="label plain">Szerelés</div><b>Útmutató és videó</b><span>12 ábrás lépés a gyártási modellből.</span></a>
-</div>''', "paper"),
+</div>''', "paper") + soft(V + "nyitas.mp4", "Ember és gép", "Négy nap, egy asztal, <em>két gondolkodó.</em>"),
      scripts=["vendor/three.min.js", "vendor/OrbitControls.js", "vendor/GLTFLoader.js", "vendor/RoomEnvironment.js", "model3d.js"])
 
 # ======================================================================== LETÖLTÉSEK
@@ -472,7 +484,8 @@ rows = ''.join(f'<div class="dl-group reveal"><div class="label">{g}</div>' + ''
 page("letoltes.html", "Letöltések – ZENIT AI-kihívás", "A ZENIT 3D modelljei, gyártási dokumentációja, kézikönyve és videói.",
      page_hero("Letöltések", "Minden fájl, <em>ami mögötte van.</em>", "Fusion- és STEP-modell, gyártási PDF, kézikönyv, szabásjegyzék, kalkuláció és a videók. A forráskód a GitHubon.",
                [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Letöltések")], V + "furas.mp4", tag="Hangulat") +
-     S(rows + '<p class="vid-note" style="margin-top:30px"><a href="naplo.html">Projektnapló ›</a> &nbsp; <a href="https://github.com/mbolgar11/zenit">GitHub-repó ›</a></p>', "paper"))
+     S(rows + '<p class="vid-note" style="margin-top:30px"><a href="naplo.html">Projektnapló ›</a> &nbsp; <a href="https://github.com/mbolgar11/zenit">GitHub-repó ›</a></p>', "paper") +
+     band(F + "foto_078.jpg", "Nyitott forrás", "Minden fájl nálad. <em>Építsd tovább.</em>", "A modell, a rajzok és a kód szabadon letölthető – a ZENIT a te kezedben folytatódik.", center=True))
 
 # ======================================================================== NAPLÓ
 import markdown as _md, pathlib as _pl
@@ -483,4 +496,5 @@ if _np.exists():
     page("naplo.html", "Projektnapló – ZENIT AI-kihívás", "Eszközök, promptok, elakadások és megoldások – a ZENIT AI-kihívás naplója.",
          page_hero("Projektnapló", "Hogyan készült – <em>lépésről lépésre.</em>", "Eszközök, példapromptok, elakadások és megoldások, ahogy a munka közben történt.",
                    [("index.html", "ZENIT"), ("projekt.html", "A projektről"), ("", "Napló")], F + "foto_117_hero.jpg", tag="Hangulat") +
-         S(f'<article class="naplo">{_html}</article>', "paper"))
+         S(f'<article class="naplo">{_html}</article>', "paper") +
+         soft(F + "foto_063.jpg", "Tanulság", "Nem helyettem dolgozott. <em>Velem dolgozott.</em>"))
