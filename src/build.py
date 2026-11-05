@@ -171,6 +171,14 @@ def soft(media, label, quote, cls=""):
             f'<p class="quote reveal d1">{quote}</p></div></section>')
 
 
+def sfx(kind, label, title, lead, steps, theme="stone", attrs="", cls=""):
+    """görgetésre mozgó, ragadós ábra (assets/js/scrollfx.js)"""
+    li = "".join(f"<li>{x}</li>" for x in steps)
+    return (f'<section class="sfx sfx-{kind} {cls}" data-sfx="{kind}" data-theme="{theme}"{attrs}><div class="sfx-pin"><div class="wrap sfx-grid">'
+            f'<div class="sfx-txt"><div class="label">{label}</div><h2 class="h2">{title}</h2><p class="lead">{lead}</p><ol class="sfx-steps">{li}</ol><div class="sfx-bar"><i></i></div></div>'
+            f'<div class="sfx-stage"><svg role="img" aria-label="{H.escape(label)} – animált ábra"></svg><div class="sfx-cap" aria-live="polite"></div></div></div></div></section>')
+
+
 def nxt(no, href, title, text, alt=True):
     alts = '<div class="alt"><span>Vagy:</span><a href="tervezo.html">Ugrás a tervezőbe</a><a href="concierge.html">Beszélek egy tervezővel</a></div>' if alt else ""
     return (f'<section class="next"><div class="wrap"><a href="{href}"><div><div class="label">Következő fejezet{" · " + no if no else ""}</div>'

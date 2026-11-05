@@ -561,3 +561,38 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .next{overflow:hidden;position:relative}
 .next>.wrap{position:relative;z-index:1}
 @media (max-width:760px){.next>.wrap>a{gap:18px}.next .circ{width:84px;height:84px;gap:0}.next .circ .go{display:none}.next .circ .arrow{width:26px}}
+/* görgetésre mozgó ábrák (v7e) */
+.sfx{position:relative;height:330vh;background:var(--bg)}
+.sfx.short{height:260vh}
+.sfx-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden;padding-top:60px}
+.sfx-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,5vw,90px);align-items:center;width:100%}
+.sfx-txt .h2{margin:18px 0 18px}
+.sfx-txt .lead{font-size:16px;max-width:40ch}
+.sfx-steps{list-style:none;margin:26px 0 0;padding:0;counter-reset:s}
+.sfx-steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline;padding:7px 0;color:var(--muted);font-size:13.5px;transition:color .4s,transform .4s var(--ease)}
+.sfx-steps li:before{content:counter(s,decimal-leading-zero);font:300 15px var(--serif);color:var(--muted);min-width:22px}
+.sfx-steps li.done{color:var(--fg2)}
+.sfx-steps li.on{color:var(--fg);transform:translateX(6px)}
+.sfx-steps li.on:before{color:var(--bronze)}
+.sfx-bar{height:2px;background:var(--ln);margin-top:22px;max-width:320px;overflow:hidden}
+.sfx-bar i{display:block;height:100%;background:var(--bronze);transform-origin:0 50%;transform:scaleX(0)}
+.sfx-stage{position:relative}
+.sfx-stage svg{display:block;width:100%;height:auto;max-height:70vh;overflow:visible}
+.sfx-stage .pt{transition:opacity .2s linear}
+.sfx-stage .pt.hl polygon{stroke:#A27D4A}
+.sfx-cap{margin-top:18px;font:300 clamp(20px,2vw,28px)/1.2 var(--serif);color:var(--fg);min-height:1.3em;text-align:center}
+.sfx-num{font:300 84px var(--serif);fill:#A27D4A;font-variant-numeric:lining-nums}
+.sfx-num.big{font-size:120px}
+.sfx-lbl{font:500 34px var(--sans);letter-spacing:.24em;fill:#8C7B66}
+.sfx-palette .sfx-cap{font-style:italic;color:var(--bronze)}
+@media (max-width:860px){
+  .sfx{height:280vh}
+  .sfx-pin{align-items:center;padding-top:64px}
+  .sfx-grid{grid-template-columns:1fr;gap:22px}
+  .sfx-steps{display:none}
+  .sfx-txt .lead{font-size:14.5px;margin-top:12px}
+  .sfx-assemble .sfx-stage svg{width:116%;margin-left:-8%}
+  .sfx-txt .h2{margin:10px 0 0;font-size:30px}
+  .sfx-stage svg{max-height:52vh}
+  .sfx-cap{font-size:20px}
+}

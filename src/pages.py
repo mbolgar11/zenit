@@ -81,13 +81,16 @@ page("index.html", "ZENIT – Ahol a szekrényed véget ér, ott kezdődünk.",
   <a class="card reveal d1" href="inspiracio.html">{img(F + "foto_131.jpg", "Meleg fényű, letisztult belső tér", "ar-45", "Hangulat")}<b>Esti fény</b><span>Len, függöny, lámpafény – és csend.</span></a>
   <a class="card reveal d2" href="inspiracio.html">{img(R + "b_ejkek_evening.jpg", "Éjkék ZENIT bronz fogantyúval, esti fényben, kárpitozott paddal", "ar-45", "Látványterv")}<b>Éjkék és bronz</b><span>Bátor, mély, elegáns.</span></a>
 </div><div class="acts reveal" style="justify-content:center"><a class="more" href="inspiracio.html">Minden inspiráció <span class="arrow"></span></a></div>''', "ivory") +
+     sfx("assemble", "Így áll össze", "Tizenegy elem. <em>Egy mozdulat.</em>",
+         "Görgess lassan: a ZENIT darabról darabra összeáll – ugyanabban a sorrendben, ahogy nálad is.",
+         ["Fenéklap", "Oldallapok", "Közfalak", "Tetőlap", "Hátfal és polc", "Belső fény", "Ajtók", "Kész"], "stone") +
      soft(V + "fenyarnyek_v.mp4", "Reggel", "A fény átsétál a szobán. <em>A ZENIT csendben marad.</em>") +
      S(head("Tervtől a plafonig", "Négy lépés. <em>Nulla kompromisszum.</em>", "Három-négy hét a rendeléstől a csendes első zárásig. Közben végig tudod, hol tart a darabod.") + PROCESS_HTML, "paper") +
      S('<div class="quote reveal"><blockquote>„Egy szekrényt nem akkor fejezünk be, amikor összeáll, hanem amikor az ajtó először csendben becsukódik.”</blockquote><cite>ZENIT műhely · Budapest</cite></div>', "stone") +
      band(R + "story_morning.jpg", "Concierge", "Kezdjük el <em>a te ZENIT-edet.</em>",
           "Tervezd meg pár perc alatt az élő 3D tervezőben – vagy beszélj egy belsőépítésszel, aki visszahív.",
           '<a class="btn fill" href="tervezo.html">Tervező <span class="arrow"></span></a><a class="btn light" href="concierge.html">Tervező hív vissza</a>', center=True) +
-     nxt("01", "zenit.html", "A ZENIT", "Felépítés, méretek, fény, tükör és kiegyenlítés – a hiányzó fél méter, részletesen."))
+     nxt("01", "zenit.html", "A ZENIT", "Felépítés, méretek, fény, tükör és kiegyenlítés – a hiányzó fél méter, részletesen."), scripts=["scrollfx.js"])
 
 # ======================================================================== A ZENIT
 ANAT = [("Egy korpusz, egybefüggő tetővel", "Nincsenek toldások, nincs látható illesztés – a vonal egyetlen mozdulat."),
@@ -116,6 +119,9 @@ page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépít
      page_hero("Kollekció · 01", "A hiányzó fél méter, <em>megoldva.</em>",
                "Egy korpusz, egybefüggő tető, csendes ajtók. Méretre tervezve a meglévő szekrényedhez – a plafonig.",
                [("index.html", "ZENIT"), ("", "Kollekció"), ("", "A ZENIT")], R + "after_day.jpg", tag="Látványterv · kasmír") +
+     sfx("rise", "A hiányzó fél méter", "Ami eddig por volt, <em>most tér.</em>",
+         "A legtöbb gardrób fölött 50–60 cm üres sáv marad. A ZENIT ezt tölti ki – 10 mm-re a plafontól.",
+         ["Ma", "A ZENIT", "10 mm"], "paper", cls="short") +
      S(head("Előtte, utána", "Ugyanaz a szoba. <em>Más nyugalom.</em>", "Húzd a csúszkát: a dobozok és a por helyén egyetlen, csendes felület – a plafonig.") +
        f'''<div class="ba reveal"><img src="{R}after_day.jpg" alt="Utána: a gardrób a ZENIT felső szekrénnyel">
   <div class="before"><img src="{R}before_day.jpg" alt="Előtte: dobozok a szekrény fölött"></div><div class="handle"></div>
@@ -143,9 +149,10 @@ page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépít
      S(head("A referencia-darab számokban", "Bútorline ELIA 250 fölé, <em>kasmírban.</em>", "A bemutatott ZENIT egy valódi szekrényre készült: 250 × 205 × 60 cm, belmagasság a legalacsonyabb ponton 259 cm.") + nums(NUMS), "dark") +
      band(F + "foto_003.jpg", "Gardrób a plafonig", "Minden a helyén. <em>A legfelső polc is.</em>",
           "Ha a tárolás a plafonig ér, a szoba többi része felszabadul. Ez a ZENIT lényege.") +
-     nxt("02", "anyagok.html", "Anyagok és színek", "Kasmír, natúr tölgy, éjkék – és a részlet, amit minden nap megérintesz."))
+     nxt("02", "anyagok.html", "Anyagok és színek", "Kasmír, natúr tölgy, éjkék – és a részlet, amit minden nap megérintesz."), scripts=["scrollfx.js"])
 
 # ======================================================================== ANYAGOK
+SFX_STOPS = [["Kasmír", "#CDBFAE", ""], ["Kréta", "#F1EFEA", ""], ["Zsálya", "#A4AD98", ""], ["Natúr tölgy", "#B48A57", "oak"], ["Agyag", "#A7735A", ""], ["Éjkék", "#273445", ""], ["Grafit", "#4A4846", ""]]
 UNI = [("Kasmír", "#CDBFAE", "a ZENIT alapszíne"), ("Kréta", "#F1EFEA", ""), ("Homok", "#D8CBB3", ""), ("Zsálya", "#A4AD98", ""),
        ("Agyag", "#A7735A", ""), ("Grafit", "#4A4846", ""), ("Éjkék", "#273445", ""), ("Fekete", "#1B1A19", "")]
 pal = "".join(f'<div class="reveal" style="text-align:center"><div style="aspect-ratio:1;border-radius:50%;background:{c};box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 18px 30px -18px rgba(20,17,14,.4)"></div><b style="display:block;font:300 22px var(--serif);margin-top:16px">{n}</b><span class="small">{c}{" · " + d if d else ""}</span></div>' for n, c, d in UNI)
@@ -156,6 +163,9 @@ page("anyagok.html", "Anyagok és színek – ZENIT", "A ZENIT színpalettája, 
      S(f'''<div class="split wide-l"><div class="reveal">{img(R + "hero_evening.jpg", "Kasmír ZENIT esti fényben", "ar-43", "Látványterv · kasmír")}</div>
   <div class="reveal d1"><div class="label">Kasmír</div><h2 class="h2">Az eredeti. <em>Meleg, csendes, időtlen.</em></h2>
   <div class="prose"><p>A kasmír a ZENIT alapszíne: meleg szürkésbézs, ami reggel krémesnek, este mézszínűnek látszik. A Bútorline ELIA kasmír szekrényekhez hangolva – a két bútor egyetlen tömbbé olvad.</p></div></div></div>''', "paper") +
+     sfx("palette", "Színek a te szobádban", "Ugyanaz a forma. <em>Hét karakter.</em>",
+         "Görgess, és nézd meg, hogyan változik a ZENIT a meglévő kasmír szekrényed fölött.",
+         ["Kasmír", "Kréta", "Zsálya", "Natúr tölgy", "Agyag", "Éjkék", "Grafit"], "paper", attrs=" data-stops='" + H.escape(json.dumps(SFX_STOPS, ensure_ascii=False)) + "'") +
      S(head("Uni paletta", "Nyolc szín. <em>És a tiéd.</em>", "Matt, selyemfényű vagy magasfényű felülettel. Ha a te árnyalatod nincs köztük, add meg a pontos HEX-kódját – mi kikeverjük.") +
        f'<div style="display:grid;grid-template-columns:repeat(8,1fr);gap:clamp(12px,2vw,28px)" class="palgrid">{pal}</div>', "ivory") +
      f'<section class="sec tex-oak"><div class="wrap">' + head("ZENIT Natúr", "Fa, kő, <em>len.</em>", "Valódi erezetű tölgy és dió, nyugodt beton, puha len. Az ajtók erezetét egyenként párosítjuk.") +
@@ -171,7 +181,7 @@ page("anyagok.html", "Anyagok és színek – ZENIT", "A ZENIT színpalettája, 
   <div class="prose"><p>A belső LED ajtónyitásra gyullad fel: 2700 K-es, melegfehér fény, ami a textileket és a fát is a valódi színükben mutatja. A tükör bármelyik ajtóra kérhető – 4 mm-es, biztonsági fóliával, keskeny kasmír kerettel.</p></div></div>
   <div class="reveal d1">{img(R + "open_led.jpg", "Nyitott ZENIT belső LED-fénnyel", "ar-43", "Látványterv · belső LED")}</div></div>''', "stone") +
      soft("assets/img/r/tex_oak.jpg", "Valódi erezet", "Minden tölgylap más. <em>A tiéd is egyedi lesz.</em>") +
-     nxt("03", "manufaktura.html", "Manufaktúra", "Kéz, gép, terv – és a díjak, amelyekre büszkék vagyunk."))
+     nxt("03", "manufaktura.html", "Manufaktúra", "Kéz, gép, terv – és a díjak, amelyekre büszkék vagyunk."), scripts=["scrollfx.js"])
 
 # ======================================================================== MANUFAKTÚRA
 page("manufaktura.html", "Manufaktúra – ZENIT", "Magyar kézművesség és digitális pontosság: így készül a ZENIT. Díjak, kiállítások, műhely.",
