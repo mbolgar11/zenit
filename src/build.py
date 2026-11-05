@@ -174,7 +174,7 @@ def soft(media, label, quote, cls=""):
 def nxt(no, href, title, text, alt=True):
     alts = '<div class="alt"><span>Vagy:</span><a href="tervezo.html">Ugrás a tervezőbe</a><a href="concierge.html">Beszélek egy tervezővel</a></div>' if alt else ""
     return (f'<section class="next"><div class="wrap"><a href="{href}"><div><div class="label">Következő fejezet{" · " + no if no else ""}</div>'
-            f'<div class="t">{title}</div><p>{text}</p></div><span class="circ"><span class="arrow"></span></span></a>{alts}</div></section>')
+            f'<div class="t">{title}</div><p>{text}</p></div><span class="circ"><i class="ring"></i><i class="ring r2"></i><span class="arrow"></span><span class="go">Tovább</span></span></a>{alts}</div></section>')
 
 
 AW = [("Aurum Interior Award", "Bútor · Arany · Milánó 2026"), ("Pannon Mesterség Díj", "Az év bútora · 2025"),
