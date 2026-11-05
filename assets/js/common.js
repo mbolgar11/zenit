@@ -111,3 +111,38 @@
   // --- mentett tervek száma a fejlécben
   try { const n = JSON.parse(localStorage.getItem('zenitPlans') || '[]').length; $$('.plan i').forEach(i => { i.textContent = n; i.style.display = n ? '' : 'none'; }); } catch (e) { }
 })();
+
+/* ZENIT – süti-hozzájárulás: „Nálunk a süti is méretre szabott.” */
+(() => {
+  const KEY = 'zenitConsent';
+  const read = () => { try { const c = JSON.parse(localStorage.getItem(KEY) || 'null'); if (c && Date.now() - c.ts < 365 * 864e5) return c; } catch (e) { } return null; };
+  const save = (stat, mkt) => { try { localStorage.setItem(KEY, JSON.stringify({ v: 1, stat, mkt, ts: Date.now() })); } catch (e) { } };
+  const icon = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5a19 19 0 1 0 19 19 6 6 0 0 1-7.6-5.8A6 6 0 0 1 29 12.6 6 6 0 0 1 24 5z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="20" r="2" fill="currentColor"/><circle cx="27" cy="30" r="2" fill="currentColor"/><circle cx="16" cy="31" r="1.4" fill="currentColor"/><path d="M8 40h32" stroke="currentColor" stroke-width="1.2" opacity=".5"/></svg>';
+  const el = document.createElement('div'); el.className = 'ck'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-live', 'polite'); el.setAttribute('aria-label', 'Süti-beállítások');
+  el.innerHTML = `<div class="ck-in"><div class="ck-ic">${icon}</div><div class="ck-tx">
+    <div class="ck-k">Süti, méretre szabva</div>
+    <p>Csak azt tároljuk, ami a tervezőhöz kell – a mentett terveidet. Statisztikát és hirdetési sütit csak az engedélyeddel használnánk, és most egyáltalán nem használunk. <a href="suti.html">Részletek</a></p>
+    <div class="ck-opts" hidden>
+      <label class="ck-o"><span><b>Szükséges</b><small>Mentett tervek, a döntésed megjegyzése</small></span><input type="checkbox" checked disabled><i></i></label>
+      <label class="ck-o"><span><b>Statisztika</b><small>Anonim látogatottság – jelenleg ki van kapcsolva</small></span><input type="checkbox" data-k="stat"><i></i></label>
+      <label class="ck-o"><span><b>Marketing</b><small>Hirdetések mérése – jelenleg ki van kapcsolva</small></span><input type="checkbox" data-k="mkt"><i></i></label>
+    </div>
+    <div class="ck-acts"><button class="btn fill" data-a="all">Mindet engedem</button><button class="btn" data-a="nec">Csak a szükséges</button><button class="ck-link" data-a="set">Beállítások</button></div>
+  </div></div>`;
+  const show = full => {
+    if (!el.isConnected) document.body.appendChild(el);
+    const c = read(); el.querySelector('[data-k=stat]').checked = !!(c && c.stat); el.querySelector('[data-k=mkt]').checked = !!(c && c.mkt);
+    el.querySelector('.ck-opts').hidden = !full; el.querySelector('[data-a=set]').textContent = full ? 'Mentés' : 'Beállítások';
+    requestAnimationFrame(() => el.classList.add('on'));
+  };
+  const hide = () => { el.classList.remove('on'); };
+  el.addEventListener('click', e => {
+    const a = e.target.closest('[data-a]'); if (!a) return;
+    if (a.dataset.a === 'all') { save(true, true); hide(); }
+    else if (a.dataset.a === 'nec') { save(false, false); hide(); }
+    else if (el.querySelector('.ck-opts').hidden) show(true);
+    else { save(el.querySelector('[data-k=stat]').checked, el.querySelector('[data-k=mkt]').checked); hide(); }
+  });
+  document.addEventListener('click', e => { if (e.target.closest('[data-cookie-settings]')) { e.preventDefault(); show(true); } });
+  if (!read() && !/[?&]nocookie/.test(location.search)) setTimeout(() => show(false), 1400);
+})();

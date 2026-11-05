@@ -510,6 +510,8 @@ page("letoltes.html", "Letöltések – ZENIT AI-kihívás", "A ZENIT 3D modellj
      S(rows + '<p class="vid-note" style="margin-top:30px"><a href="naplo.html">Projektnapló ›</a> &nbsp; <a href="https://github.com/mbolgar11/zenit">GitHub-repó ›</a></p>', "paper") +
      band(F + "foto_078.jpg", "Nyitott forrás", "Minden fájl nálad. <em>Építsd tovább.</em>", "A modell, a rajzok és a kód szabadon letölthető – a ZENIT a te kezedben folytatódik.", center=True))
 
+exec(open(os.path.join(ROOT, "src", "legal_pages.py"), encoding="utf8").read())
+
 # ======================================================================== NAPLÓ
 import markdown as _md, pathlib as _pl
 _np = _pl.Path(ROOT) / "src" / "naplo.md"
