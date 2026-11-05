@@ -1,11 +1,107 @@
-// header
-const hdr=document.getElementById('hdr');
-const solid=()=>hdr.classList.toggle('solid',scrollY>40||document.body.dataset.solid==='1');solid();addEventListener('scroll',solid,{passive:true});
-// mobile menu
-const mn=document.getElementById('mnav');document.querySelectorAll('[data-menu]').forEach(b=>b.onclick=()=>mn.classList.toggle('open'));
-// reveal
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-// plan count
-try{const n=JSON.parse(localStorage.getItem('zenitPlans')||'[]').length;document.querySelectorAll('.plan i').forEach(i=>{i.textContent=n;i.style.display=n?'':'none'})}catch(e){}
-document.querySelectorAll('.slots button,.sw-t:not([disabled])').forEach(b=>b.addEventListener('click',()=>{if(b.classList.contains('sw-t'))return b.classList.toggle('on');b.parentNode.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on')}));
+/* ZENIT – közös interakciók */
+(() => {
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const hdr = document.getElementById('hdr');
+
+  // --- fejléc: a mögötte lévő szakasz témája szerint vált (sötét/világos), lefelé görgetéskor elrejtődik
+  let lastY = scrollY;
+  function headerTheme() {
+    const y = 40, x = innerWidth / 2;
+    hdr.style.pointerEvents = 'none';
+    let el = document.elementFromPoint(x, y + 39); hdr.style.pointerEvents = '';
+    let theme = 'light';
+    while (el && el !== document.body) {
+      if (el.dataset && el.dataset.theme) { theme = el.dataset.theme === 'dark' ? 'dark' : 'light'; break; }
+      if (el.classList && (el.classList.contains('hero') || el.classList.contains('band') || el.classList.contains('img'))) { theme = 'over'; break; }
+      el = el.parentElement;
+    }
+    if (document.body.classList.contains('dark-body') && theme === 'light' && !el) theme = 'dark';
+    hdr.classList.toggle('light', theme === 'light');
+    hdr.classList.toggle('dark', theme === 'dark');
+    const dy = scrollY - lastY;
+    if (scrollY > 400 && dy > 6 && !document.body.dataset.nohide) hdr.classList.add('hide');
+    else if (dy < -6 || scrollY < 400) hdr.classList.remove('hide');
+    lastY = scrollY;
+  }
+  addEventListener('scroll', headerTheme, { passive: true }); addEventListener('resize', headerTheme); headerTheme();
+
+  // --- mobil menü
+  const mn = document.getElementById('mnav');
+  $$('[data-menu]').forEach(b => b.onclick = () => mn.classList.toggle('open'));
+
+  // --- megjelenés görgetéskor
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .14, rootMargin: '0px 0px -6% 0px' });
+  $$('.reveal,.lines').forEach(el => io.observe(el));
+
+  // --- háttérvideók: csak láthatóan játszanak
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (v.dataset.src && !v.src) { v.src = v.dataset.src; } v.play().catch(() => {}); } else v.pause();
+  }), { threshold: .05 });
+  $$('video[data-bg]').forEach(v => { v.muted = true; v.loop = true; v.playsInline = true; vio.observe(v); });
+
+  // --- számláló
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, to = parseFloat(el.dataset.count), dec = (el.dataset.count.split('.')[1] || '').length, t0 = performance.now(), D = 1600;
+    const fmt = v => v.toLocaleString('hu-HU', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    (function f(t) { const k = Math.min(1, (t - t0) / D), e2 = 1 - Math.pow(1 - k, 3); el.textContent = fmt(to * e2); if (k < 1) requestAnimationFrame(f); })(t0);
+  }), { threshold: .5 });
+  $$('[data-count]').forEach(el => cio.observe(el));
+
+  // --- parallax a média sávokban + dinamikus háttérszín
+  const bands = $$('.band .media, [data-parallax]');
+  const dyn = $$('[data-bgc]');
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  function onScroll() {
+    const H = innerHeight;
+    bands.forEach(m => { const r = m.parentElement.getBoundingClientRect(); if (r.bottom < 0 || r.top > H) return; const k = (r.top + r.height / 2 - H / 2) / H; m.style.transform = `translate3d(0,${(-k * 9).toFixed(2)}%,0)`; });
+    if (dyn.length) {
+      // a képernyő közepén lévő két szomszédos szakasz színe között interpolálunk
+      let col = null;
+      for (let i = 0; i < dyn.length; i++) {
+        const r = dyn[i].getBoundingClientRect();
+        if (r.top <= H * .55 && r.bottom > H * .55) {
+          const a = hex(dyn[i].dataset.bgc), nx = dyn[i + 1], k = Math.max(0, Math.min(1, (H * .55 - r.top) / r.height));
+          const b = nx ? hex(nx.dataset.bgc) : a, kk = Math.max(0, (k - .7) / .3);
+          col = a.map((v, j) => Math.round(v + (b[j] - v) * kk));
+          const dark = (col[0] * .3 + col[1] * .59 + col[2] * .11) < 110;
+          document.body.style.setProperty('--dyn-fg', dark ? '#EDE6DA' : '#1E1A16');
+          break;
+        }
+      }
+      if (col) document.body.style.backgroundColor = `rgb(${col})`;
+    }
+  }
+  if (bands.length || dyn.length) { addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
+
+  // --- scrollytelling (sticky képváltás)
+  $$('.scrolly').forEach(sc => {
+    const figs = $$('.stage figure', sc), steps = $$('.step', sc), prog = $$('.prog i', sc);
+    const sio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; const i = steps.indexOf(e.target);
+      figs.forEach((f, j) => f.classList.toggle('on', j === i)); prog.forEach((p, j) => p.classList.toggle('on', j === i));
+    }), { threshold: .55 });
+    steps.forEach(s => sio.observe(s));
+  });
+
+  // --- előtte / utána
+  $$('.ba').forEach(ba => {
+    const b = ba.querySelector('.before'), h = ba.querySelector('.handle');
+    const set = x => { const r = ba.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (x - r.left) / r.width)) * 100; b.style.clipPath = `inset(0 ${100 - p}% 0 0)`; h.style.left = p + '%'; };
+    let d = false; ba.addEventListener('pointerdown', e => { d = true; set(e.clientX); }); addEventListener('pointerup', () => d = false); addEventListener('pointermove', e => d && set(e.clientX));
+  });
+
+  // --- galéria szűrő
+  $$('.chips').forEach(ch => ch.addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    $$('.chip', ch).forEach(x => x.classList.toggle('on', x === b));
+    const f = b.dataset.f; $$('.masonry figure').forEach(fg => fg.style.display = (f === '*' || fg.dataset.k === f) ? '' : 'none');
+  }));
+
+  // --- választógombok, kapcsolók
+  $$('.slots button').forEach(b => b.addEventListener('click', () => { $$('button', b.parentNode).forEach(x => x.classList.remove('on')); b.classList.add('on'); }));
+
+  // --- mentett tervek száma a fejlécben
+  try { const n = JSON.parse(localStorage.getItem('zenitPlans') || '[]').length; $$('.plan i').forEach(i => { i.textContent = n; i.style.display = n ? '' : 'none'; }); } catch (e) { }
+})();
