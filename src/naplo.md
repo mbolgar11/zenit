@@ -303,3 +303,34 @@
 - **Hangulatsávok (v7c):**
   - Minden oldalra került még egy teljes szélességű kép- vagy videósáv: műhely, gardrób, szerszámok, élzárás, fény.
   - Ahol egy kép már szerepelt, ott elmosott, szűrt változatban jelenik meg.
+
+### Saját fotók, alapító, projektvideó v2
+- **Saját anyagok:** a telefonos fotókat és videókat Claude nézte át: a meglévő ELIA szekrény a tetején tárolt dobozokkal, képernyőfelvétel a laptopról, szelfik.
+- **Retusálás:**
+  - A családtagok csak a tükörben látszottak. Ezt a részt Python/OpenCV alakította át: a tükörkép alsó része a fal simított folytatása lett, apró klónozással és foltjavítással.
+  - A dátumbélyeg eltűnt.
+  - A videókból csak azok a kivágások kerültek be, amelyeken nincs ember.
+- **Valódi előtte–utána:**
+  - A ZENIT perspektívahelyesen került rá a fotóra: a sarokpontok a szekrény élei és a plafonvonal alapján, a szín az alsó ajtókról mintavételezve, ajtóosztással, fogantyúval, árnyékkal és zajjal.
+  - Egységes, meleg tónusú szűrő.
+- **Alapító blokk (Manufaktúra):**
+  - A szelfiből gépi kivágás (rembg / U²-Net) készült, és egy asztalosműhely szerszámfala elé került.
+  - Előtérben egy vésőkészlet, mélységélességgel; egységes fénymodellezés és szemcse.
+  - Fantázianév, idézet, három elv, betűtípusból generált „kézírásos” aláírás (SVG).
+- **Férfi narráció:** Piper „Imre” hang; utómunka ffmpeg-gel (hangszín-kiegyenlítés, kompresszor, finom térhatás). Ezzel készült újra a szerelési videó hangja is.
+- **Felirat:** WebVTT a narrált videókhoz. A lejátszóban alapból be van kapcsolva, a CC gombbal kikapcsolható.
+- **Projektvideó v2 (kb. 1:30), fejezetekre bontva:**
+  - alapító;
+  - valódi felvétel a dobozokról;
+  - előtte–utána áttűnés;
+  - laptopfelvétel munka közben;
+  - renderek;
+  - weboldal a görgetésre mozgó ábrával;
+  - élő tervező ajtónyitással;
+  - szerelés és kézikönyv;
+  - színek;
+  - zárás.
+  - Zene: saját generált pad és lágy zongora-arpeggio, a narráció alatt lehalkítva.
+- **Elakadás:**
+  - A Hugging Face modelltár nem érhető el a környezetből, ezért a hangklónozás és a Whisper-átirat kimaradt.
+  - A szegmentáló modellek a GitHubról töltődtek le, onnan működött.

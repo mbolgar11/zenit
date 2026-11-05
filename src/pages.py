@@ -118,14 +118,15 @@ OFFSET_SVG = '''<svg viewBox="0 0 520 300" width="100%" style="max-width:560px" 
 page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépítése, opciói (tükör, LED, fogantyú), kiegyenlítés, méretek és számok.",
      page_hero("Kollekció · 01", "A hiányzó fél méter, <em>megoldva.</em>",
                "Egy korpusz, egybefüggő tető, csendes ajtók. Méretre tervezve a meglévő szekrényedhez – a plafonig.",
-               [("index.html", "ZENIT"), ("", "Kollekció"), ("", "A ZENIT")], R + "after_day.jpg", tag="Látványterv · kasmír") +
+               [("index.html", "ZENIT"), ("", "Kollekció"), ("", "A ZENIT")], F + "foto_003_hero.jpg", tag="Hangulat") +
      sfx("rise", "A hiányzó fél méter", "Ami eddig por volt, <em>most tér.</em>",
          "A legtöbb gardrób fölött 50–60 cm üres sáv marad. A ZENIT ezt tölti ki – 10 mm-re a plafontól.",
          ["Ma", "A ZENIT", "10 mm"], "paper", cls="short") +
-     S(head("Előtte, utána", "Ugyanaz a szoba. <em>Más nyugalom.</em>", "Húzd a csúszkát: a dobozok és a por helyén egyetlen, csendes felület – a plafonig.") +
-       f'''<div class="ba reveal"><img src="{R}after_day.jpg" alt="Utána: a gardrób a ZENIT felső szekrénnyel">
-  <div class="before"><img src="{R}before_day.jpg" alt="Előtte: dobozok a szekrény fölött"></div><div class="handle"></div>
-  <span class="lbl" style="left:18px">Előtte</span><span class="lbl" style="right:18px">Utána</span><span class="tag">Látványterv</span></div>''', "paper") +
+     S(head("Előtte, utána", "Ugyanaz a szoba. <em>Más nyugalom.</em>", "A mi hálószobánk, valódi fotón. Húzd a csúszkát: a dobozok, ládák és a por helyén egyetlen, csendes felület – a plafonig.") +
+       f'''<div class="ba reveal"><img src="assets/img/own/after_real.jpg" alt="Utána: a meglévő Bútorline ELIA szekrény a ZENIT felső szekrénnyel (fotómontázs)">
+  <div class="before"><img src="assets/img/own/before_real.jpg" alt="Előtte: dobozok és ládák a szekrény tetején (valódi fotó)"></div><div class="handle"></div>
+  <span class="lbl" style="left:18px">Előtte · fotó</span><span class="lbl" style="right:18px">Utána · montázs</span></div>
+  <p class="vid-note">Valódi fotó a referencia-szekrényről; az „utána” kép fotómontázs a ZENIT méretpontos modelljéből.</p>''', "paper") +
      S(head("Nyisd ki", "Kinyitod, <em>és fény gyúl.</em>", "Fékes pántok, melegfehér LED minden rekeszben – és hely mindannak, ami eddig a szekrény tetején porosodott. Valós idejű 3D-felvétel a tervezőből.")
        + vid("nyitas", "ar-169", "Élő 3D · a tervezőből") + '<div class="acts reveal" style="justify-content:center;margin-top:34px"><a class="btn light" href="tervezo.html#preset=led">Nyisd ki a tervezőben <span class="arrow"></span></a></div>', "dark") +
      S(f'''<div class="split wide-l">
@@ -147,7 +148,7 @@ page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépít
   <div><dt>Fogantyú</dt><dd>GTV HEXA 192, lekerekített</dd></div><div><dt>Rögzítés</dt><dd>a szekrényhez, falfúrás nélkül</dd></div><div><dt>Elkészülés</dt><dd>3 – 4 hét</dd></div>
 </dl>''', "paper") +
      S(head("A referencia-darab számokban", "Bútorline ELIA 250 fölé, <em>kasmírban.</em>", "A bemutatott ZENIT egy valódi szekrényre készült: 250 × 205 × 60 cm, belmagasság a legalacsonyabb ponton 259 cm.") + nums(NUMS), "dark") +
-     band(F + "foto_003.jpg", "Gardrób a plafonig", "Minden a helyén. <em>A legfelső polc is.</em>",
+     band(R + "after_day.jpg", "Gardrób a plafonig", "Minden a helyén. <em>A legfelső polc is.</em>",
           "Ha a tárolás a plafonig ér, a szoba többi része felszabadul. Ez a ZENIT lényege.") +
      nxt("02", "anyagok.html", "Anyagok és színek", "Kasmír, natúr tölgy, éjkék – és a részlet, amit minden nap megérintesz."), scripts=["scrollfx.js"])
 
@@ -193,6 +194,17 @@ page("manufaktura.html", "Manufaktúra – ZENIT", "Magyar kézművesség és di
   <div class="prose"><p>A jó asztalos mindig is arról volt híres, hogy az ajtaja évtizedek múlva is ugyanazzal a halk mozdulattal záródik. A ZENIT ebből a tudásból született: a tipli és a derékszög tiszteletéből, a hézag türelméből.</p>
   <p>Ma ugyanezt a gondosságot egy parametrikus 3D modell és tizedmilliméteres gépek viszik tovább – de minden darabot ember fejez be.</p></div></div></div>''', "paper") +
      MARQUEE +
+     S(f'''<div class="founder">
+  <div class="reveal">{img("assets/img/own/alapito.jpg", "Zenthe Milán, a ZENIT stúdió alapítója a műhely szerszámfala előtt", "ar-45", "Az alapító")}</div>
+  <div class="reveal d1"><div class="label">A stúdió megálmodója</div>
+  <h2 class="h2">Tervezőasztaltól <em>a gyalupadig.</em></h2>
+  <blockquote class="fq">„Egy bútor akkor jó, ha évek múlva sem veszed észre – csak azt, hogy minden a helyén van.”</blockquote>
+  <p class="lead" style="font-size:16px">Mérnöki pontosság és asztalosi türelem. A ZENIT abból a fél méterből született, ami a saját hálószobájában is évekig porosodott – dobozok, ládák, „majd egyszer” tárgyak a szekrény tetején.</p>
+  <ol class="fp"><li><b>Mérj kétszer, tervezz egyszer.</b><span>A modell minden furatot ismer, mielőtt a fűrész elindul.</span></li>
+  <li><b>A legszebb illesztés az, ami nem látszik.</b><span>Rés, csavarfej, toldás – semmi, ami a szemet megakasztja.</span></li>
+  <li><b>Csendben záródjon.</b><span>Ha egy ajtó hangos, az nálunk hiba – nem jellemvonás.</span></li></ol>
+  <div class="sig"><img src="assets/ill/alairas_vilagos.svg" alt="Zenthe Milán aláírása"><span>Zenthe Milán · alapító, tervező</span></div></div>
+</div>''', "dark") +
      S(head("Részletek a műhelyből", "A kéz, az él <em>és a fa.</em>") + f'''<div class="cards">
   <div class="card reveal">{vid("veso_v", "ar-23", "Hangulat")}<b>A kéz</b><span>Véső, gyalu, türelem. Minden illesztést kézzel ellenőrzünk.</span></div>
   <div class="card reveal d1">{vid("csiszolo_v", "ar-23", "Hangulat")}<b>Az él</b><span>Gépi élzárás, kézi utánmunka: sorjamentes, kézbe simuló élek.</span></div>
@@ -296,7 +308,7 @@ page("szereles.html", "Szerelési útmutató – ZENIT", "A ZENIT szerelése lé
      page_hero("Concierge · Szerelés", "Három óra. Két ember. <em>Egy csendes szekrény.</em>",
                "Minden alkatrész előfúrva, betűvel jelölve érkezik. Kövesd a 12 lépést – vagy nézd meg a saját tervedre készült szerelési animációt.",
                [("index.html", "ZENIT"), ("", "Concierge"), ("", "Szerelés")], V + "szereles_loop.mp4", tag="Szerelési animáció · a tervezőből") +
-     S(f'''<div class="split wide-l"><div class="reveal"><div class="video"><video controls preload="metadata" playsinline poster="assets/video/zenit_szereles_poster.jpg" src="assets/video/zenit_szereles.mp4"></video></div>
+     S(f'''<div class="split wide-l"><div class="reveal"><div class="video"><video controls preload="metadata" playsinline poster="assets/video/zenit_szereles_poster.jpg" src="assets/video/zenit_szereles.mp4"><track kind="captions" src="assets/video/zenit_szereles.vtt" srclang="hu" label="Magyar felirat" default></video></div>
   <p class="vid-note">Szerelési videó · a referencia-darab (250 cm, 3 ajtó, kasmír). <a href="tervezo.html#assemble">A saját tervedhez: lejátszás a tervezőben ›</a></p></div>
   <div class="reveal d1"><div class="label">Mielőtt elkezded</div><h3 class="h3" style="margin:18px 0 16px">Három szabály, <em>és minden sikerül.</em></h3>
   <ol style="margin:0;padding-left:18px;color:var(--fg2)"><li>Egy puha takarón dolgozz – a lapok éle és felülete hálás lesz érte.</li><li>A konfirmátot ütközésig húzd, utána csak negyed fordulatot.</li><li>Emelni mindig ketten kell: a korpusz ajtók nélkül kb. 56 kg.</li></ol>
@@ -460,8 +472,8 @@ page("projekt.html", "A projektről – ZENIT AI-kihívás", "A ZENIT AI-kihív�
      page_hero("A projektről", "Négy nap, egy ötlet, <em>egy mesterséges intelligencia.</em>",
                "A ZENIT egy AI-kihívásra készült: a 3D modellt, a gyártási dokumentációt, a látványterveket, a videókat és ezt az oldalt Claude-dal együtt terveztük – mindent dokumentálva.",
                [("index.html", "ZENIT"), ("", "A projektről")], V + "projekt_loop.mp4", tag="Modell · render · élő 3D") +
-     S('<div class="video reveal"><video controls preload="metadata" playsinline poster="assets/video/zenit_projekt_poster.jpg" src="assets/video/zenit_projekt.mp4"></video></div>'
-       '<p class="vid-note">Projektvideó · magyar narráció (helyben generált gépi beszéd, Piper TTS). <a href="assets/video/zenit_promo.mp4">Promóvideó ›</a> &nbsp; <a href="assets/video/zenit_szereles.mp4">Szerelési videó ›</a></p>', "paper", style="padding-top:40px") +
+     S('<div class="video reveal"><video controls preload="metadata" playsinline poster="assets/video/zenit_projekt_poster.jpg" src="assets/video/zenit_projekt.mp4"><track kind="captions" src="assets/video/zenit_projekt.vtt" srclang="hu" label="Magyar felirat" default></video></div>'
+       '<p class="vid-note">Projektvideó · magyar férfi narráció (helyben generált gépi beszéd, Piper TTS) · a felirat a lejátszó CC gombjával kapcsolható ki. <a href="assets/video/zenit_promo.mp4">Promóvideó ›</a> &nbsp; <a href="assets/video/zenit_szereles.mp4">Szerelési videó ›</a></p>', "paper", style="padding-top:40px") +
      S(head("A projekt számokban", "Négy nap, <em>tizedmilliméterre.</em>") + nums(PNUMS), "dark") +
      S(head("3D modell", "Forgasd meg <em>a gyártási modellt.</em>", "A paraméteres geometriából készült GLB: ugyanaz, mint a Fusion-modell és a gyártási dokumentáció (v10).") +
        '''<div class="m3d reveal"><canvas id="model3d" data-src="assets/model/zenit_v10.glb" aria-label="A ZENIT rátétszekrény gyártási 3D modellje"></canvas>

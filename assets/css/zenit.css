@@ -596,3 +596,17 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   .sfx-stage svg{max-height:52vh}
   .sfx-cap{font-size:20px}
 }
+/* alapító (v7f) */
+.founder{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,110px);align-items:center}
+.founder .h2{margin:18px 0 26px}
+.founder .fq{margin:0 0 26px;font:300 italic clamp(24px,2.4vw,34px)/1.3 var(--serif);color:#E3CBA4;border-left:1px solid var(--bronze);padding-left:24px}
+.fp{list-style:none;margin:30px 0 0;padding:0;counter-reset:f}
+.fp li{counter-increment:f;display:grid;grid-template-columns:40px 1fr;padding:14px 0;border-top:1px solid var(--ln)}
+.fp li:before{content:counter(f,decimal-leading-zero);grid-row:span 2;font:300 20px var(--serif);color:var(--bronze2)}
+.fp b{font:400 19px/1.3 var(--serif);font-weight:400}
+.fp span{font-size:13.5px;color:var(--fg2);margin-top:3px}
+.founder .sig{margin-top:34px;display:flex;flex-direction:column;gap:8px}
+.founder .sig img{width:min(300px,70%);opacity:.95}
+.founder .sig span{font:500 10px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--fg2)}
+@media (max-width:860px){.founder{grid-template-columns:1fr}}
+video::cue{font-family:Inter,system-ui,sans-serif;font-size:.95em;line-height:1.4;color:#fff;background:rgba(20,17,14,.72)}
