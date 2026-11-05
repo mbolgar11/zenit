@@ -7,7 +7,7 @@ from PIL import Image, ImageFilter, ImageEnhance
 W, H, FPS = 1920, 1080, 30
 V = '/home/claude/video'; R = '/home/claude/zenit_renders'; FR = V + '/frames'; OV = V + '/ov'
 D10 = '/mnt/attach/outputs/v10final'
-HANG = '/mnt/user-data/uploads/Szekrény/07_Video/_hang_anna'
+HANG = os.environ.get('ZENIT_HANG', '/home/claude/hang_imre')  # férfi narráció (Piper/Imre); v1-ben: _hang_anna
 BG = (20, 18, 16)
 
 def sm(x): x = min(1, max(0, x)); return x * x * (3 - 2 * x)
@@ -214,7 +214,9 @@ def audio(kind):
     for k in keys:
         name, off = SC[k]['voice']; x = readwav(f'{HANG}/{name}.wav'); i = int((t0 + off) * SR)
         vo[i:i + len(x)] += x * 0.92; t0 += SC[k]['dur']
-    mus = pad(len(vo) / SR, level=0.05 if kind == 'projekt' else 0.11, bpm_chord=6.0 if kind == 'projekt' else 4.0)
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'music')); sys.path.insert(0, '/home/claude/music')
+    from zene import zene  # saját generált zene: ambient zongora + vonós pad
+    mus = zene(len(vo) / SR, bpm=76 if kind == 'promo' else 72, seed=5 if kind == 'promo' else 3, intro=0.8) * (0.42 if kind == 'promo' else 0.36)
     # ducking: a zene halkul, ha beszéd szól
     env = np.convolve(np.abs(vo), np.ones(4800) / 4800, 'same'); duck = 1 - 0.55 * np.clip(env / 0.03, 0, 1)
     duck = np.convolve(duck, np.ones(9600) / 9600, 'same')

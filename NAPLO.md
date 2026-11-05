@@ -364,3 +364,9 @@
   - négy hangulatsáv.
   
   A PDF a mozgás nélküli, végállapotú változatot kapja.
+
+### Zene a videók alatt (v9b)
+- **Saját, jogdíjmentes zene:** nem letöltött hangsáv, hanem egy kis Python-szintetizátor (`forras/video/zene.py`) írja: meleg zongora-arpeggio (felhangokkal, enyhe inharmonicitással, lecsengéssel), vonós pad, lágy basszus és konvolúciós térhang, D-dúr / h-moll akkordmenet (Dmaj9 – Bm9 – Gmaj7 – Asus4), ~72 BPM.
+- **Mindhárom narrált videó** új zenei alapot kapott, eltérő tempóval és variációval (projekt 72, szerelés 68, promó 76 BPM). A zene beszéd alatt automatikusan halkul (ducking), a végén -16 LUFS hangosság-normalizálás.
+- **A promóvideó** is a férfi narrációt (Imre) kapta, beágyazott, kikapcsolható magyar felirattal.
+- Példa prompt: *„tegyél zenét ami oda illik a témában a videók alá még”* → Claude javaslata: a hálózatról nem érhető el zenei modell, ezért saját szintetizátor; nyugodt, prémium, „műhely-esti fény” hangulat, a narrációt nem nyomhatja el.

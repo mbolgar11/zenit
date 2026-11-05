@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image, ImageFilter
 W, H, FPS = 1920, 1080, 25
 D = "/home/claude/video2"; FR = D + "/asm"; OV = D + "/ov"; os.makedirs(OV, exist_ok=True)
-HANG = "/mnt/user-data/uploads/Szekrény/07_Video/_hang_szereles"
+HANG = "/home/claude/hang_imre"
 R2 = "/home/claude/zenit2/assets/img/r2/"
 T = json.load(open(D + "/asm_timing.json")); DURS = T["durs"]
 STEPS = [("Fenéklap és tiplik", "16 db 8×35 fatipli · gumikalapács"), ("Oldallapok", "kötésenként 2 konfirmát 7×50 · kívülről"),
@@ -85,15 +85,21 @@ def rd(path):
     return np.interp(np.arange(int(len(x) * SR / sr)) / SR * sr, np.arange(len(x)), x)
 
 def audio():
-    sys.path.insert(0, "/home/claude/video"); from compose import pad
+    sys.path[:0] = [os.path.dirname(os.path.abspath(__file__)), "/home/claude/music"]; from zene import zene
     total = INTRO + ASM + OUTRO; vo = np.zeros(int(total * SR) + SR)
     starts = [0.5] + [INTRO + s + 0.35 for s in np.cumsum([0] + DURS[:-1])] + [INTRO + ASM + 0.6]
     for i, s in enumerate(starts):
         x = rd(f"{HANG}/a{i:02d}.wav"); j = int(s * SR); vo[j:j + len(x)] += x * 0.92
-    mus = pad(len(vo) / SR, level=0.06, bpm_chord=5.0)
+    mus = zene(len(vo) / SR, bpm=68, seed=8) * 0.34
     env = np.convolve(np.abs(vo), np.ones(4800) / 4800, "same"); duck = np.convolve(1 - 0.55 * np.clip(env / 0.03, 0, 1), np.ones(9600) / 9600, "same")
     mix = np.tanh((vo + mus * duck)[:int(total * SR)] * 1.1) / np.tanh(1.1)
     st = (np.stack([mix, mix], 1) * 32767).astype(np.int16)
+    T2 = json.load(open(D + "/szereles_szoveg.json", encoding="utf8"))
+    def ts(t): return f"{int(t//3600):02d}:{int(t%3600//60):02d}:{t%60:06.3f}"
+    cues = []
+    for i, s0 in enumerate(starts):
+        n = len(rd(f"{HANG}/a{i:02d}.wav")) / SR; cues.append(f"{i+1}\n{ts(s0)} --> {ts(s0 + n + 0.25)}\n{T2[i][1]}\n")
+    open(D + "/szereles.vtt", "w", encoding="utf8").write("WEBVTT\n\n" + "\n".join(cues))
     with wave.open(D + "/szereles_hang.wav", "wb") as w: w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(st.tobytes())
     print("ok audio", round(total, 2))
 

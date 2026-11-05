@@ -474,7 +474,7 @@ page("projekt.html", "A projektről – ZENIT AI-kihívás", "A ZENIT AI-kihív�
                "A ZENIT egy AI-kihívásra készült: a 3D modellt, a gyártási dokumentációt, a látványterveket, a videókat és ezt az oldalt Claude-dal együtt terveztük – mindent dokumentálva.",
                [("index.html", "ZENIT"), ("", "A projektről")], V + "projekt_loop.mp4", tag="Modell · render · élő 3D") +
      S('<div class="video reveal"><video controls preload="metadata" playsinline poster="assets/video/zenit_projekt_poster.jpg" src="assets/video/zenit_projekt.mp4"><track kind="captions" src="assets/video/zenit_projekt.vtt" srclang="hu" label="Magyar felirat" default></video></div>'
-       '<p class="vid-note">Projektvideó · magyar férfi narráció (helyben generált gépi beszéd, Piper TTS) · a felirat a lejátszó CC gombjával kapcsolható ki. <a href="assets/video/zenit_promo.mp4">Promóvideó ›</a> &nbsp; <a href="assets/video/zenit_szereles.mp4">Szerelési videó ›</a></p>', "paper", style="padding-top:40px") +
+       '<p class="vid-note">Projektvideó · magyar férfi narráció (helyben generált gépi beszéd, Piper TTS) · saját, kódból generált zenei alap · a felirat a lejátszó CC gombjával kapcsolható ki. <a href="assets/video/zenit_promo.mp4">Promóvideó ›</a> &nbsp; <a href="assets/video/zenit_szereles.mp4">Szerelési videó ›</a></p>', "paper", style="padding-top:40px") +
      S(head("A projekt számokban", "Négy nap, <em>tizedmilliméterre.</em>") + nums(PNUMS), "dark") +
      S(head("3D modell", "Forgasd meg <em>a gyártási modellt.</em>", "A paraméteres geometriából készült GLB: ugyanaz, mint a Fusion-modell és a gyártási dokumentáció (v10).") +
        '''<div class="m3d reveal"><canvas id="model3d" data-src="assets/model/zenit_v10.glb" aria-label="A ZENIT rátétszekrény gyártási 3D modellje"></canvas>
@@ -503,7 +503,7 @@ DL = [("3D modell", [("Ratet_v10_Fusion.f3d", "Autodesk Fusion archívum (F3D) �
                    ("ZENIT_uzleti_terv.pdf", "Üzleti és operatív stratégia 2027–2029 (PDF)"),
                    ("Ratet_v10_szabasjegyzek_furattabla.xlsx", "Szabásjegyzék és furattábla (Excel)"),
                    ("Ratet_v10_kalkulacio.xlsx", "Anyag- és árkalkuláció (Excel)")]),
-      ("Videó", [("../assets/video/zenit_projekt.mp4", "Projektvideó, narrációval (MP4)"), ("../assets/video/zenit_promo.mp4", "Promóvideó (MP4)"),
+      ("Videó", [("../assets/video/zenit_projekt.mp4", "Projektvideó, narrációval (MP4)"), ("../assets/video/zenit_promo.mp4", "Promóvideó, 30 mp, narrációval (MP4)"),
                  ("../assets/video/zenit_szereles.mp4", "Szerelési videó (MP4)")])]
 rows = ''.join(f'<div class="dl-group reveal"><div class="label">{g}</div>' + ''.join(
     f'<a class="dl" href="letoltes/{f}" download><b>{f.split("/")[-1]}</b><span>{d}</span></a>' for f, d in items) + '</div>' for g, items in DL)

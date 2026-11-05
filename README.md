@@ -9,12 +9,12 @@
 | | Link |
 |---|---|
 | 🌐 **Weboldal** | https://mbolgar11.github.io/zenit/ |
-| 🎬 **Projektvideó** (1:30, narráció + kikapcsolható felirat) | [a weboldalon](https://mbolgar11.github.io/zenit/projekt.html) · [MP4](assets/video/zenit_projekt.mp4) · [felirat](assets/video/zenit_projekt.vtt) |
+| 🎬 **Projektvideó** (1:31, férfi narráció, saját generált zene, kikapcsolható felirat) | [a weboldalon](https://mbolgar11.github.io/zenit/projekt.html) · [MP4](assets/video/zenit_projekt.mp4) · [felirat](assets/video/zenit_projekt.vtt) |
 | 🧊 **3D modell** | [élő nézegető](https://mbolgar11.github.io/zenit/projekt.html) · [Fusion F3D](letoltes/Ratet_v10_Fusion.f3d) · [STEP (Fusion)](letoltes/Ratet_v10_Fusion_export.step) · [STEP (CadQuery, vasalatokkal)](letoltes/Ratet_v10_CadQuery_teljes.step) · [GLB](assets/model/zenit_v10.glb) |
 | 🛠 **Élő 3D tervező** | https://mbolgar11.github.io/zenit/tervezo.html |
 | 📝 **Napló** (eszközök, promptok, elakadások) | [NAPLO.md](NAPLO.md) · [a weboldalon](https://mbolgar11.github.io/zenit/naplo.html) |
 | 📄 **Dokumentumok** | [gyártási dokumentáció](letoltes/Ratet_v10_gyartasi_dokumentacio.pdf) · [kézikönyv](letoltes/ZENIT_kezikonyv_referencia.pdf) · [üzleti terv 2027–2029](letoltes/ZENIT_uzleti_terv.pdf) · [szabásjegyzék](letoltes/Ratet_v10_szabasjegyzek_furattabla.xlsx) · [kalkuláció](letoltes/Ratet_v10_kalkulacio.xlsx) |
-| 🎞 **További videók** | [szerelési videó](assets/video/zenit_szereles.mp4) · [promóvideó](assets/video/zenit_promo.mp4) |
+| 🎞 **További videók** | [szerelési videó](assets/video/zenit_szereles.mp4) · [promóvideó](assets/video/zenit_promo.mp4) – mindegyik narrációval, zenével, felirattal |
 
 ## A termék (v10)
 - 250 × 53 × 60 cm, egy korpusz, 3 ajtó, 18 mm laminált lap, az ajtókon 2 mm ABS él
@@ -38,7 +38,7 @@ python3 -m http.server 8000   # majd: http://localhost:8000
 ```
 
 ## Eszközök
-Claude (Anthropic) · Autodesk Fusion · CadQuery · Blender (bpy, Cycles) · three.js · Python (Pillow, NumPy, OpenCV, ReportLab) · Playwright/Chromium · ffmpeg · Piper TTS (magyar férfi hang) · rembg (U²-Net) · GitHub Pages
+Claude (Anthropic) · Autodesk Fusion · CadQuery · Blender (bpy, Cycles) · three.js · Python (Pillow, NumPy, OpenCV, ReportLab) · Playwright/Chromium · ffmpeg · Piper TTS (magyar férfi hang) · saját Python-szintetizátor a zenéhez (`forras/video/zene.py`) · rembg (U²-Net) · GitHub Pages
 
 ## Megjegyzés
 A ZENIT márka, a díjak, az események, a cégadatok és a fizetés kitaláltak – ez látványprojekt, nem valós webáruház. A termékképek saját Blender-renderek vagy fotómontázsok; a hangulatképek és -videók Unsplash/Pexels licenc alatt, szűrve ([forrásjegyzék](forras/MEDIA_FORRASOK_es_LICENC.md)).

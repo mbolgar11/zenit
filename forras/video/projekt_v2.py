@@ -184,15 +184,9 @@ def rd(path):
     return np.interp(np.arange(int(len(x) * SR / sr)) / SR * sr, np.arange(len(x)), x)
 
 def music(total):
-    sys.path.insert(0, "/home/claude/video"); from compose import pad
-    y = pad(total, level=0.05, bpm_chord=6.0)
-    t = np.arange(len(y)) / SR; rng = np.random.default_rng(11); hz = lambda m: 440 * 2 ** ((m - 69) / 12)
-    seq = [69, 72, 76, 79, 77, 72, 74, 76, 67, 71, 74, 79]           # lágy zongora-arpeggio
-    for k, st in enumerate(np.arange(3.0, total - 4, 1.5)):
-        m = seq[k % len(seq)] - 12; i0 = int(st * SR); n = int(3.2 * SR); tt = np.arange(n) / SR
-        v = (np.sin(2 * np.pi * hz(m) * tt) + 0.35 * np.sin(4 * np.pi * hz(m) * tt * 1.0007) + 0.12 * np.sin(6 * np.pi * hz(m) * tt)) * np.exp(-tt * 1.9) * (1 - np.exp(-tt * 180))
-        y[i0:i0 + n] += v[:max(0, len(y) - i0)] * 0.018 * (0.8 + 0.4 * rng.random())
-    return y
+    # saját generált zene (forras/video/zene.py): ambient zongora + vonós pad, D-dúr, ~72 BPM
+    sys.path[:0] = [os.path.dirname(os.path.abspath(__file__)), "/home/claude/music"]; from zene import zene
+    return zene(total, bpm=72, seed=3) * 0.36
 
 def audio():
     total = TOTAL / FPS; vo = np.zeros(int(total * SR) + SR); cues = []
