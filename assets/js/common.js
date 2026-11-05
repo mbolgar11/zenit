@@ -89,7 +89,13 @@
   $$('.ba').forEach(ba => {
     const b = ba.querySelector('.before'), h = ba.querySelector('.handle');
     const set = x => { const r = ba.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (x - r.left) / r.width)) * 100; b.style.clipPath = `inset(0 ${100 - p}% 0 0)`; h.style.left = p + '%'; };
-    let d = false; ba.addEventListener('pointerdown', e => { d = true; set(e.clientX); }); addEventListener('pointerup', () => d = false); addEventListener('pointermove', e => d && set(e.clientX));
+    // első megjelenéskor egy lágy „lebbenés”, hogy látszódjon: húzható
+    const setP = p => { b.style.clipPath = `inset(0 ${100 - p}% 0 0)`; h.style.left = p + '%'; };
+    let touched = false;
+    const hio = new IntersectionObserver(es => { if (!es[0].isIntersecting) return; hio.disconnect(); const t0 = performance.now();
+      (function an(t) { if (touched) return; const k = (t - t0) / 2200; if (k > 1) return setP(50); setP(50 + Math.sin(k * Math.PI * 2) * 22 * (1 - k)); requestAnimationFrame(an); })(t0); }, { threshold: .6 });
+    hio.observe(ba);
+    let d = false; ba.addEventListener('pointerdown', e => { d = true; touched = true; set(e.clientX); }); addEventListener('pointerup', () => d = false); addEventListener('pointermove', e => d && set(e.clientX));
   });
 
   // --- galéria szűrő

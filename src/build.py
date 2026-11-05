@@ -142,12 +142,12 @@ def vid(name, ar="ar-169", tag="", cls="", style=""):
             + (f'<span class="tag">{tag}</span>' if tag else "") + '</div>')
 
 
-def band(media, label, title, lead="", acts="", center=False, theme_dark=True):
+def band(media, label, title, lead="", acts="", center=False, theme_dark=True, cls=""):
     if media.endswith(".mp4"):
         m = f'<video data-bg muted loop playsinline preload="none" poster="{media[:-4]}.jpg" data-src="{media}"></video>'
     else:
         m = f'<img src="{media}" alt="" loading="lazy">'
-    return (f'<section class="band{" center" if center else ""}"><div class="media">{m}</div><div class="wrap">'
+    return (f'<section class="band{" center" if center else ""}{" " + cls if cls else ""}"><div class="media">{m}</div><div class="wrap">'
             f'<div class="label reveal" style="color:var(--bronze2)">{label}</div><h2 class="h1 reveal d1">{title}</h2>'
             + (f'<p class="lead reveal d2">{lead}</p>' if lead else "") + (f'<div class="acts reveal d3">{acts}</div>' if acts else "") + '</div></section>')
 
@@ -162,6 +162,13 @@ def page_hero(label, title, lead, cr, media=None, theme="ivory", tag=""):
     t = f' data-theme="{theme}"' if theme != "ivory" else ""
     return (f'<section class="page-hero"{t}><div class="wrap">{crumb(*cr)}<div class="label reveal">{label}</div>'
             f'<h1 class="h1 lines"><span class="ln"><span>{title}</span></span></h1><p class="lead reveal d2">{lead}</p></div></section>')
+
+
+def soft(media, label, quote):
+    """elmosott, szűrt képsáv egy idézettel"""
+    m = (f'<video data-bg muted loop playsinline preload="none" poster="{media[:-4]}.jpg" data-src="{media}"></video>' if media.endswith(".mp4") else f'<img src="{media}" alt="" loading="lazy">')
+    return (f'<section class="band center soft"><div class="media">{m}</div><div class="wrap"><div class="label reveal" style="color:var(--bronze2)">{label}</div>'
+            f'<p class="quote reveal d1">{quote}</p></div></section>')
 
 
 def nxt(no, href, title, text, alt=True):

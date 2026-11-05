@@ -49,7 +49,10 @@
         <div class="row"><label>Szélesség <b><span id="wVal">250</span> cm</b></label><input type="range" id="w" min="60" max="280" value="250"></div>
         <div class="row"><label>Belmagasság (legalacsonyabb pont) <b><span id="ceilVal">259</span> cm</b></label><input type="range" id="ceil" min="220" max="320" value="259"></div>
         <div class="row"><label>Meglévő szekrény magassága <b><span id="baseVal">205</span> cm</b></label><input type="range" id="baseH" min="150" max="260" value="205"></div>
-        <div class="row"><label>Mélység</label><div class="opts" id="depthOpts"><button class="opt" data-d="35">35 cm</button><button class="opt" data-d="45">45 cm</button><button class="opt on" data-d="60">60 cm</button></div></div>
+        <div class="row"><label>Mélység <b><span id="dVal">60</span> cm</b></label>
+          <div class="opts" id="depthOpts"><button class="opt" data-d="35">35</button><button class="opt" data-d="45">45</button><button class="opt on rec" data-d="60">60 · javasolt</button></div>
+          <input type="range" id="dRange" min="30" max="70" value="60" aria-label="Egyedi mélység">
+          <div class="val" style="margin:8px 0 0">Javasolt: <b>60 cm</b> – a meglévő szekrényed mélysége, így a front egy síkban fut. Egyedi mélység 30–70 cm között.</div></div>
       </div>
       <div class="step"><h4>Illesztés <small>2 / 7</small></h4>
         <div class="val">Ha a plafon nem vízszintes vagy a fal nem egyenes – max. 10 cm.</div>
@@ -57,7 +60,7 @@
         <div class="row"><label>Falkiegyenlítés (távtartó) <b><span id="wallVal">0</span> cm</b></label><input type="range" id="wall" min="0" max="10" value="0" step="0.5"></div>
       </div>
       <div class="step"><h4>Ajtók <small>3 / 7</small></h4>
-        <div class="val">Javasolt: <span id="doorRec">5</span> ajtó (max. 60 cm / ajtó)</div>
+        <div class="val">Javasolt: <span id="doorRec">5</span> ajtó · ajtónként max. 90 cm, ideálisan 60 cm alatt</div>
         <div class="opts" id="doorOpts"></div>
         <div class="opts" id="splitOpts"><button class="opt on" data-s="eq">Egyenlő osztás</button><button class="opt" data-s="sym">Középen szélesebb</button></div>
         <div class="doorgrid" id="doorGrid" style="margin-top:14px"></div>
@@ -73,7 +76,7 @@
       <div class="step"><h4>Fogantyú <small>5 / 7</small></h4>
         <div class="cards2" id="handles">
           <button class="card2 on" data-h="edge"><div class="pic"><svg width="70" height="20"><path d="M2 4h66v6a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6z" fill="none" stroke="currentColor"/></svg></div><b>GTV HEXA élfogantyú</b><span>lekerekített, 192 mm</span></button>
-          <button class="card2" data-h="bar"><div class="pic"><svg width="70" height="20"><path d="M6 10h58" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><b>Rúd</b><span>vékony, 320 mm</span></button>
+          <button class="card2" data-h="bar"><div class="pic"><svg width="70" height="20"><path d="M6 10h58" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><b>Rúd</b><span>vízszintes, alul · 320 mm</span></button>
           <button class="card2" data-h="knob"><div class="pic"><svg width="70" height="20"><circle cx="35" cy="10" r="7" fill="none" stroke="currentColor"/></svg></div><b>Gomb / bőrfül</b><span>diszkrét részlet</span></button>
           <button class="card2" data-h="push"><div class="pic"><svg width="70" height="20"><path d="M10 10h50" stroke="currentColor" stroke-dasharray="3 3"/></svg></div><b>Nyomásra nyíló</b><span>fogantyú nélkül</span></button>
         </div>
@@ -92,7 +95,12 @@
       <div class="meta">Elkészül 3–4 hét alatt · szállítás és szerelés országosan · ZENIT Örökgarancia</div>
       <div class="acts"><a class="btn fill full" href="terv.html" data-save>Ajánlatot kérek <span class="arrow"></span></a>
         <a class="btn" href="concierge.html" data-save>Tervező hív vissza</a><a class="btn" href="terv.html#rendeles" data-save>Megrendelem <span class="demo" style="margin-left:4px">Demó</span></a></div>
-      <div class="links"><a href="#" id="lnkAsm">Szerelés lejátszása</a><a href="#" id="lnkRec">Szerelési videó letöltése</a><a href="kezikonyv.html" data-save>Kézikönyv</a><a href="terv.html" data-save>Terv mentése</a></div>
+      <div class="ftiles">
+        <a href="#" id="lnkAsm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></svg><b>Szerelés lejátszása</b><span>3D animáció a te tervedből</span></a>
+        <a href="#" id="lnkRec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="1.5"/><path d="M16 10l5-3v10l-5-3"/><path d="M9.5 9v6M7 12.5l2.5 2.5 2.5-2.5"/></svg><b>Szerelési videó</b><span>letöltés, feliratokkal</span></a>
+        <a href="kezikonyv.html" data-save><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8 7h8M8 10.5h6"/></svg><b>Kézikönyv</b><span>személyre szabott, PDF</span></a>
+        <a href="terv.html" data-save><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/><path d="M9.5 9l2 2 3.5-3.5"/></svg><b>Terv mentése</b><span>ajánlathoz, később is</span></a>
+      </div>
     </div>
   </aside>
 </div></section>

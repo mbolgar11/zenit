@@ -9,7 +9,7 @@
 
   // ---------------- állapot
   const st = {
-    w: 250, ceil: 259, baseH: 205, d: 60, doors: 5, split: 'eq', slope: 0, wall: 0,
+    w: 250, ceil: 259, baseH: 205, d: 60, baseD: 60, doors: 5, split: 'eq', slope: 0, wall: 0,
     ajto: '#CDBFAE', korpusz: '#CDBFAE', belso: '#F1EFEA', part: 'ajto',
     fin: 'matt', handle: 'edge', hcol: '#C9C6C0', shelves: new Set([3]),
     led: true, trim: false, box: false, env: 'room', open: false, baseCol: '#CDBFAF',
@@ -71,17 +71,17 @@
 
   // ---------------- renderer, jelenet
   const R = new T.WebGLRenderer({ canvas: cv, antialias: true, preserveDrawingBuffer: true });
-  R.outputEncoding = T.sRGBEncoding; R.toneMapping = T.ACESFilmicToneMapping; R.toneMappingExposure = 0.78;
+  R.outputEncoding = T.sRGBEncoding; R.toneMapping = T.ACESFilmicToneMapping; R.toneMappingExposure = 0.65;
   R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap; R.setPixelRatio(Math.min(2, devicePixelRatio));
   const S = new T.Scene();
   if (T.RoomEnvironment) { const pm = new T.PMREMGenerator(R); S.environment = pm.fromScene(new T.RoomEnvironment(), 0.04).texture; }
   const cam = new T.PerspectiveCamera(32, 1, 0.05, 80);
   const ctl = new T.OrbitControls(cam, cv); ctl.enableDamping = true; ctl.dampingFactor = 0.08;
   ctl.minDistance = 1.2; ctl.maxDistance = 11; ctl.maxPolarAngle = Math.PI * 0.62;
-  const hemi = new T.HemisphereLight('#fff8ee', '#8a8074', 0.45); S.add(hemi);
-  const key = new T.DirectionalLight('#fff3e4', 1.15); key.position.set(-2.5, 4.5, 4.0); key.castShadow = true;
+  const hemi = new T.HemisphereLight('#fff8ee', '#8a8074', 0.22); S.add(hemi);
+  const key = new T.DirectionalLight('#fff3e4', 0.95); key.position.set(-2.5, 4.5, 4.0); key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048); Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -1, near: 0.5, far: 15 }); key.shadow.bias = -0.0004; S.add(key);
-  const fill = new T.DirectionalLight('#e6ecf4', 0.4); fill.position.set(4, 2, 3); S.add(fill);
+  const fill = new T.DirectionalLight('#e6ecf4', 0.22); fill.position.set(4, 2, 3); S.add(fill);
   const room = new T.Group(), model = new T.Group(); S.add(room, model);
   let doors = [], ledLights = [], asm = [];
 
@@ -95,19 +95,19 @@
   // ---------------- szoba: világos, plafonlap nélkül – helyette szaggatott plafonvonal
   function buildRoom() {
     clear(room);
-    const W = st.w / 100, BH = st.baseH / 100, C = st.ceil / 100, D = st.d / 100, off = st.wall / 100, s = st.slope / 100;
+    const W = st.w / 100, BH = st.baseH / 100, C = st.ceil / 100, D = Math.max(st.d, st.baseD) / 100, DB = st.baseD / 100, off = st.wall / 100, s = st.slope / 100;
     if (st.env === 'studio') {
-      S.background = new T.Color('#EEE8DF'); hemi.intensity = 0.7;
+      S.background = new T.Color('#E6DFD4'); hemi.intensity = 0.4;
       const fl = new T.Mesh(new T.CircleGeometry(7, 64), new T.MeshStandardMaterial({ color: '#E2D9CC', roughness: 0.95 }));
       fl.rotation.x = -Math.PI / 2; fl.position.set(W / 2, 0, 0); fl.receiveShadow = true; room.add(fl);
     } else {
-      S.background = new T.Color('#E6DED2'); hemi.intensity = 0.55;
-      const wall = new T.MeshStandardMaterial({ color: '#EEE9E1', roughness: 0.95 });
-      const floorT = tex('oak'); floorT.repeat.set(4, 4);
-      const floor = new T.MeshStandardMaterial({ color: '#d8cbb8', map: floorT, roughness: 0.55 });
+      S.background = new T.Color('#A39582'); hemi.intensity = 0.22;
+      const wall = new T.MeshStandardMaterial({ color: '#A69886', roughness: 0.95 });
+      const floorT = tex('smoked'); floorT.repeat.set(4, 4);
+      const floor = new T.MeshStandardMaterial({ color: '#efe6da', map: floorT, roughness: 0.6 });
       room.add(box(Math.max(9, W + 6), 0.02, 16, floor, W / 2, -0.01, 8 - D, false));
-      room.add(box(Math.max(9, W + 6), C + 0.6, 0.1, wall, W / 2, (C + 0.6) / 2, -D - off - 0.05, false));
-      room.add(box(0.1, C + 0.6, 16, wall, -1.3, (C + 0.6) / 2, 8 - D, false));
+      room.add(box(Math.max(9, W + 6), C + 2.5, 0.1, wall, W / 2, (C + 2.5) / 2, -D - off - 0.05, false));
+      room.add(box(0.1, C + 2.5, 16, wall, -1.3, (C + 2.5) / 2, 8 - D, false));
       room.add(box(Math.max(9, W + 6), 0.08, 0.014, new T.MeshStandardMaterial({ color: '#F6F2EC', roughness: 0.6 }), W / 2, 0.04, -D - off + 0.007, false));
     }
     // plafonvonal (bronz, szaggatott) – ferde plafonnál ferde
@@ -119,11 +119,12 @@
     const bm = new T.MeshStandardMaterial({ color: st.baseCol, roughness: 0.55 });
     const mir = new T.MeshStandardMaterial({ color: '#dfe4e6', roughness: 0.04, metalness: 1 });
     const alu = new T.MeshStandardMaterial({ color: '#c4c6c8', metalness: 1, roughness: .3 });
-    room.add(box(W, BH - 0.04, D, bm, W / 2, BH / 2 + 0.02, -D / 2));
-    room.add(box(W, 0.04, D - 0.02, new T.MeshStandardMaterial({ color: '#bfb2a2', roughness: .8 }), W / 2, 0.02, -D / 2 - 0.01));
+    room.add(box(W, BH - 0.04, DB, bm, W / 2, BH / 2 + 0.02, -DB / 2));
+    room.add(box(W, 0.04, DB - 0.02, new T.MeshStandardMaterial({ color: '#bfb2a2', roughness: .8 }), W / 2, 0.02, -D / 2 - 0.01));
     room.add(box(W / 3 - 0.004, BH - 0.07, 0.01, mir, W / 2, BH / 2 + 0.02, 0.006));
     [[W / 6], [W * 5 / 6]].forEach(([x]) => [0.4, 0.9, 1.4, 1.9].forEach(z => { if (z < BH - 0.05) room.add(box(W / 3 - 0.01, 0.008, 0.004, alu, x, z, 0.003, false)); }));
     room.add(box(W, 0.012, 0.03, alu, W / 2, BH - 0.01, -0.015, false));
+    if (st.d < st.baseD - 0.5) room.add(box(W, 0.004, DB - st.d / 100, new T.MeshStandardMaterial({ color: '#cfc4b4', roughness: .9 }), W / 2, BH + 0.002, -st.d / 100 - (DB - st.d / 100) / 2, false));
   }
 
   function doorWidths(W, n) {
@@ -157,6 +158,32 @@
       const p = box(xb - xa - 0.002, t, dp - 0.02, mI, (xa + xb) / 2, y0 + H / 2, zMid + 0.01); model.add(p); tag(p, 5, new T.Vector3(0, 0, 0.8));
       if (st.box) { const b = box(Math.min(0.4, (xb - xa) * 0.7), 0.16, dp * 0.7, new T.MeshStandardMaterial({ color: '#cbbfae', map: tex('linen'), roughness: 1 }), (xa + xb) / 2, y0 + t + 0.08, zMid); model.add(b); tag(b, 5, new T.Vector3(0, 0, 0.8)); }
     }
+    // élet a rekeszekben: bőrönd, összehajtott textil, lendoboz (csukott ajtónál nem látszik)
+    const mSuit = new T.MeshStandardMaterial({ color: '#6B5240', roughness: 0.45 }), mAlu = new T.MeshStandardMaterial({ color: '#c4c6c8', metalness: 1, roughness: .3 });
+    const TX = ['#EDE7DD', '#CDBFAE', '#B9A68E', '#E3D9CB'];
+    for (let i = 0; i < n; i++) {
+      const xa = i === 0 ? t : edges[i] + t / 2, xb = i === n - 1 ? W - t : edges[i + 1] - t / 2, cw = xb - xa, xc = (xa + xb) / 2, yb = y0 + t;
+      const shelf = st.shelves.has(i + 1), hFree = (shelf ? H / 2 - t * 1.5 : H - 2 * t) - 0.02, zc = zMid + 0.02;
+      if (cw < 0.3 || hFree < 0.12) continue;
+      const kind = i % 3;
+      if (kind === 0 || (n === 1)) {
+        const sw = Math.min(0.62, cw - 0.08), sh = Math.min(0.23, hFree - 0.02);
+        const s1 = box(sw, sh, Math.min(0.42, dp - 0.08), mSuit, xc, yb + sh / 2, zc); model.add(s1); tag(s1, 8, new T.Vector3(0, 0, 0.6));
+        const hd = box(0.12, 0.02, 0.02, mAlu, xc, yb + sh + 0.01, zc + 0.12); model.add(hd); tag(hd, 8, new T.Vector3(0, 0, 0.6));
+      } else {
+        let yy = yb; const k = kind === 1 ? 3 : 2;
+        for (let j = 0; j < k && yy < yb + hFree - 0.07; j++) {
+          const th = 0.05 + (j % 2) * 0.015, tw = Math.min(0.38, cw * 0.45);
+          const tx = box(tw, th, 0.3, new T.MeshStandardMaterial({ color: TX[(i + j) % 4], map: tex('linen'), roughness: 1 }), xc - (kind === 2 ? cw * 0.2 : 0), yy + th / 2, zc + 0.04);
+          model.add(tx); tag(tx, 8, new T.Vector3(0, 0, 0.6)); yy += th;
+        }
+        if (kind === 2) { const bx = box(Math.min(0.3, cw * 0.38), Math.min(0.18, hFree - 0.02), 0.34, new T.MeshStandardMaterial({ color: '#C9BBA6', map: tex('linen'), roughness: 1 }), xc + cw * 0.22, yb + Math.min(0.18, hFree - 0.02) / 2, zc); model.add(bx); tag(bx, 8, new T.Vector3(0, 0, 0.6)); }
+      }
+      if (shelf) {  // a polcon is: összehajtott textil
+        let yy = y0 + H / 2 + t / 2;
+        for (let j = 0; j < 2; j++) { const th = 0.055; const tx = box(Math.min(0.36, cw * 0.42), th, 0.3, new T.MeshStandardMaterial({ color: TX[(i + j + 1) % 4], map: tex('linen'), roughness: 1 }), xc - cw * 0.18, yy + th / 2, zc + 0.04); model.add(tx); tag(tx, 8, new T.Vector3(0, 0, 0.6)); yy += th; }
+      }
+    }
     // LED
     if (st.led) for (let i = 0; i < n; i++) {
       const xa = i === 0 ? t : edges[i] + t / 2, xb = i === n - 1 ? W - t : edges[i + 1] - t / 2;
@@ -185,9 +212,9 @@
         piv.add(box(L, 0.004, td + 0.014, hmat, cx, -0.002, td / 2 + 0.002));
         const lip = new T.Mesh(new T.CylinderGeometry(0.006, 0.006, L, 20), hmat); lip.rotation.z = Math.PI / 2; lip.position.set(cx, -0.006, td + 0.01); piv.add(lip);
       } else if (st.handle === 'bar') {
-        const L = Math.min(0.32, dw * 0.6), hx = sx * (dw - 0.07);
-        const bar = new T.Mesh(new T.CylinderGeometry(0.006, 0.006, L, 20), hmat); bar.position.set(hx, 0.06 + L / 2, td + 0.03); bar.castShadow = true; piv.add(bar);
-        [-1, 1].forEach(k => piv.add(box(0.008, 0.008, 0.03, hmat, hx, 0.06 + L / 2 + k * (L / 2 - 0.02), td + 0.015)));
+        const L = Math.min(0.32, dw * 0.6);
+        const bar = new T.Mesh(new T.CylinderGeometry(0.006, 0.006, L, 20), hmat); bar.rotation.z = Math.PI / 2; bar.position.set(cx, 0.055, td + 0.03); bar.castShadow = true; piv.add(bar);
+        [-1, 1].forEach(k => piv.add(box(0.008, 0.008, 0.03, hmat, cx + k * (L / 2 - 0.02), 0.055, td + 0.015)));
       } else if (st.handle === 'knob') {
         const k = new T.Mesh(new T.SphereGeometry(0.014, 24, 16), hmat); k.position.set(sx * (dw - 0.06), 0.06, td + 0.016); k.castShadow = true; piv.add(k);
       }
@@ -201,7 +228,10 @@
       + nm * 18900 + (off > 0 ? 6900 : 0)
       + (['oak', 'smoked', 'walnut'].some(k => st.ajto === k || st.korpusz === k) ? 64000 : 0) + (st.fin === 'gloss' ? 19000 : 0);
     $('price').textContent = (Math.round(p / 100) * 100).toLocaleString('hu-HU') + ' Ft';
+    envTone(model);
   }
+  // környezeti fény visszafogása a nem fémes felületeken – így a kasmír nem fakul ki
+  function envTone(g) { g.traverse(o => { const m = o.material; if (m && m.envMapIntensity !== undefined && !m.metalness) m.envMapIntensity = 0.3; }); }
 
   function applyOpen(instant) {
     doors.forEach(d => { d.userData.target = st.open ? (d.userData.left ? -1 : 1) * 1.75 : 0; if (instant) d.rotation.y = d.userData.target; });
@@ -261,7 +291,7 @@
       o.visible = asmT >= a.step;
       o.position.copy(a.home).addScaledVector(a.dir, 1 - k);
     });
-    ledLights.forEach(l => l.intensity = asmT > 8 ? 1.2 : 0);
+    ledLights.forEach(l => l.intensity = asmT > 8 ? 2.6 : 0);
     const i = Math.max(0, Math.min(N - 1, Math.floor(asmT)));
     $('asmT').textContent = `${i + 1}/${N} · ${STEPS[i][0]}`; $('asmD').textContent = STEPS[i][1]; $('asmBar').style.width = Math.min(100, asmT / N * 100) + '%';
     // lassú kameraív
@@ -289,7 +319,7 @@
   function drawComp() {
     if (!comp) return;
     const g = compG, W = comp.width, H = comp.height, s = Math.max(W / cv.width, H / cv.height);
-    g.fillStyle = '#E6DED2'; g.fillRect(0, 0, W, H);
+    g.fillStyle = '#A39582'; g.fillRect(0, 0, W, H);
     g.drawImage(cv, (W - cv.width * s) / 2, (H - cv.height * s) / 2, cv.width * s, cv.height * s);
     const i = Math.max(0, Math.min(STEPS.length - 1, Math.floor(asmT)));
     g.fillStyle = 'rgba(20,17,14,.82)'; g.fillRect(0, H - 110, W, 110);
@@ -303,14 +333,14 @@
     requestAnimationFrame(loop);
     let openAmt = 0;
     doors.forEach(d => { d.rotation.y += (d.userData.target - d.rotation.y) * 0.12; openAmt = Math.max(openAmt, Math.abs(d.rotation.y) / 1.75); });
-    if (asmT < 0) ledLights.forEach(l => l.intensity = 1.6 * openAmt);
+    if (asmT < 0) ledLights.forEach(l => l.intensity = 2.8 * openAmt);
     asmUpdate(now || performance.now());
     if (asmT < 0) ctl.update();
     R.render(S, cam); drawComp();
   })();
 
   // ---------------- UI
-  const rebuild = () => { buildRoom(); buildModel(); };
+  const rebuild = () => { buildRoom(); envTone(room); buildModel(); };
   const mk = (id, list, isTex) => {
     const g = $(id); list.forEach(it => {
       const b = document.createElement('button'); b.title = it[0]; b.style.background = isTex ? TEXPREV[it[1]] : it[1];
@@ -333,7 +363,9 @@
   $('hexIn').oninput = () => { if (/^#[0-9a-f]{6}$/i.test($('hexIn').value)) pick($('hexIn').value); };
   const group = (id, fn) => document.querySelectorAll('#' + id + ' .opt').forEach(b => b.onclick = () => {
     document.querySelectorAll('#' + id + ' .opt').forEach(x => x.classList.remove('on')); b.classList.add('on'); fn(b); });
-  group('depthOpts', b => { st.d = +b.dataset.d; rebuild(); frame(); });
+  const setD = v => { st.d = v; $('dVal').textContent = v; $('dRange').value = v; document.querySelectorAll('#depthOpts .opt').forEach(x => x.classList.toggle('on', +x.dataset.d === v)); rebuild(); };
+  document.querySelectorAll('#depthOpts .opt').forEach(b => b.onclick = () => { setD(+b.dataset.d); frame(); });
+  $('dRange').oninput = () => setD(+$('dRange').value);
   group('splitOpts', b => { st.split = b.dataset.s; buildModel(); });
   group('finOpts', b => { st.fin = b.dataset.f; buildModel(); });
   group('hcol', b => { st.hcol = b.dataset.c === '#222' ? '#1E1E1E' : b.dataset.c; buildModel(); });
@@ -356,7 +388,7 @@
   }
   function doorsUI() {
     const g = $('doorOpts'); g.innerHTML = ''; const r = rec_(st.w); $('doorRec').textContent = r;
-    const lo = Math.max(1, Math.ceil(st.w / 75)), hi = Math.min(6, Math.max(lo, Math.floor(st.w / 35)));
+    const lo = Math.max(1, Math.ceil(st.w / 90)), hi = Math.min(6, Math.max(lo, Math.floor(st.w / 35)));
     for (let k = lo; k <= hi; k++) {
       const b = document.createElement('button'); b.className = 'opt' + (k === st.doors ? ' on' : ''); b.textContent = k + (k === r ? ' · javasolt' : '');
       b.onclick = () => { setDoors(k); doorsUI(); buildModel(); }; g.appendChild(b);
@@ -378,7 +410,7 @@
   }
   $('w').oninput = () => {
     st.w = +$('w').value; $('wVal').textContent = st.w;
-    const lo = Math.ceil(st.w / 75), hi = Math.floor(st.w / 35);
+    const lo = Math.ceil(st.w / 90), hi = Math.floor(st.w / 35);
     if (st.doors < lo || st.doors > hi) setDoors(rec_(st.w));
     doorsUI(); rebuild(); frame();
   };
@@ -405,6 +437,6 @@
   syncHex(); doorsUI(); rebuild(); resize(); frame();
   // UI szinkron presetekhez
   document.querySelectorAll('#splitOpts .opt').forEach(b => b.classList.toggle('on', b.dataset.s === st.split));
-  window.zenitCfg = { st, cam, ctl, frame, startAsm, rebuild, doorsUI };
+  window.zenitCfg = { st, cam, ctl, frame, startAsm, rebuild, doorsUI, doors: () => doors, leds: () => ledLights, S, R, hemi, key, fill };
   if (/assemble/.test(location.hash)) setTimeout(() => startAsm(false), 600);
 })();

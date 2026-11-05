@@ -195,3 +195,102 @@
 - **Eredmény:**
   - projektvideó ~2:12, 9 fejezet: kiindulópont, 3D modell, részletek, gyártás, márka, weboldal és tervező, AI-munkamódszer;
   - promóvideó ~0:31.
+
+## 3. nap – csütörtök, nov. 5.
+
+### Prémium újratervezés (v6)
+- **A kérés (20 pontban):**
+  - tükör bárhová;
+  - hülyebiztos szerelési útmutató szerszámlistával, szerelési videó a vevő saját tervéhez, brandelt kézikönyv;
+  - plafon- és falkiegyenlítés 10 cm-ig;
+  - kevesebb sötét felület, stock fotók és videók, görgetésre változó háttér;
+  - kitalált díjak és kiállítások;
+  - élethűbb képek, látható (de lágy) élek, belső LED-kép;
+  - ajtónként állítható nyitásirány, plafon nélküli szobanézet a tervezőben;
+  - „projekt számokban”, high-end ügynökségi hatás.
+- **Inspiráció:** Claude a megadott oldalak felépítését elemezte (Octagon Works, Prodomo, Mondini, BFP, Rossato). Átvett elemek:
+  - kis angol címkék magyar főcímek fölött;
+  - folyamatlépések, anyagpaletta, GYIK, visszatérő konzultációs CTA.
+- **Stock anyagok:**
+  - A felhős munkaterület és a gépem virtuális gépe nem éri el a képoldalakat, a beépített böngésző viszont igen. 31 Unsplash-fotó és 20 Pexels-videó a böngészőből töltődött le, majd átkerült a `08_Media` mappába, licencnyilvántartással együtt.
+  - **Elakadás:** minden letöltés külön engedélyablakot dobott. Tanulság: egyszerre, csomagban kell letölteni.
+- **Egységes színvilág:**
+  - Saját fotószűrő (Pillow): meleg árnyékok, krémes csúcsfények, visszafogott telítettség.
+  - Videószűrő (ffmpeg, a gépemen): eq + colorbalance + finom filmszemcse.
+  - A klipek 6–8 másodperces, néma, hurkolható háttérvideók, 0,2–1,4 MB-osak.
+- **Dizájnrendszer v2:**
+  - elefántcsont, kő és espresso felületek váltakozva;
+  - a fejléc a mögötte lévő szakasz színéhez igazodik;
+  - scrollytelling (görgetésre váltó, „ragadós” képek), parallax videósávok, len- és tölgytextúrás szakaszok;
+  - egymásra csúsztatott képek, futó szalag, számláló, masonry galéria szűrővel, díjsáv.
+  - A díjak és kiállítások a látványprojekt részeként kitaláltak – ezt a díjsáv alatt és a láblécben is jelezzük.
+- **Pontosítás:** a „~1 m³ extra tárhely” túlzás volt; a valós belső térfogat 2464 × 579 × 494 mm ≈ 0,7 m³, ez került az oldalra.
+
+### Szerelési útmutató, kézikönyv, szerelési videó
+- **Ábrák:**
+  - Az ábrák a gyártási geometriából generálódnak (illus.py): ferde axonometria, vonalas stílus, az aktuális alkatrész bronz kiemeléssel.
+  - A furat- és vasalatpozíciók is a modellből jönnek.
+  - 12 lépés és 11 alkatrészrajz (A–L).
+- **Szerelés oldal:** szerszámok ikonokkal, alkatrészek, vasalatlista, lépések időigénnyel és figyelmeztetésekkel.
+- **Személyre szabott kézikönyv:**
+  - A mentett tervből készül: méret, ajtók és nyitásirány, tükör, kiegyenlítés, a tervhez számolt vasalatlista.
+  - A lépések szövege is a tervhez igazodik: távtartó, ferde takaróléc, nyitásirányok.
+  - A végén ápolás és garancialap sorszámmal. Nyomtatható és PDF-be menthető (A4).
+- **Referencia-kézikönyv PDF:** ugyanebből a nézetből, Chromiummal nyomtatva.
+- **Szerelési animáció a tervezőben:** a vevő saját tervéből; a lépéseket feliratok kísérik, a kamera lassú ívben mozog. „Szerelési videó letöltése”: a böngésző WebM-videót rögzít (MediaRecorder), feliratokkal.
+- **Narrált szerelési MP4:**
+  - ugyanez az animáció, a gépemen generált narrációval (Piper, Anna hangja);
+  - a lépések hossza a narrációhoz igazodik.
+  - **Elakadás:** az első képkockán negatív időbélyeg miatt összeomlott az animáció → értékhatár-ellenőrzés került bele.
+  - **Elakadás:** a kamera irányát nem frissítette (`lookAt` hiányzott) → javítva.
+
+### Tervező v2
+- Világos szoba és világos stúdió.
+- A plafonlap helyett bronz, szaggatott plafonvonal, így felülről is látszik minden.
+- Ajtónként állítható nyitásirány (bal/jobb) és front (lap/tükör).
+- **Ferde plafon (0–10 cm):** a takaróléc automatikusan ferdére szabva készül.
+- **Falkiegyenlítés (0–10 cm):** rejtett távtartók.
+- Az ár a tükörrel és a kiegyenlítéssel együtt számolódik.
+- Pontos színkezelés (sRGB): a kasmír valóban kasmírnak látszik.
+- **Elakadás:** a tervező „szobában” nézetben a kamera a szoba falán kívül állt → a szoba előre meghosszabbítva, a keretezés újrahangolva.
+
+### Látványtervek v2 (Blender)
+- Lágy élkiemelés a lapokon (bevel-normál alapú élmaszk), így a bútor körvonala kirajzolódik, de nem fekete.
+- Deszkás padló, modern absztrakt festmény, könyvek, váza, olvasófotel, állólámpa, szürkületi ég az ablakban.
+- Új képek:
+  - belső LED közelről, a polcokon összehajtott textilekkel és bőrönddel;
+  - tükrös középső ajtó;
+  - fékes pánt közelről;
+  - világos robbantott nézet.
+- **Elakadás:** a nappali képek kiégtek → levett expozíció.
+- **Elakadás:** a várakozó szkript a saját parancssorát találta meg (`pgrep`) → közvetlen indítás.
+- **Elakadás:** a környezet újraindult, a háttérfolyamatok leálltak → újraindítás onnan, ahol tartottak (a kész képek megmaradtak).
+
+### Rendrakás
+- A tegnapi ZENIT- és Ratet-fájlok a Letöltések mappából: amelyik már megvolt a munkamappában, az törölve, a többi áthelyezve.
+
+### Finomhangolás (v7): láthatóság, változatosság, mozgókép
+- **Visszajelzés:** több szín és szögből készült kép, más-más berendezéssel; nagy kép/videó a Szerelés és a Garancia oldal tetejére; néhány sötétebb és elmosott képsáv; kevesebb ismétlődő kép; a fékes pánt belülről; ajtónyitás-animáció LED-del és tárgyakkal; sötétebb falak, hogy a kasmír kiemelkedjen.
+- **Tervező:**
+  - Mélység 30–70 cm csúszkával, a javasolt érték (az alsó szekrény mélysége) külön kiemelve.
+  - Ajtónként max. 90 cm.
+  - A rúdfogantyú vízszintesen, az ajtó alján.
+  - A négy fő funkció (szerelés lejátszása, videó letöltése, kézikönyv, terv mentése) ikonos csempékre került.
+- **Színek és fények a tervezőben:**
+  - A kasmír kifakult, mert a környezeti fény (RoomEnvironment) és a félgömbfény összeadódott.
+  - Javítás: a környezeti visszaverődés 0,3-re visszafogva a nem fémes felületeken, gyengébb fények, melegszürke fal és háttér, füstölt tölgy padló.
+  - Így a kasmír ajtó tisztán elválik a faltól.
+- **Előtte/utána csúszka:** vastagabb, árnyékolt vonal, sötét fogó „Húzd” felirattal, és az első megjelenéskor egy rövid „lebbenés”, ami jelzi, hogy húzható.
+- **Új látványtervek (Blender):**
+  - második berendezés: diófa komód, lámpa, kerek tükör, kárpitozott pad pléddel, függöny, olajfa;
+  - kasmír esti fényben, nyitva belső LED-del, zsálya, éjkék, natúr tölgy, grafit + dió alulnézetből;
+  - a fékes pánt belülről.
+  - **Elakadás:** a növény levelei pálcikának látszottak, egyenként másolt objektumként pedig nem jelentek meg a renderen. Megoldás: a levelek (bmesh) egyetlen hálóba épülnek, olajfa-szerű ágakkal.
+- **Egységes fotós utómunka:** nappali képeken lágy, vállas tónusgörbe, minden képen finom vignetta.
+- **Mozgókép a tervezőből:**
+  - Determinisztikus felvétel (Playwright, rögzített időléptetés): ajtónyitás belső fénnyel és tárgyakkal; új szerelési felvétel a sötétebb szobával.
+  - Ebből készült a szerelési oldal háttérvideója és a narrált szerelési videó új változata.
+- **Oldalak:**
+  - Szerelés: háttérvideós fejléc, sötét szerszámszakasz, elmosott műhelyképsáv.
+  - Garancia: esti render a fejlécben, elmosott képsáv, sötét „Amit vállalunk” blokk.
+  - A ZENIT oldalon „Nyisd ki” videóblokk.

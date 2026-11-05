@@ -198,6 +198,60 @@ def profile_handle(name, x0, L, y_back, z_bot, m, pivot=None, rot_z=0.0):
     return o
 
 
+def olive(tag, PX, PY, pot, leafcol, top=1.5, n=320, seed=3):
+    """olajfa-szerű szobanövény: törzs, ágak, sok apró levél (egy közös hálóval, gyorsan)"""
+    import random
+    rnd = random.Random(seed)
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.17, depth=0.42, vertices=32, location=(PX, PY, 0.21)); bpy.context.object.data.materials.append(pot)
+    bark = plain(tag + "_kereg", "#5B4B3B", 0.85)
+    base = (PX, PY, 0.4); fork = (PX + 0.02, PY - 0.01, top - 0.55)
+    cyl_between(tag + "_torzs", base, fork, 0.022, bark)
+    tips = []
+    for k in range(5):
+        a = k * 1.26 + 0.3; r = 0.16 + 0.05 * (k % 2)
+        tip = (PX + r * math.cos(a), PY + r * math.sin(a), top - 0.12 + 0.08 * ((k * 7) % 3) / 2)
+        cyl_between(f"{tag}_ag{k}", fork, tip, 0.011, bark); tips.append(tip)
+    leaf = plain(tag + "_level", leafcol, 0.5)
+    from mathutils import Matrix, Euler
+    bm = bmesh.new()
+    for i in range(n):
+        cx, cy, cz = tips[i % len(tips)]
+        u, v, w = rnd.gauss(0, 0.11), rnd.gauss(0, 0.11), rnd.gauss(0, 0.09)
+        M = (Matrix.Translation((cx + u, cy + v, cz + w)) @ Euler((rnd.uniform(-0.9, 0.9), rnd.uniform(-0.6, 0.6), rnd.uniform(0, 6.28))).to_matrix().to_4x4()
+             @ Matrix.Diagonal((1.0, 0.36, 0.05, 1.0)))
+        bmesh.ops.create_uvsphere(bm, u_segments=10, v_segments=6, radius=0.045, matrix=M)
+    me = bpy.data.meshes.new(tag + "_lombok"); bm.to_mesh(me); bm.free()
+    for pg in me.polygons: pg.use_smooth = True
+    o = bpy.data.objects.new(tag + "_lombok", me); bpy.context.scene.collection.objects.link(o); me.materials.append(leaf)
+
+
+def cyl_between(name, p1, p2, r, m):
+    from mathutils import Vector
+    a, b = Vector(p1), Vector(p2); d = b - a
+    bpy.ops.mesh.primitive_cylinder_add(radius=r, depth=d.length, location=(a + b) / 2, vertices=20)
+    o = bpy.context.object; o.name = name; o.rotation_mode = "QUATERNION"
+    o.rotation_quaternion = Vector((0, 0, 1)).rotation_difference(d.normalized()); o.data.materials.append(m)
+    for pg in o.data.polygons: pg.use_smooth = True
+    return o
+
+
+def hinge(hx, left, ang, zc, m):
+    """Häfele Metalla-szerű pánt: csésze az ajtó belső lapján, kar, szerelőtalp a korpusz belső oldalán (mm)."""
+    sg = 1 if left else -1; a = math.radians(ang)
+    def rot(x, y):  # az ajtó forgatása a (hx, 0) tengely körül
+        dx, dy = x - hx, y
+        return (hx + dx * math.cos(a) - dy * math.sin(a), dx * math.sin(a) + dy * math.cos(a))
+    cx = hx + sg * (21.5 + 17.5)
+    c1 = rot(cx, 18.5); c2 = rot(cx, 4)
+    cyl_between("pant_csesze", (c1[0] / 1000, c1[1] / 1000, zc / 1000), (c2[0] / 1000, c2[1] / 1000, zc / 1000), 0.0175, m)
+    f1 = rot(cx, 18.0); f2 = rot(cx, 20.0)
+    cyl_between("pant_perem", (f1[0] / 1000, f1[1] / 1000, zc / 1000), (f2[0] / 1000, f2[1] / 1000, zc / 1000), 0.024, m)
+    px = hx + sg * 22
+    cube("pant_talp", (px - (0 if left else 12), 30, zc - 20, 12, 40, 40) if left else (px - 12, 30, zc - 20, 12, 40, 40), m, 0.002)
+    k1 = (px / 1000 + sg * 0.012, 0.050, zc / 1000); c3 = rot(cx, 30)
+    cyl_between("pant_kar", k1, (c3[0] / 1000, c3[1] / 1000, zc / 1000), 0.0065, m)
+
+
 def build_topper():
     door_deg = g("doors", 0.0); ex = g("explode", 0.0)
     led = g("led", False)
@@ -218,6 +272,9 @@ def build_topper():
             if dm is M["mirror_door"]:  # keskeny kasmír keret a tükör körül
                 for fb in ((x, y - 0.6, z + BH, dx, 0.5, 14), (x, y - 0.6, z + BH + dz - 14, dx, 0.5, 14), (x, y - 0.6, z + BH, 14, 0.5, dz), (x + dx - 14, y - 0.6, z + BH, 14, 0.5, dz)):
                     cube("tukorkeret", list(fb), M["door"], 0, pivot=(hx / 1000, 0.0, 0), rot_z=ang)
+            if door_deg or g("hinges", False):
+                for zc in (b[2] + dz - 95.5, b[2] + 95.5):
+                    hinge(hx, q["hinge"] == "L", ang, zc, M["nickel"])
             if g("handle", "alu") != "none":
                 cx = x + dx / 2
                 profile_handle("fog", cx - 112.5, 225, PARAMS["t_door"] + b[1], b[2], M["handle"],
@@ -324,6 +381,8 @@ def build_room():
     cube("jobbfal", (4200, -4200, 0, 100, 4900, CEIL), wall, 0)
     if not g("props", True):
         return
+    if g("layout", "A") == "B":
+        build_props_b(); return
     lin = linen("agynemu", "#E9E3D8"); lin2 = linen("takaro", "#BFAF98")
     # ágy a szekrénnyel szemben, jobbra
     cube("agykeret", (2900, -3300, 0, 1300, 2050, 320), TEX["oak"]("agykeret"), 0.01)
@@ -376,18 +435,47 @@ def build_room():
         bpy.ops.object.light_add(type="POINT", location=(0.25, -2.55, 1.52))
         l = bpy.context.object; l.data.energy = 55 if MOOD == "evening" else 14; l.data.color = srgb("#FFC48A"); l.data.shadow_soft_size = 0.15
     # növény
-    bpy.ops.mesh.primitive_cylinder_add(radius=0.16, depth=0.38, location=(-0.55, -0.35, 0.19))
-    bpy.context.object.data.materials.append(plain("kaspo", "#8E6F5A", 0.7))
-    leaf = plain("level", "#4E5E43", 0.55)
-    for i in range(22):
-        a = i * 2.39; r = 0.05 + (i % 5) * 0.035; hgt = 0.55 + (i % 7) * 0.12
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.11, location=(-0.55 + r * math.cos(a), -0.35 + r * math.sin(a), hgt))
-        o = bpy.context.object; o.scale = (1.0, 0.35, 0.18); o.rotation_euler = (0.3 * math.sin(a), 0.5 * math.cos(a), a)
-        o.data.materials.append(leaf)
+    olive("na", -0.55, -0.35, plain("kaspo", "#8E6F5A", 0.7), "#55634A", top=1.45, seed=5)
     # függöny az ablaknál
     cur = linen("fuggony", "#F2EEE6", 0.9)
     for i in range(7):
         cube(f"fugg{i}", (-880, -2650 + i * 70, 0, 25 + (i % 2) * 20, 60, CEIL - 30), cur, 0.01)
+
+
+def build_props_b():
+    """B elrendezés: öltözőszoba-hangulat – diókomód lámpával és könyvekkel, kárpitozott pad, nagy álló kép, kerek tükör, szőnyeg."""
+    wal = TEX["walnut"]("komod"); lin = linen("pad", g("bench", "#8F8476"))
+    cube("komod", (2750, 130, 0, 1350, 440, 720), wal, 0.006)
+    for i in range(3):
+        cube(f"komod_fiok{i}", (2770 + i * 445, 126, 60, 420, 6, 600), plain(f"fiokrés{i}", "#3E2B1E", 0.6), 0)
+    cube("komod_lab", (2760, 140, -10, 1330, 420, 12), plain("lab", "#2B211A", 0.5), 0)
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.07, depth=0.28, location=(3.85, 0.33, 0.86)); bpy.context.object.data.materials.append(plain("lampatest", "#D8CBB8", 0.3))
+    bpy.ops.mesh.primitive_cone_add(radius1=0.19, radius2=0.13, depth=0.24, location=(3.85, 0.33, 1.1))
+    bpy.context.object.data.materials.append(plain("lampabura", "#EFE6D6", 0.85, emit="#FFC98A", estr={"evening": 4, "night": 0.8}.get(MOOD, 0.0)))
+    if MOOD in ("evening", "night"):
+        bpy.ops.object.light_add(type="POINT", location=(3.85, 0.33, 1.05)); l = bpy.context.object; l.data.energy = 60 if MOOD == "evening" else 16; l.data.color = srgb("#FFC48A"); l.data.shadow_soft_size = 0.15
+    for i, (c, hh) in enumerate((("#2F3A33", 40), ("#C9B79C", 30), ("#E8E1D5", 36))):
+        cube(f"konyvb{i}", (2950, 220 + i * 4, 720 + sum((40, 30, 36)[:i]), 300 - i * 18, 210, hh), plain(f"konyvb{i}", c, 0.7), 0.003)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=0.09, location=(3.35, 0.35, 0.81)); o = bpy.context.object; o.scale = (1, 1, 1.1); o.data.materials.append(plain("vazab", "#B08D6A", 0.35))
+    # nagy álló kép a komódon a falnak döntve
+    cube("allo_keret", (3050, 480, 720, 760, 30, 980), plain("allokeret", "#E9E2D6", 0.6), 0.004)
+    cube("allo_kep", (3080, 470, 750, 700, 12, 920), plain("allokep", "#D6C7B1", 0.9), 0)
+    cube("allo_folt", (3140, 466, 830, 420, 6, 520), plain("allofolt", g("art", "#7C6A57"), 0.9), 0)
+    # kerek tükör a jobb falon
+    bpy.ops.mesh.primitive_cylinder_add(radius=0.42, depth=0.02, location=(4.19, -1.2, 1.55), rotation=(0, math.radians(90), 0))
+    bpy.context.object.data.materials.append(M["mirror"])
+    bpy.ops.mesh.primitive_torus_add(major_radius=0.42, minor_radius=0.012, location=(4.18, -1.2, 1.55), rotation=(0, math.radians(90), 0))
+    bpy.context.object.data.materials.append(plain("tukorkeret_b", "#A07A45", 0.3, 1.0))
+    # kárpitozott pad a szekrény előtt, rajta összehajtott pléd
+    cube("pad", (650, -1650, 0, 1200, 420, 440), lin, 0.04)
+    cube("pled", (1150, -1660, 440, 520, 400, 40), linen("pled", "#D9CDBB"), 0.02)
+    # szőnyeg, növény, függöny
+    cube("szonyeg_b", (300, -2700, 0, 2600, 1800, 8), linen("szonyegb", "#C2B49F"), 0.002)
+    PX, PY = g("plant", (-0.72, -0.28))
+    olive("nb", PX, PY, plain("kaspob", "#D8CFC2", 0.6), "#5E6C4F", top=1.6, seed=9)
+    cur = linen("fuggonyb", "#EEE8DE", 0.9)
+    for i in range(8):
+        cube(f"fuggb{i}", (-880, -2700 + i * 70, 0, 25 + (i % 2) * 22, 60, CEIL - 30), cur, 0.01)
 
 
 def build_studio():
@@ -437,6 +525,11 @@ CAMS = {
     "macro_edge": ((2.70, -0.30, 2.555), (2.485, 0.0, 2.545), 55),
     "exploded": ((3.3, -3.0, 3.05), (1.25, 0.1, 2.30), 30),
     "led": ((1.62, -1.25, 1.78), (1.20, 0.30, 2.27), 28),
+    "left": ((-0.55, -3.45, 1.45), (1.55, 0.3, 1.85), 24),
+    "side": ((3.95, -1.75, 1.55), (1.05, 0.3, 2.0), 26),
+    "front_wide": ((1.25, -4.15, 1.42), (1.25, 0.3, 1.62), 22),
+    "hinge_in": ((0.78, -0.80, 2.08), (0.08, 0.10, 2.38), 38),
+    "low_up": ((2.05, -1.55, 0.95), (1.30, 0.30, 2.20), 22),
     "mirror": ((2.35, -3.4, 1.45), (1.25, 0.3, 2.05), 26),
     "hero_wide": ((3.6, -3.9, 1.30), (1.05, 0.3, 1.55), 22),
 }
@@ -465,6 +558,7 @@ if __name__ == "__main__":
         "base": plain("kasmir", "#CDBFAF", 0.5), "base_door": plain("kasmir_ajto", "#C9BBAA", 0.45),
         "mirror": plain("tukor", "#E4E8EA", 0.03, 1.0), "alu": plain("alu", "#C4C6C8", 0.3, 1.0),
         "mirror_door": plain("tukorajto", "#E9ECEE", 0.02, 1.0),
+        "nickel": plain("nikkel", "#C9CCCF", 0.28, 1.0),
         "led": plain("led", "#FFE2B8", 0.5, emit="#FFD39A", estr=12),
     })
     if MOOD == "studio":

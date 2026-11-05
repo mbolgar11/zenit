@@ -69,7 +69,7 @@ page("index.html", "ZENIT – Ahol a szekrényed véget ér, ott kezdődünk.",
           '<a class="btn light" href="manufaktura.html">A műhely <span class="arrow"></span></a>') +
      f'<section class="sec tex-linen"><div class="wrap">{head("Részletek", "Hat döntés, <em>amit sosem bánsz meg.</em>", "Mindegyik apróság. Együtt ezek adják azt a nyugalmat, amit nap mint nap érzel – akkor is, ha már észre sem veszed.")}{FEATS_HTML}</div></section>' +
      S(f'''<div class="split">
-  <div class="reveal">{img(R + "led_detail.jpg", "Belső LED-világítás a nyitott ZENIT rekeszeiben, összehajtott textilekkel", "ar-45", "Látványterv · belső LED")}<p class="cap">Belső fény – ajtónyitásra, melegfehér 2700 K.</p></div>
+  <div class="reveal">{img(R + "b_open_led.jpg", "Nyitott kasmír ZENIT esti fényben, belső LED-del, bőrönddel és összehajtott textilekkel", "ar-45", "Látványterv · belső LED")}<p class="cap">Belső fény – ajtónyitásra, melegfehér 2700 K.</p></div>
   <div class="reveal d1" style="padding-top:12%">{img(R + "mirror_day.jpg", "ZENIT tükrös középső ajtóval nappali fényben", "ar-45", "Látványterv · tükrös ajtó")}<p class="cap">Tükör a középső ajtón – vagy bárhol, ahol kéred.</p>
     <h3 class="h3" style="margin-top:40px">Fény, ami <em>vár rád.</em> Tükör, ami <em>tágít.</em></h3>
     <p class="lead" style="margin-top:16px;font-size:16px">Kinyitod, és a legfelső polc is világos. Becsukod, és a szoba eggyel nagyobbnak látszik. Két apró döntés, ami minden nap ott van.</p></div>
@@ -77,9 +77,9 @@ page("index.html", "ZENIT – Ahol a szekrényed véget ér, ott kezdődünk.",
      S(head("A ZENIT számokban", "Pontosság, <em>amit nem látsz.</em> Csak érzel.") + nums(NUMS), "dark") +
      S(head("Inspiráció", "Egy forma, <em>ezer otthon.</em>", "Kasmír az eredeti. De a ZENIT-et a te otthonod fejezi be – nézd meg, hogyan él különböző terekben.") +
        f'''<div class="cards">
-  <a class="card reveal" href="inspiracio.html">{img(R + "insp_tolgy.jpg", "Natúr tölgy ZENIT japandi hálószobában", "ar-45", "Látványterv")}<b>Natúr tölgy</b><span>Japandi nyugalom, valódi erezettel.</span></a>
+  <a class="card reveal" href="inspiracio.html">{img(R + "v_tolgy_day.jpg", "Natúr tölgy ZENIT fekete élfogantyúval, nappali fényben", "ar-45", "Látványterv")}<b>Natúr tölgy</b><span>Japandi nyugalom, valódi erezettel.</span></a>
   <a class="card reveal d1" href="inspiracio.html">{img(F + "foto_131.jpg", "Meleg fényű, letisztult belső tér", "ar-45", "Hangulat")}<b>Esti fény</b><span>Len, függöny, lámpafény – és csend.</span></a>
-  <a class="card reveal d2" href="inspiracio.html">{img(R + "insp_ejkek.jpg", "Éjkék ZENIT bronz fogantyúval esti hálószobában", "ar-45", "Látványterv")}<b>Éjkék és bronz</b><span>Bátor, mély, elegáns.</span></a>
+  <a class="card reveal d2" href="inspiracio.html">{img(R + "b_ejkek_evening.jpg", "Éjkék ZENIT bronz fogantyúval, esti fényben, kárpitozott paddal", "ar-45", "Látványterv")}<b>Éjkék és bronz</b><span>Bátor, mély, elegáns.</span></a>
 </div><div class="acts reveal" style="justify-content:center"><a class="more" href="inspiracio.html">Minden inspiráció <span class="arrow"></span></a></div>''', "ivory") +
      S(head("Tervtől a plafonig", "Négy lépés. <em>Nulla kompromisszum.</em>", "Három-négy hét a rendeléstől a csendes első zárásig. Közben végig tudod, hol tart a darabod.") + PROCESS_HTML, "paper") +
      S('<div class="quote reveal"><blockquote>„Egy szekrényt nem akkor fejezünk be, amikor összeáll, hanem amikor az ajtó először csendben becsukódik.”</blockquote><cite>ZENIT műhely · Budapest</cite></div>', "stone") +
@@ -99,7 +99,7 @@ ANAT = [("Egy korpusz, egybefüggő tetővel", "Nincsenek toldások, nincs láth
 OPTS = [(R + "mirror_day.jpg", "Tükör", "Ajtónként választható. Tágítja a teret, és a legfelső polcig minden látszik benne."),
         (R + "led_detail.jpg", "Belső LED", "Ajtónyitásra kigyúló, melegfehér fénycsík minden rekeszben."),
         (R + "macro_handle.jpg", "Élfogantyú", "GTV HEXA, 192 mm, lekerekített alumínium – vagy bronz, fekete, bőr."),
-        (R + "macro_hinge.jpg", "Fékes pánt", "Häfele Metalla 300SM: a zárás utolsó centijén magától, csendben húz be."),
+        (R + "hinge_in.jpg", "Fékes pánt", "Häfele Metalla 300SM: a zárás utolsó centijén magától, csendben húz be."),
         (R + "macro_edge.jpg", "Az él", "2 mm-es ABS az ajtókon, 0,4 mm a korpuszon – sorjamentesen, kézzel ellenőrizve."),
         (R + "exploded_light.jpg", "Tizenegy elem", "Előfúrva érkezik; a szerelés két emberrel kb. három óra.")]
 OFFSET_SVG = '''<svg viewBox="0 0 520 300" width="100%" style="max-width:560px" fill="none" stroke="currentColor" stroke-width="1.2" font-family="Inter" font-size="12">
@@ -119,6 +119,8 @@ page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépít
        f'''<div class="ba reveal"><img src="{R}after_day.jpg" alt="Utána: a gardrób a ZENIT felső szekrénnyel">
   <div class="before"><img src="{R}before_day.jpg" alt="Előtte: dobozok a szekrény fölött"></div><div class="handle"></div>
   <span class="lbl" style="left:18px">Előtte</span><span class="lbl" style="right:18px">Utána</span><span class="tag">Látványterv</span></div>''', "paper") +
+     S(head("Nyisd ki", "Kinyitod, <em>és fény gyúl.</em>", "Fékes pántok, melegfehér LED minden rekeszben – és hely mindannak, ami eddig a szekrény tetején porosodott. Valós idejű 3D-felvétel a tervezőből.")
+       + vid("nyitas", "ar-169", "Élő 3D · a tervezőből") + '<div class="acts reveal" style="justify-content:center;margin-top:34px"><a class="btn light" href="tervezo.html#preset=led">Nyisd ki a tervezőben <span class="arrow"></span></a></div>', "dark") +
      S(f'''<div class="split wide-l">
   <div class="reveal">{img(R + "exploded_light.jpg", "A ZENIT robbantott nézete", "ar-32", "Látványterv · robbantott nézet")}</div>
   <div class="reveal d1"><div class="label">Felépítés</div><h2 class="h2">Egy bútor. <em>Harminc gondos részlet.</em></h2>
@@ -133,8 +135,8 @@ page("zenit.html", "A ZENIT – felső szekrény a plafonig", "A ZENIT felépít
   <div class="acts"><a class="btn" href="tervezo.html">Kipróbálom a tervezőben <span class="arrow"></span></a></div></div>
   <div class="reveal d1" style="color:var(--ink)">{OFFSET_SVG}</div></div>''', "stone") +
      S(head("Méretek", "Méretre szabva, <em>nem méretre vágva.</em>") + '''<dl class="specs reveal">
-  <div><dt>Szélesség</dt><dd>60 – 280 cm</dd></div><div><dt>Ajtók</dt><dd>1 – 6, nyitásirány ajtónként</dd></div><div><dt>Magasság</dt><dd>a plafonodhoz, −10 mm</dd></div>
-  <div><dt>Mélység</dt><dd>35 / 45 / 60 cm</dd></div><div><dt>Kiegyenlítés</dt><dd>plafon és fal, 0 – 10 cm</dd></div><div><dt>Pántok</dt><dd>Häfele Metalla 300SM, 110°</dd></div>
+  <div><dt>Szélesség</dt><dd>60 – 280 cm</dd></div><div><dt>Ajtók</dt><dd>1 – 6, ajtónként max. 90 cm, nyitásiránnyal</dd></div><div><dt>Magasság</dt><dd>a plafonodhoz, −10 mm</dd></div>
+  <div><dt>Mélység</dt><dd>30 – 70 cm (javasolt: az alsó szekrényé)</dd></div><div><dt>Kiegyenlítés</dt><dd>plafon és fal, 0 – 10 cm</dd></div><div><dt>Pántok</dt><dd>Häfele Metalla 300SM, 110°</dd></div>
   <div><dt>Fogantyú</dt><dd>GTV HEXA 192, lekerekített</dd></div><div><dt>Rögzítés</dt><dd>a szekrényhez, falfúrás nélkül</dd></div><div><dt>Elkészülés</dt><dd>3 – 4 hét</dd></div>
 </dl>''', "paper") +
      S(head("A referencia-darab számokban", "Bútorline ELIA 250 fölé, <em>kasmírban.</em>", "A bemutatott ZENIT egy valódi szekrényre készült: 250 × 205 × 60 cm, belmagasság a legalacsonyabb ponton 259 cm.") + nums(NUMS), "dark") +
@@ -158,7 +160,7 @@ page("anyagok.html", "Anyagok és színek – ZENIT", "A ZENIT színpalettája, 
          ("assets/img/r/tex_oak.jpg", "Natúr tölgy", "Világos, nyugodt erezet – japandi és skandináv terekhez.", "Textúra"),
          ("assets/img/r/tex_walnut.jpg", "Dió", "Mély, meleg barna – esti fényben a legszebb.", "Textúra"),
          (F + "foto_146.jpg", "Len", "Puha, mátt textúra – a belső térben és a tárolódobozokon.", "Hangulat")])) + '</div></div></section>' +
-     S(f'''<div class="split wide-r"><div class="overlap reveal">{img(R + "macro_handle.jpg", "GTV HEXA élfogantyú kasmír ajtón", "ar-43 a", "Látványterv")}{img(R + "macro_hinge.jpg", "Häfele fékes pánt közelről", "ar-11 b")}</div>
+     S(f'''<div class="split wide-r"><div class="overlap reveal">{img(R + "macro_handle.jpg", "GTV HEXA élfogantyú kasmír ajtón", "ar-43 a", "Látványterv")}{img(R + "hinge_in_detail.jpg", "Häfele fékes pánt közelről", "ar-11 b")}</div>
   <div class="reveal d1"><div class="label">Vasalat</div><h2 class="h2">A részlet, <em>amit minden nap megérintesz.</em></h2>
   <div class="prose"><p>Alapfelszereltség a GTV HEXA lekerekített alumínium élfogantyú, 192 mm-es furattávval: hátulról csavarozzuk, így a fronton nincs csavarfej. Kérhető matt fekete, szálcsiszolt bronz vagy bőr kivitelben, illetve rúd, gomb vagy nyomásra nyíló változatban.</p>
   <p>A pántok Häfele Metalla 300SM, 110°-os pántok: felül fékes, alul rugós. Az ajtó az utolsó centiken magától, hangtalanul húz be.</p></div></div></div>''', "paper") +
@@ -177,7 +179,7 @@ page("manufaktura.html", "Manufaktúra – ZENIT", "Magyar kézművesség és di
   <div class="prose"><p>A jó asztalos mindig is arról volt híres, hogy az ajtaja évtizedek múlva is ugyanazzal a halk mozdulattal záródik. A ZENIT ebből a tudásból született: a tipli és a derékszög tiszteletéből, a hézag türelméből.</p>
   <p>Ma ugyanezt a gondosságot egy parametrikus 3D modell és tizedmilliméteres gépek viszik tovább – de minden darabot ember fejez be.</p></div></div></div>''', "paper") +
      MARQUEE +
-     S(head("Három kéz", "A kéz, a gép <em>és a terv.</em>") + f'''<div class="cards">
+     S(head("Részletek a műhelyből", "A kéz, az él <em>és a fa.</em>") + f'''<div class="cards">
   <div class="card reveal">{vid("veso_v", "ar-23", "Hangulat")}<b>A kéz</b><span>Véső, gyalu, türelem. Minden illesztést kézzel ellenőrzünk.</span></div>
   <div class="card reveal d1">{vid("csiszolo_v", "ar-23", "Hangulat")}<b>Az él</b><span>Gépi élzárás, kézi utánmunka: sorjamentes, kézbe simuló élek.</span></div>
   <div class="card reveal d2">{vid("forgacs_v", "ar-23", "Hangulat")}<b>A fa</b><span>Ahol forgács van, ott valaki gondosan dolgozott.</span></div></div>''', "ivory") +
@@ -212,10 +214,15 @@ G = [("zenit", R + "hero_evening.jpg", "Kasmír · az eredeti", "Esti hálószob
      ("zenit", R + "insp_ejkek.jpg", "Éjkék + bronz", "Esti hálószoba", "ejkek", "ar-32"),
      ("hangulat", F + "foto_041.jpg", "Meleg minimalizmus", "Hangulat", "", "ar-45"),
      ("zenit", R + "mirror_day.jpg", "Tükrös középső ajtó", "Kasmír", "kasmir", "ar-32"),
+     ("zenit", R + "b_kasmir_evening.jpg", "Kasmír · dióbútorokkal", "Esti fény", "kasmir", "ar-32"),
+     ("zenit", R + "b_open_led.jpg", "Nyitva, belső fénnyel", "Kasmír, LED", "led", "ar-32"),
      ("anyag", F + "foto_135.jpg", "Len, összehajtva", "Anyag", "", "ar-23"),
      ("zenit", R + "insp_zsalya.jpg", "Zsálya · nyugodt nappal", "Nappali fény", "zsalya", "ar-32"),
+     ("zenit", R + "b_zsalya_day.jpg", "Zsálya · oldalnézet", "Nappali fény", "zsalya", "ar-32"),
      ("hangulat", F + "foto_009.jpg", "Gardrób, tölgy polcok", "Hangulat", "", "ar-43"),
      ("zenit", R + "insp_grafit_dio.jpg", "Grafit + dió · városi loft", "Esti fény", "grafit", "ar-32"),
+     ("zenit", R + "v_grafit_dio.jpg", "Grafit + dió · alulnézet", "Esti fény", "grafit", "ar-32"),
+     ("zenit", R + "b_ejkek_evening.jpg", "Éjkék · dióbútorokkal", "Esti fény", "ejkek", "ar-32"),
      ("anyag", F + "foto_093.jpg", "Natúr tölgy", "Anyag", "", "ar-32"),
      ("zenit", R + "insp_kreta.jpg", "Krétafehér · skandináv reggel", "Reggeli fény", "kreta", "ar-32"),
      ("hangulat", F + "foto_128.jpg", "Esti csend", "Hangulat", "", "ar-23"),
@@ -270,13 +277,14 @@ ST = "".join(f'''<div class="asmstep reveal"><div class="no">{s["no"]:02d}</div>
 page("szereles.html", "Szerelési útmutató – ZENIT", "A ZENIT szerelése lépésről lépésre: szerszámok, alkatrészek, 12 ábrás lépés, szerelési videó és nyomtatható kézikönyv.",
      page_hero("Concierge · Szerelés", "Három óra. Két ember. <em>Egy csendes szekrény.</em>",
                "Minden alkatrész előfúrva, betűvel jelölve érkezik. Kövesd a 12 lépést – vagy nézd meg a saját tervedre készült szerelési animációt.",
-               [("index.html", "ZENIT"), ("", "Concierge"), ("", "Szerelés")]) +
+               [("index.html", "ZENIT"), ("", "Concierge"), ("", "Szerelés")], V + "szereles_loop.mp4", tag="Szerelési animáció · a tervezőből") +
      S(f'''<div class="split wide-l"><div class="reveal"><div class="video"><video controls preload="metadata" playsinline poster="assets/video/zenit_szereles_poster.jpg" src="assets/video/zenit_szereles.mp4"></video></div>
   <p class="vid-note">Szerelési videó · a referencia-darab (250 cm, 3 ajtó, kasmír). <a href="tervezo.html#assemble">A saját tervedhez: lejátszás a tervezőben ›</a></p></div>
   <div class="reveal d1"><div class="label">Mielőtt elkezded</div><h3 class="h3" style="margin:18px 0 16px">Három szabály, <em>és minden sikerül.</em></h3>
   <ol style="margin:0;padding-left:18px;color:var(--fg2)"><li>Egy puha takarón dolgozz – a lapok éle és felülete hálás lesz érte.</li><li>A konfirmátot ütközésig húzd, utána csak negyed fordulatot.</li><li>Emelni mindig ketten kell: a korpusz ajtók nélkül kb. 56 kg.</li></ol>
   <div class="acts"><a class="btn fill" href="kezikonyv.html">A te kézikönyved <span class="arrow"></span></a><a class="btn" href="letoltes/ZENIT_kezikonyv_referencia.pdf">PDF letöltése</a></div></div></div>''', "paper") +
-     S(head("Szerszámok", "Ami kell. <em>És semmi több.</em>", "A konfirmát kulcsot és a csavarokat a csomagban találod.") + TOOLSET, "ivory") +
+     S(head("Szerszámok", "Ami kell. <em>És semmi több.</em>", "A konfirmát kulcsot és a csavarokat a csomagban találod.") + TOOLSET, "dark") +
+     soft(F + "foto_077.jpg", "Előfúrva, betűvel jelölve", "Minden furat a helyén van. <em>Neked csak össze kell illesztened.</em>") +
      S(head("Alkatrészek", "Tizenegy elem, <em>betűvel jelölve.</em>", "Minden lap címkéjén ott a betű – az ábrákon is ezekkel hivatkozunk rájuk.") + PARTS +
        '<div style="margin-top:50px">' + HW + '</div>', "stone") +
      S(head("Lépésről lépésre", 'Tizenkét lépés, <em>nyugodt tempóban.</em>', "A lépések együtt kb. két és fél óra, kicsomagolással és takarítással együtt nagyjából három. Az ábrák a valódi gyártási modellből készültek – minden furat ott van, ahol a rajzon látod.") + ST, "paper") +
@@ -284,12 +292,14 @@ page("szereles.html", "Szerelési útmutató – ZENIT", "A ZENIT szerelése lé
 
 # ======================================================================== GARANCIA
 page("garancia.html", "ZENIT Örökgarancia", "Egy életre tervezve – a ZENIT Örökgarancia.",
-     page_hero("Kollekció · 06", "Egy életre <em>tervezve.</em>", "A ZENIT Örökgarancia nem határidő, hanem ígéret.", [("index.html", "ZENIT"), ("", "Kollekció"), ("", "Örökgarancia")]) +
+     page_hero("Kollekció · 06", "Egy életre <em>tervezve.</em>", "A ZENIT Örökgarancia nem határidő, hanem ígéret.", [("index.html", "ZENIT"), ("", "Kollekció"), ("", "Örökgarancia")],
+               R + "b_kasmir_evening.jpg", tag="Látványterv · kasmír, esti fény") +
      S('''<div class="guar reveal"><img class="seal" src="assets/ill/seal.svg" alt="ZENIT pecsét" style="border-radius:50%">
   <div class="label plain">ZENIT Örökgarancia <span class="demo">Demó</span></div>
   <p style="margin-top:26px">Nem évekre adunk garanciát, hanem a szekrényed egész életére. Amíg a lap, a szín és a vasalat kapható, a ZENIT minden eleme pótolható: ha megsérül, elkopik, vagy megváltozik az életed, elemenként pótoljuk, cseréljük vagy bővítjük.</p>
-  <p class="big center" style="margin-top:34px;font-size:clamp(26px,2.6vw,38px)">Amíg létezik, pótoljuk. <em>A ZENIT veled marad.</em></p>
-  <div class="trust"><div><b>Örökgarancia</b><span>Elemenként pótolható, amíg az anyag kapható.</span></div><div><b>Szétszedhető</b><span>Ragasztó nélküli kötések – költözéskor viszed.</span></div><div><b>Sorszámozva</b><span>Minden darab nyilvántartva, aláírva.</span></div><div><b>Szerviz</b><span>Pántbeállítás, csere, bővítés – kérésre helyszínen.</span></div></div></div>''', "paper") +
+  <p class="big center" style="margin-top:34px;font-size:clamp(26px,2.6vw,38px)">Amíg létezik, pótoljuk. <em>A ZENIT veled marad.</em></p></div>''', "paper") +
+     soft(F + "foto_020.jpg", "Költözéskor is", "Ragasztó nélkül, csavarral épül. <em>Szétszeded, viszed, újra összerakod.</em>") +
+     S(head("Amit vállalunk", "Négy ígéret, <em>aláírva.</em>", "Minden ZENIT sorszámot kap; a tanúsítványt a kézikönyv utolsó oldalán találod.") + '''<div class="trust reveal" style="margin-top:0"><div><b>Örökgarancia</b><span>Elemenként pótolható, amíg az anyag kapható.</span></div><div><b>Szétszedhető</b><span>Ragasztó nélküli kötések – költözéskor viszed.</span></div><div><b>Sorszámozva</b><span>Minden darab nyilvántartva, aláírva.</span></div><div><b>Szerviz</b><span>Pántbeállítás, csere, bővítés – kérésre helyszínen.</span></div></div>''', "dark") +
      nxt("07", "tervezo.html", "Tervezd meg a sajátod", "Minden változtatás azonnal megjelenik – méret, ajtók, tükör, színek, fény, fogantyú.", alt=False))
 
 # ======================================================================== TERVEZŐ
@@ -315,7 +325,10 @@ CFG = f'''<section class="cfg-wrap">
         <div class="row"><label>Szélesség <b><span id="wVal">250</span> cm</b></label><input type="range" id="w" min="60" max="280" value="250"></div>
         <div class="row"><label>Belmagasság (legalacsonyabb pont) <b><span id="ceilVal">259</span> cm</b></label><input type="range" id="ceil" min="220" max="320" value="259"></div>
         <div class="row"><label>Meglévő szekrény magassága <b><span id="baseVal">205</span> cm</b></label><input type="range" id="baseH" min="150" max="260" value="205"></div>
-        <div class="row"><label>Mélység</label><div class="opts" id="depthOpts"><button class="opt" data-d="35">35 cm</button><button class="opt" data-d="45">45 cm</button><button class="opt on" data-d="60">60 cm</button></div></div>
+        <div class="row"><label>Mélység <b><span id="dVal">60</span> cm</b></label>
+          <div class="opts" id="depthOpts"><button class="opt" data-d="35">35</button><button class="opt" data-d="45">45</button><button class="opt on rec" data-d="60">60 · javasolt</button></div>
+          <input type="range" id="dRange" min="30" max="70" value="60" aria-label="Egyedi mélység">
+          <div class="val" style="margin:8px 0 0">Javasolt: <b>60 cm</b> – a meglévő szekrényed mélysége, így a front egy síkban fut. Egyedi mélység 30–70 cm között.</div></div>
       </div>
       <div class="step"><h4>Illesztés <small>2 / 7</small></h4>
         <div class="val">Ha a plafon nem vízszintes vagy a fal nem egyenes – max. 10 cm.</div>
@@ -323,7 +336,7 @@ CFG = f'''<section class="cfg-wrap">
         <div class="row"><label>Falkiegyenlítés (távtartó) <b><span id="wallVal">0</span> cm</b></label><input type="range" id="wall" min="0" max="10" value="0" step="0.5"></div>
       </div>
       <div class="step"><h4>Ajtók <small>3 / 7</small></h4>
-        <div class="val">Javasolt: <span id="doorRec">5</span> ajtó (max. 60 cm / ajtó)</div>
+        <div class="val">Javasolt: <span id="doorRec">5</span> ajtó · ajtónként max. 90 cm, ideálisan 60 cm alatt</div>
         <div class="opts" id="doorOpts"></div>
         <div class="opts" id="splitOpts"><button class="opt on" data-s="eq">Egyenlő osztás</button><button class="opt" data-s="sym">Középen szélesebb</button></div>
         <div class="doorgrid" id="doorGrid" style="margin-top:14px"></div>
@@ -339,7 +352,7 @@ CFG = f'''<section class="cfg-wrap">
       <div class="step"><h4>Fogantyú <small>5 / 7</small></h4>
         <div class="cards2" id="handles">
           <button class="card2 on" data-h="edge"><div class="pic"><svg width="70" height="20"><path d="M2 4h66v6a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6z" fill="none" stroke="currentColor"/></svg></div><b>GTV HEXA élfogantyú</b><span>lekerekített, 192 mm</span></button>
-          <button class="card2" data-h="bar"><div class="pic"><svg width="70" height="20"><path d="M6 10h58" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><b>Rúd</b><span>vékony, 320 mm</span></button>
+          <button class="card2" data-h="bar"><div class="pic"><svg width="70" height="20"><path d="M6 10h58" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><b>Rúd</b><span>vízszintes, alul · 320 mm</span></button>
           <button class="card2" data-h="knob"><div class="pic"><svg width="70" height="20"><circle cx="35" cy="10" r="7" fill="none" stroke="currentColor"/></svg></div><b>Gomb / bőrfül</b><span>diszkrét részlet</span></button>
           <button class="card2" data-h="push"><div class="pic"><svg width="70" height="20"><path d="M10 10h50" stroke="currentColor" stroke-dasharray="3 3"/></svg></div><b>Nyomásra nyíló</b><span>fogantyú nélkül</span></button>
         </div>
@@ -358,7 +371,12 @@ CFG = f'''<section class="cfg-wrap">
       <div class="meta">Elkészül 3–4 hét alatt · szállítás és szerelés országosan · ZENIT Örökgarancia</div>
       <div class="acts"><a class="btn fill full" href="terv.html" data-save>Ajánlatot kérek <span class="arrow"></span></a>
         <a class="btn" href="concierge.html" data-save>Tervező hív vissza</a><a class="btn" href="terv.html#rendeles" data-save>Megrendelem <span class="demo" style="margin-left:4px">Demó</span></a></div>
-      <div class="links"><a href="#" id="lnkAsm">Szerelés lejátszása</a><a href="#" id="lnkRec">Szerelési videó letöltése</a><a href="kezikonyv.html" data-save>Kézikönyv</a><a href="terv.html" data-save>Terv mentése</a></div>
+      <div class="ftiles">
+        <a href="#" id="lnkAsm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"/></svg><b>Szerelés lejátszása</b><span>3D animáció a te tervedből</span></a>
+        <a href="#" id="lnkRec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="1.5"/><path d="M16 10l5-3v10l-5-3"/><path d="M9.5 9v6M7 12.5l2.5 2.5 2.5-2.5"/></svg><b>Szerelési videó</b><span>letöltés, feliratokkal</span></a>
+        <a href="kezikonyv.html" data-save><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M8 7h8M8 10.5h6"/></svg><b>Kézikönyv</b><span>személyre szabott, PDF</span></a>
+        <a href="terv.html" data-save><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/><path d="M9.5 9l2 2 3.5-3.5"/></svg><b>Terv mentése</b><span>ajánlathoz, később is</span></a>
+      </div>
     </div>
   </aside>
 </div></section>'''
