@@ -181,7 +181,7 @@ page("anyagok.html", "Anyagok és színek – ZENIT", "A ZENIT színpalettája, 
      S(f'''<div class="split"><div class="reveal"><div class="label">Fény és tükör</div><h2 class="h2">Meleg fény. <em>Tágabb tér.</em></h2>
   <div class="prose"><p>A belső LED ajtónyitásra gyullad fel: 2700 K-es, melegfehér fény, ami a textileket és a fát is a valódi színükben mutatja. A tükör bármelyik ajtóra kérhető – 4 mm-es, biztonsági fóliával, keskeny kasmír kerettel.</p></div></div>
   <div class="reveal d1">{img(R + "open_led.jpg", "Nyitott ZENIT belső LED-fénnyel", "ar-43", "Látványterv · belső LED")}</div></div>''', "stone") +
-     soft("assets/img/r/tex_oak.jpg", "Valódi erezet", "Minden tölgylap más. <em>A tiéd is egyedi lesz.</em>") +
+     band(V + "el_erintes.mp4", "Érintés", "Az él, <em>amit minden nap megérintesz.</em>", "Lekerekített, sorjamentes, kézzel ellenőrzött élek – mert a jó bútort nem csak nézed, hanem nap mint nap a kezedbe veszed.") +
      nxt("03", "manufaktura.html", "Manufaktúra", "Kéz, gép, terv – és a díjak, amelyekre büszkék vagyunk."), scripts=["scrollfx.js"])
 
 # ======================================================================== MANUFAKTÚRA
@@ -207,7 +207,7 @@ page("manufaktura.html", "Manufaktúra – ZENIT", "Magyar kézművesség és di
 </div>''', "dark") +
      S(head("Részletek a műhelyből", "A kéz, az él <em>és a fa.</em>") + f'''<div class="cards">
   <div class="card reveal">{vid("veso_v", "ar-23", "Hangulat")}<b>A kéz</b><span>Véső, gyalu, türelem. Minden illesztést kézzel ellenőrzünk.</span></div>
-  <div class="card reveal d1">{vid("csiszolo_v", "ar-23", "Hangulat")}<b>Az él</b><span>Gépi élzárás, kézi utánmunka: sorjamentes, kézbe simuló élek.</span></div>
+  <div class="card reveal d1">{vid("el_kez_v", "ar-23", "Saját felvétel")}<b>Az él</b><span>Gépi élzárás, kézi utánmunka: sorjamentes, kézbe simuló élek.</span></div>
   <div class="card reveal d2">{vid("forgacs_v", "ar-23", "Hangulat")}<b>A fa</b><span>Ahol forgács van, ott valaki gondosan dolgozott.</span></div></div>''', "ivory") +
      band(V + "cnc.mp4", "Digitális pontosság", "Tizedmilliméterre. <em>Minden alkalommal.</em>",
           "A te ZENIT-ed egy parametrikus 3D modellből születik: a szélességed, a plafonod és a választásaid minden lapot, furatot és pántot újraszámolnak. A CNC pontosan azt vágja, amit a terv mond.") +
@@ -460,6 +460,7 @@ page("concierge.html", "Concierge – személyes konzultáció – ZENIT", "Terv
     <div class="full"><label>Megjegyzés</label><textarea rows="3" placeholder="Pl. belmagasság, ferde plafon, stílus…"></textarea></div>
     <div class="full"><a class="btn fill" href="#">Kérem a visszahívást <span class="arrow"></span></a></div>
   </form></div>''', "paper") +
+     soft(V + "toll.mp4", "Első vázlat", "Minden ZENIT egy beszélgetéssel <em>és egy vonallal kezdődik.</em>") +
      band(F + "foto_032.jpg", "Személyesen", "Nálad, a te fényeidben. <em>Úgy tervezünk.</em>",
           "Belsőépítészünk megnézi a szobát, a fényt és a színeket – és ehhez igazítja a ZENIT-et.") +
      nxt("", "tervezo.html", "Vagy tervezd meg most", "Az élő 3D tervezőben pár perc alatt összeállíthatod a sajátodat.", alt=False))

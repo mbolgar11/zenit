@@ -334,3 +334,9 @@
 - **Elakadás:**
   - A Hugging Face modelltár nem érhető el a környezetből, ezért a hangklónozás és a Whisper-átirat kimaradt.
   - A szegmentáló modellek a GitHubról töltődtek le, onnan működött.
+- **Második fotó- és videócsomag:**
+  - Új portrék galléros ingben; a manufaktúra-portré nyugodtabb, bizalomkeltő arckifejezéssel készült újra.
+  - A projektvideó nyitása két snittből áll: valódi irodai portré elmosott háttérkiterjesztéssel, majd lassú pásztázás a szerszámfaltól az arcig.
+  - A narráció új kezdete: „Milán, a ZENIT ötletgazdája…”
+  - Saját kézi felvételek (fa él, komód, toll) színkorrigálva, lassítva: az Anyagok oldal „Érintés” sávja, a Manufaktúra „Az él” kártyája, a Concierge oldal elmosott sávja és egy snitt a projektvideóban.
+  - A projektvideó zárósnittje a legélethűbb esti render, lassú ráközelítéssel, a logó alatt is látható.
